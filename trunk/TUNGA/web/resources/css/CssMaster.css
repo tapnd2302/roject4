@@ -1,22 +1,6 @@
 ﻿
 
-div.main-wrapper 
-{
-    min-height: 600px;
-    height: 100%;
-    min-width: 1001px;
-    width: 1349px;
-    position:absolute;
-    
-}
-div.main 
-{
-    display:block;
-    width: 1001px;
-    height: 650px;
-    margin: 15px 0px 0 178px;    
-    position:absolute;
-}
+
 div.headerContainer
 {
 /*  float:left;
