@@ -7,6 +7,14 @@ div.headerContainer
   width:1001px;
   height:80px;*/
 }
+div.header-logoAdmin{
+    /*background: url("../img/wynn-logo.png") no-repeat scroll left top transparent;*/
+    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;
+    float: left;
+    height: 80px;
+    width: 140px;
+    position:relative;
+}
 div.header-logo{
     /*background: url("../img/wynn-logo.png") no-repeat scroll left top transparent;*/
     background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;
