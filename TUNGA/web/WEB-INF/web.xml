@@ -27,5 +27,13 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>cruze</param-value>
     </context-param>
-		
+    
+    
+    
+    
+    <!-- the message of UI doesn't appear anymore -->
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
 </web-app>
