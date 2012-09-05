@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Roombooking" table="ROOMBOOKING" schema="dbo" catalog="PROJECT4">
+        <id name="bookingDetailsId" type="int">
+            <column name="BookingDetailsID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="rooms" class="entity.Rooms" fetch="select">
+            <column name="RoomID" />
+        </many-to-one>
+        <many-to-one name="booking" class="entity.Booking" fetch="select">
+            <column name="BookingID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

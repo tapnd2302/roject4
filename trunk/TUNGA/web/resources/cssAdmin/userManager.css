@@ -1,0 +1,15 @@
+/*Role Manager*/
+#us_left{
+    width:260px;
+    height: 560px; 
+    background-color: #4c4c50   ;
+    float: left;
+    display: block;
+}
+#us_right{
+    width: 1100px;
+    height: 560px; 
+    background-color: #d6d6db;
+    float: left;
+    display: block;
+}

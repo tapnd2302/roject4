@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Booking" table="BOOKING" schema="dbo" catalog="PROJECT4">
+        <id name="bookingId" type="int">
+            <column name="BookingID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="entity.Users" fetch="select">
+            <column name="AccountID" />
+        </many-to-one>
+        <many-to-one name="hotelRestaurant" class="entity.HotelRestaurant" fetch="select">
+            <column name="HRID" />
+        </many-to-one>
+        <property name="timeStart" type="timestamp">
+            <column name="TimeStart" length="23" />
+        </property>
+        <property name="timeEnd" type="timestamp">
+            <column name="TimeEnd" length="23" />
+        </property>
+        <property name="bookingStatus" type="java.lang.Boolean">
+            <column name="BookingStatus" />
+        </property>
+        <property name="notes" type="serializable">
+            <column name="Notes" />
+        </property>
+        <property name="tokenNumber" type="string">
+            <column name="TokenNumber" length="36" />
+        </property>
+        <set name="roombookings" inverse="true">
+            <key>
+                <column name="BookingID" />
+            </key>
+            <one-to-many class="entity.Roombooking" />
+        </set>
+        <set name="tablebookings" inverse="true">
+            <key>
+                <column name="BookingID" />
+            </key>
+            <one-to-many class="entity.Tablebooking" />
+        </set>
+    </class>
+</hibernate-mapping>
