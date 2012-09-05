@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./../resources/cssAdmin/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./../resources/cssAdmin/cssMaster.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
         <title>Facelets Template</title>
 
         <style type="text/css">
@@ -21,44 +22,44 @@
     </h:head>
 
     <h:body>
-
-        <div id="top">
-            <ui:insert name="top">
-                <div class="headerContainer">
-                    <div class="header-logo">
-                        <a href="/"> 
-                        </a>
-                    </div>
-                    <div class="layout-header">
-                        <ul class="header-nav">
-                            <li id="roomsMenu" class="item header-home"><a href="#">ROOMS</a></li>
-                            <li id="restaurantsMenu" class="iteme header-home"><a href="#">RESTAURANTS</a></li>
-                            <li id="newsMenu" class="item header-home"><a href="#">NEWS</a></li>
-                            <li id="activitiesMenu" class="iteme header-home"><a href="#">ACTIVITIES</a></li>
-                            <li id="aboutusMenu" class="item header-home"><a href="#">ABOUT US</a></li>
-                            <li id="loginMenu" class="iteme header-home"><a href="#"></a>LOGIN</li>
-                            <li id="logoutMenu" class="iteme header-home"><a href="#"></a>LOG OUT</li>
-                            <li id="settingMenu" class="iteme header-home"><a href="#">SETTING</a></li>
-                        </ul>
+        <div style="margin: auto;display: block;">
+            <div id="top">
+                <ui:insert name="top">
+                    <div class="headerContainer">
+                        <div class="header-logo">
+                            <a href="/"> 
+                            </a>
+                        </div>
+                        <div class="layout-header">
+                            <ul class="header-nav">
+                                <li id="roomsMenu" class="item header-home"><a href="rolemanager.jsf">USER MANAGER</a></li>
+                                <li id="restaurantsMenu" class="iteme header-home"><a href="#">RESTAURANTS</a></li>
+                                <li id="newsMenu" class="item header-home"><a href="#">NEWS</a></li>
+                                <li id="activitiesMenu" class="iteme header-home"><a href="#">ACTIVITIES</a></li>
+                                <li id="aboutusMenu" class="item header-home"><a href="#">ABOUT US</a></li>
+                                <li id="loginMenu" class="iteme header-home"><a href="#"></a>LOGIN</li>
+                                <li id="logoutMenu" class="iteme header-home"><a href="#"></a>LOG OUT</li>
+                                <li id="settingMenu" class="iteme header-home"><a href="#">SETTING</a></li>
+                            </ul>
+                        </div> 
                     </div> 
-                </div> 
-            </ui:insert>
-        </div>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">
-
-            </ui:insert>
-        </div>
-
-        <div id="bottom">
-            <ui:insert name="bottom">
-                <ui:insert name="bottom">
-                    ©2012 Aprotrain Aptech - Team II - Ho Hinh Phu - Vong Khi Dau - Le Quy Toan - Nguyen Hoai Nam
                 </ui:insert>
-            </ui:insert>
-        </div>
+            </div>
 
+            <div id="content" class="center_content">
+                <ui:insert name="content">
+
+                </ui:insert>
+            </div>
+
+            <div id="bottom">
+                <ui:insert name="bottom">
+                    <ui:insert name="bottom">
+                        ©2012 Aprotrain Aptech - Team II - Ho Hinh Phu - Vong Khi Dau - Le Quy Toan - Nguyen Hoai Nam
+                    </ui:insert>
+                </ui:insert>
+            </div>
+        </div>
     </h:body>
 
 </html>

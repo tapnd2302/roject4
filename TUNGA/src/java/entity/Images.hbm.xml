@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Images" table="IMAGES" schema="dbo" catalog="PROJECT4">
+        <id name="imageId" type="int">
+            <column name="ImageID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="foods" class="entity.Foods" fetch="select">
+            <column name="ID" />
+        </many-to-one>
+        <many-to-one name="rooms" class="entity.Rooms" update="false" insert="false" fetch="select">
+            <column name="ID" />
+        </many-to-one>
+        <many-to-one name="users" class="entity.Users" update="false" insert="false" fetch="select">
+            <column name="ID" />
+        </many-to-one>
+        <many-to-one name="hotelRestaurant" class="entity.HotelRestaurant" update="false" insert="false" fetch="select">
+            <column name="ID" />
+        </many-to-one>
+        <property name="typeImage" type="java.lang.Integer">
+            <column name="TypeImage" />
+        </property>
+        <property name="descriptions" type="serializable">
+            <column name="Descriptions" />
+        </property>
+        <property name="imageLink" type="serializable">
+            <column name="ImageLink" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="check_rooms.xhtml" x="141" y="498" zoom="true"/>
+        <Node id="index.jsp" x="150" y="300" zoom="true"/>
+        <Node id="adminManager/rolemanager.xhtml" x="398" y="91" zoom="true"/>
+        <Node id="adminManager/index.jsp" x="145" y="416" zoom="true"/>
+        <Node id="restaurants.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="default.xhtml" x="108" y="228" zoom="true"/>
+        <Node id="adminManager/login.xhtml" x="89" y="136" zoom="true"/>
+        <Node id="adminManager/createRole.xhtml" x="472" y="313" zoom="false"/>
+        <Node id="adminManager/default.xhtml" x="150" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+    <schema-selection match-catalog="Project4" match-schema="dbo"/>
+    <table-filter match-name="NEWS"/>
+    <table-filter match-name="TYPEROOMS"/>
+    <table-filter match-name="TYPETABLE"/>
+    <table-filter match-name="FOODS"/>
+    <table-filter match-name="RESTAURANT_TABLES"/>
+    <table-filter match-name="HOTEL_RESTAURANT"/>
+    <table-filter match-name="USERS"/>
+    <table-filter match-name="HOMEDELIVERY"/>
+    <table-filter match-name="BOOKING"/>
+    <table-filter match-name="ROLES"/>
+    <table-filter match-name="TABLEBOOKING"/>
+    <table-filter match-name="AREAS"/>
+    <table-filter match-name="HOMEDELIVERY_DETAILS"/>
+    <table-filter match-name="ROOMBOOKING"/>
+    <table-filter match-name="ROOMS"/>
+    <table-filter match-name="FEEDBACK"/>
+    <table-filter match-name="IMAGES"/>
+    <table-filter match-name="TYPEFOODS"/>
+</hibernate-reverse-engineering>

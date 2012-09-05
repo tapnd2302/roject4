@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Typetable" table="TYPETABLE" schema="dbo" catalog="PROJECT4">
+        <id name="typeTableId" type="int">
+            <column name="TypeTableID" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeTableName" type="serializable">
+            <column name="TypeTableName" />
+        </property>
+        <property name="typeTableDescription" type="serializable">
+            <column name="TypeTableDescription" />
+        </property>
+        <property name="tablePrice" type="java.lang.Double">
+            <column name="TablePrice" precision="53" scale="0" />
+        </property>
+        <set name="restaurantTableses" inverse="true">
+            <key>
+                <column name="TypeTableID" />
+            </key>
+            <one-to-many class="entity.RestaurantTables" />
+        </set>
+    </class>
+</hibernate-mapping>

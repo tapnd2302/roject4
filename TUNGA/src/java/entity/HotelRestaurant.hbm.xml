@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.HotelRestaurant" table="HOTEL_RESTAURANT" schema="dbo" catalog="PROJECT4">
+        <id name="hrid" type="int">
+            <column name="HRID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="areas" class="entity.Areas" fetch="select">
+            <column name="AreaID" />
+        </many-to-one>
+        <property name="hrname" type="serializable">
+            <column name="HRName" />
+        </property>
+        <property name="hraddress" type="serializable">
+            <column name="HRAddress" />
+        </property>
+        <property name="hrphone" type="serializable">
+            <column name="HRPhone" />
+        </property>
+        <property name="hremail" type="serializable">
+            <column name="HREmail" />
+        </property>
+        <property name="hrinfo" type="serializable">
+            <column name="HRInfo" />
+        </property>
+        <property name="hrimage" type="serializable">
+            <column name="HRImage" />
+        </property>
+        <property name="hrstatus" type="java.lang.Boolean">
+            <column name="HRStatus" />
+        </property>
+        <set name="imageses" inverse="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="entity.Images" />
+        </set>
+        <set name="bookings" inverse="true">
+            <key>
+                <column name="HRID" />
+            </key>
+            <one-to-many class="entity.Booking" />
+        </set>
+    </class>
+</hibernate-mapping>
