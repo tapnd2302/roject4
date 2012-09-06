@@ -8,21 +8,21 @@ import entity.Roles;
 import helper.Role;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Administrator
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class createRole {
 
     private int roleID;
     private String roleName;
     private String roleDescription;
     private List<Roles> role;
-    
+
     public createRole() {
         role = new Role().showRole();
         roleID = role.get(0).getRoleId();
@@ -31,6 +31,8 @@ public class createRole {
     public String insertData() {
         Role r = new Role();
         if (r.insertRole(roleName, roleDescription) != null) {
+            roleName = null;
+            roleDescription = null;
             return "success";
         } else {
             return "false";
@@ -38,10 +40,10 @@ public class createRole {
     }
 
     public String resetField() {
-        roleName=null;
-        roleDescription=null;
+        roleName = null;
+        roleDescription = null;
         return "reset";
-        
+
     }
 
     public String getRoleDescription() {

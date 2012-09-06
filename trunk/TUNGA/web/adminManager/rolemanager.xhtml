@@ -87,14 +87,17 @@
                             </p:column>
                             <p:column headerText="Delete" >
                                 <p:commandButton icon="ui-icon-close" value="Delete"
-                                                 onclick="confirmation.show()" type="button" />
+                                                 onclick="confirmation.show()" type="button" update="@form" >
+                                    <f:setPropertyActionListener value="#{role}" target="#{roleManager.selectedID}"/>
+                                </p:commandButton>
                             </p:column>
                         </p:dataTable> 
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
 
-                            <p:commandButton id="confirm" value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
-                                             actionListener="#{roleManager.deleteRole(role)}" />  
+                            <p:commandButton id="confirm" value="Yes Sure" update="form:dataTable, messages" oncomplete="confirmation.hide()"  
+                                             actionListener="#{roleManager.deleteRole()}" >
+                            </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
 
                         </p:confirmDialog>

@@ -8,9 +8,6 @@
             <column name="HRID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="areas" class="entity.Areas" fetch="select">
-            <column name="AreaID" />
-        </many-to-one>
         <property name="hrname" type="serializable">
             <column name="HRName" />
         </property>

@@ -65,17 +65,17 @@ public class roleManager {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public void deleteRole(Roles r) {
+    public void deleteRole() {
         Role ro = new Role();
-        Object result = ro.deleteRole(r);
-        if (result != null) {
-            FacesMessage msg = new FacesMessage("Delete Success...");
+        Object result = ro.deleteRole(selectedID);
+        if (result == null) {
+            FacesMessage msg = new FacesMessage("Delete Success ...");
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            roleList = new Role().showRole();
+
         } else {
 
-            FacesMessage msg = new FacesMessage("Car Cancelled");
+            FacesMessage msg = new FacesMessage("Delete False !!!");
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }

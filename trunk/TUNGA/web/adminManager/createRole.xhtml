@@ -36,7 +36,7 @@
                                 <td><p:inputText id="roleDes" value="#{createRole.roleDescription}"></p:inputText></td>
                             </tr>
                             <tr>
-                                <td><p:commandButton value="Create New" action="#{createRole.insertData()}" ajax="false"/></td>
+                                <td><p:commandButton value="Create New" action="#{createRole.insertData()}" ajax="false" update="@form"/></td>
                                 <td><p:commandButton value="Reset Field" action="#{createRole.resetField()}" update="@form"/></td>
                             </tr>
                         </table>
