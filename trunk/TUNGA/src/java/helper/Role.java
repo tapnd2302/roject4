@@ -46,4 +46,15 @@ public class Role {
         }
         return result;
     }
+    public Object deleteRole(Roles r){
+        Object result = null;
+        try{
+            Transaction tr = session.beginTransaction();
+            session.delete(r);
+            tr.commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

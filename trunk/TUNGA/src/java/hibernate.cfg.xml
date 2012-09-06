@@ -23,7 +23,6 @@
     <mapping resource="entity/HomedeliveryDetails.hbm.xml"/>
     <mapping resource="entity/Rooms.hbm.xml"/>
     <mapping resource="entity/RestaurantTables.hbm.xml"/>
-    <mapping resource="entity/Areas.hbm.xml"/>
     <mapping resource="entity/Feedback.hbm.xml"/>
     <mapping resource="entity/Foods.hbm.xml"/>
     <mapping resource="entity/Users.hbm.xml"/>

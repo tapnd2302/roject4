@@ -21,9 +21,10 @@ public class createRole {
     private int roleID;
     private String roleName;
     private String roleDescription;
-    private static List<Roles> role = new Role().showRole();
+    private List<Roles> role;
     
     public createRole() {
+        role = new Role().showRole();
         roleID = role.get(0).getRoleId();
     }
 
