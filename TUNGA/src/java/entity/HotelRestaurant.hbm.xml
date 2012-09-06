@@ -6,24 +6,24 @@
     <class name="entity.HotelRestaurant" table="HOTEL_RESTAURANT" schema="dbo" catalog="PROJECT4">
         <id name="hrid" type="int">
             <column name="HRID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <property name="hrname" type="serializable">
+        <property name="hrname" type="java.lang.String">
             <column name="HRName" />
         </property>
-        <property name="hraddress" type="serializable">
+        <property name="hraddress" type="java.lang.String">
             <column name="HRAddress" />
         </property>
-        <property name="hrphone" type="serializable">
+        <property name="hrphone" type="java.lang.String">
             <column name="HRPhone" />
         </property>
-        <property name="hremail" type="serializable">
+        <property name="hremail" type="java.lang.String">
             <column name="HREmail" />
         </property>
-        <property name="hrinfo" type="serializable">
+        <property name="hrinfo" type="java.lang.String">
             <column name="HRInfo" />
         </property>
-        <property name="hrimage" type="serializable">
+        <property name="hrimage" type="java.lang.String">
             <column name="HRImage" />
         </property>
         <property name="hrstatus" type="java.lang.Boolean">

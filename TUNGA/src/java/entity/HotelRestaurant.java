@@ -13,12 +13,12 @@ public class HotelRestaurant  implements java.io.Serializable {
 
 
      private int hrid;
-     private Serializable hrname;
-     private Serializable hraddress;
-     private Serializable hrphone;
-     private Serializable hremail;
-     private Serializable hrinfo;
-     private Serializable hrimage;
+     private String hrname;
+     private String hraddress;
+     private String hrphone;
+     private String hremail;
+     private String hrinfo;
+     private String hrimage;
      private Boolean hrstatus;
      private Set<Images> imageses = new HashSet<Images>(0);
      private Set<Booking> bookings = new HashSet<Booking>(0);
@@ -30,7 +30,7 @@ public class HotelRestaurant  implements java.io.Serializable {
     public HotelRestaurant(int hrid) {
         this.hrid = hrid;
     }
-    public HotelRestaurant(int hrid, Serializable hrname, Serializable hraddress, Serializable hrphone, Serializable hremail, Serializable hrinfo, Serializable hrimage, Boolean hrstatus, Set<Images> imageses, Set<Booking> bookings) {
+    public HotelRestaurant(int hrid, String hrname, String hraddress, String hrphone, String hremail, String hrinfo, String hrimage, Boolean hrstatus, Set<Images> imageses, Set<Booking> bookings) {
        this.hrid = hrid;
        this.hrname = hrname;
        this.hraddress = hraddress;
@@ -54,42 +54,42 @@ public class HotelRestaurant  implements java.io.Serializable {
         return this.hrname;
     }
     
-    public void setHrname(Serializable hrname) {
+    public void setHrname(String hrname) {
         this.hrname = hrname;
     }
     public Serializable getHraddress() {
         return this.hraddress;
     }
     
-    public void setHraddress(Serializable hraddress) {
+    public void setHraddress(String hraddress) {
         this.hraddress = hraddress;
     }
     public Serializable getHrphone() {
         return this.hrphone;
     }
     
-    public void setHrphone(Serializable hrphone) {
+    public void setHrphone(String hrphone) {
         this.hrphone = hrphone;
     }
     public Serializable getHremail() {
         return this.hremail;
     }
     
-    public void setHremail(Serializable hremail) {
+    public void setHremail(String hremail) {
         this.hremail = hremail;
     }
     public Serializable getHrinfo() {
         return this.hrinfo;
     }
     
-    public void setHrinfo(Serializable hrinfo) {
+    public void setHrinfo(String hrinfo) {
         this.hrinfo = hrinfo;
     }
     public Serializable getHrimage() {
         return this.hrimage;
     }
     
-    public void setHrimage(Serializable hrimage) {
+    public void setHrimage(String hrimage) {
         this.hrimage = hrimage;
     }
     public Boolean getHrstatus() {

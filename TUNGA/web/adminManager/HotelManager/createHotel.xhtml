@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Create New Hotel</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+        
+            <ui:define name="content">
+            
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu style="width: 220px;">
+                            <p:submenu label="Hotel Manager">
+                                <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                
+                
+                <div id="us_right">
+                    <h:form id="form">
+                        <table>
+                            <tr>
+                                <td><p:outputLabel for="HRName">Hotel's Name:</p:outputLabel></td>
+                                <td><p:inputText readonly="#{createHotel.checkUp}" id="HRName" value="#{createHotel.name}" required="true" requiredMessage="Please Input Hotel's Name"></p:inputText></td>
+                                <td><p:message for="HRName" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRAddress">Address:</p:outputLabel></td>
+                                <td><p:inputText readonly="#{createHotel.checkUp}" id="HRAddress" value="#{createHotel.address}" required="true" requiredMessage="Please Input Address"></p:inputText></td>
+                                <td><p:message for="HRAddress" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRPhone">Phone Number:</p:outputLabel></td>
+                                <td><p:inputText readonly="#{createHotel.checkUp}" id="HRPhone" value="#{createHotel.phone}" required="true" requiredMessage="Please Input Phone Number"></p:inputText></td>
+                                <td><p:message for="HRPhone" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HREmail">Email:</p:outputLabel></td>
+                                <td><p:inputText readonly="#{createHotel.checkUp}" id="HREmail" value="#{createHotel.email}" required="true" requiredMessage="Please Input Email"></p:inputText></td>
+                                <td><p:message for="HREmail" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRInfo">Information:</p:outputLabel></td>
+                                <td><p:inputText readonly="#{createHotel.checkUp}" id="HRInfo" value="#{createHotel.info}" ></p:inputText></td>
+                            </tr>
+                        </table>
+                        <br />
+                        <p:panel id="pnNew" visible="#{createHotel.check}" style="width: 295px">
+                            <table align="center">
+                                <tr>
+                                    <td>
+                                        <p:commandButton value=" Create New " action="#{createHotel.newHotel()}" ajax="false"/>
+                                    </td>
+                                    <td>
+                                        <p:commandButton value=" Reset Field " update="@form"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            
+                        </p:panel>
+                        <p:panel id="pnUpload" visible="#{createHotel.checkUp}" style="width: 620px">
+                                <p:outputLabel for="HRImage">Images:</p:outputLabel>
+                                <p:fileUpload mode="advanced" id="HRImage"></p:fileUpload>
+                                <br />
+                                <p:commandButton value="Success" action="#{createHotel.success()}" update="@form" ajax="false"/>
+                                <p:commandButton value="Back" action="#{createHotel.back}" ajax="false" update="@form"/>
+                        </p:panel>
+                    </h:form>
+                </div>
+                
+                
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

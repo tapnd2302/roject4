@@ -4,6 +4,7 @@
  */
 package helper;
 
+import entity.HotelRestaurant;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -57,5 +58,25 @@ public class Role {
             ex.printStackTrace();
         }
         return result;
+    }
+    
+    public Object insertHotel(String name, String address, String phone, String email, String info) {
+        Object result = null;
+        try {
+            Transaction tr = session.beginTransaction();
+            HotelRestaurant hr = new HotelRestaurant();
+            hr.setHrname(name);
+            hr.setHraddress(address);
+            hr.setHrphone(phone);
+            hr.setHremail(email);
+            hr.setHrinfo(info);
+            hr.setHrstatus(true);
+            result = session.save(hr);
+            tr.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+        
     }
 }
