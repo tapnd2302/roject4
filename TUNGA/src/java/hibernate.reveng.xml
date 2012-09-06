@@ -13,7 +13,6 @@
     <table-filter match-name="BOOKING"/>
     <table-filter match-name="ROLES"/>
     <table-filter match-name="TABLEBOOKING"/>
-    <table-filter match-name="AREAS"/>
     <table-filter match-name="HOMEDELIVERY_DETAILS"/>
     <table-filter match-name="ROOMBOOKING"/>
     <table-filter match-name="ROOMS"/>

@@ -3,10 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <head>
         <title>Role Manager</title>
         <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+
     </head>
     <body>
 
@@ -24,11 +26,89 @@
                     </h:form>
                 </div>
                 <div id="us_right">
-                    fafsfdf
+                    <h:form id="form">
+                        <p:growl id="messages" showDetail="true"/>  
+
+                        <p:dataTable id="dataTable" var="role" value="#{roleManager.roleList}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="roleTable" filteredValue="#{roleManager.filteredCars}"
+                                     editable="true"
+                                     >  
+
+                            <p:ajax event="rowEdit" listener="#{roleManager.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{roleManager.onCancel}" update=":form:messages" />  
+
+                            <f:facet name="header">  
+                                Ajax Pagination  
+                            </f:facet>  
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:" />  
+                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:150px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{role.roleId}" filterBy="#{role.roleId}" headerText="RoleID"> 
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.roleId}}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.roleId}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{role.roleName}" filterBy="#{role.roleName}" headerText="Role Name">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.roleName}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.roleName}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{role.descriptions}" headerText="Role Description">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.descriptions}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.descriptions}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:rowEditor />  
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                                 onclick="confirmation.show()" type="button" />
+                            </p:column>
+                        </p:dataTable> 
+                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="confirmation">  
+
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+                                             actionListener="#{roleManager.deleteRole(role)}" />  
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog>
+                    </h:form>
                 </div>
             </ui:define>
 
         </ui:composition>
-
+        <script language="JavaScript">
+            //var my_timeout=setTimeout("gotosite();",3000);
+            function gotosite()
+            {
+                window.location="rolemanager.jsf";
+            }
+        </script>
     </body>
 </html>

@@ -13,7 +13,6 @@ public class HotelRestaurant  implements java.io.Serializable {
 
 
      private int hrid;
-     private Areas areas;
      private Serializable hrname;
      private Serializable hraddress;
      private Serializable hrphone;
@@ -31,9 +30,8 @@ public class HotelRestaurant  implements java.io.Serializable {
     public HotelRestaurant(int hrid) {
         this.hrid = hrid;
     }
-    public HotelRestaurant(int hrid, Areas areas, Serializable hrname, Serializable hraddress, Serializable hrphone, Serializable hremail, Serializable hrinfo, Serializable hrimage, Boolean hrstatus, Set<Images> imageses, Set<Booking> bookings) {
+    public HotelRestaurant(int hrid, Serializable hrname, Serializable hraddress, Serializable hrphone, Serializable hremail, Serializable hrinfo, Serializable hrimage, Boolean hrstatus, Set<Images> imageses, Set<Booking> bookings) {
        this.hrid = hrid;
-       this.areas = areas;
        this.hrname = hrname;
        this.hraddress = hraddress;
        this.hrphone = hrphone;
@@ -51,13 +49,6 @@ public class HotelRestaurant  implements java.io.Serializable {
     
     public void setHrid(int hrid) {
         this.hrid = hrid;
-    }
-    public Areas getAreas() {
-        return this.areas;
-    }
-    
-    public void setAreas(Areas areas) {
-        this.areas = areas;
     }
     public Serializable getHrname() {
         return this.hrname;
