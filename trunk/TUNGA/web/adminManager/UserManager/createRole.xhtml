@@ -9,14 +9,16 @@
         <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
             <ui:define name="content">
                 <div id="us_left">
-                    <h:form>
-                        <p:panelMenu style="width: 220px;">
-                            <p:submenu label="Role Manager">
-                                <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
-                                <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
-                            </p:submenu>
-                        </p:panelMenu>
-                    </h:form>
+                    <p:panelMenu>
+                        <p:submenu label="Role Manager">
+                            <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="User Manager">
+                            <p:menuitem value="User List" outcome="userManager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New User" outcome="createUser.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
                 </div>
                 <div id="us_right">
                     <h:form>
@@ -36,7 +38,7 @@
                                 <td><p:inputText id="roleDes" value="#{createRole.roleDescription}"></p:inputText></td>
                             </tr>
                             <tr>
-                                <td><p:commandButton value="Create New" action="#{createRole.insertData()}" ajax="false"/></td>
+                                <td><p:commandButton value="Create New" action="#{createRole.insertData()}" ajax="false" update="@form"/></td>
                                 <td><p:commandButton value="Reset Field" action="#{createRole.resetField()}" update="@form"/></td>
                             </tr>
                         </table>

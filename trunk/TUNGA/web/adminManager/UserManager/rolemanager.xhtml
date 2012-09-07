@@ -12,21 +12,25 @@
     </head>
     <body>
 
-        <ui:composition template="./../WEB-INF/AdminMasterPage.xhtml">
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
 
             <ui:define name="content">
                 <div id="us_left">
                     <h:form>
-                        <p:panelMenu style="width: 220px;">
+                        <p:panelMenu>
                             <p:submenu label="Role Manager">
                                 <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="User Manager">
+                                <p:menuitem value="User List" outcome="userManager.jsf" ajax="false"/>
+                                <p:menuitem value="Create New User" outcome="createUser.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
                 </div>
                 <div id="us_right">
-                    <h:form id="form">
+                    <h:form id="form" style="height: 500px">
                         <p:growl id="messages" showDetail="true"/>  
 
                         <p:dataTable id="dataTable" var="role" value="#{roleManager.roleList}"  
@@ -34,19 +38,15 @@
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                      rowsPerPageTemplate="5,10,15"
                                      widgetVar="roleTable" filteredValue="#{roleManager.filteredCars}"
-                                     editable="true"
-                                     >  
+                                     editable="true">  
 
                             <p:ajax event="rowEdit" listener="#{roleManager.onEdit}" update=":form:messages" />  
                             <p:ajax event="rowEditCancel" listener="#{roleManager.onCancel}" update=":form:messages" />  
 
                             <f:facet name="header">  
-                                Ajax Pagination  
-                            </f:facet>  
-                            <f:facet name="header">  
                                 <p:outputPanel>  
-                                    <h:outputText value="Search all fields:" />  
-                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:150px" />  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:250px" />  
                                 </p:outputPanel>  
                             </f:facet> 
 

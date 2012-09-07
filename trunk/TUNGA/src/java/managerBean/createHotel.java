@@ -5,7 +5,7 @@
 package managerBean;
 
 
-import helper.Role;
+//import helper.Role;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -85,17 +85,17 @@ public class createHotel {
         checkUp = true;
     }
     public String success(){
-        Role r = new Role();
-        if (r.insertHotel(_name, _Address, _phone, _email, _info) != null) {
-            _name = null;
-            _Address = null;
-            _phone = null;
-            _email = null;
-            _info = null;
-            return "success";
-        } else {
+//        Role r = new Role();
+//        if (r.insertHotel(_name, _Address, _phone, _email, _info) != null) {
+//            _name = null;
+//            _Address = null;
+//            _phone = null;
+//            _email = null;
+//            _info = null;
+//            return "success";
+//        } else {
             return "false";
-        }
+//        }
     }
     public void back(){
         check = true;
