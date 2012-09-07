@@ -6,21 +6,21 @@
     <class name="entity.Users" table="USERS" schema="dbo" catalog="PROJECT4">
         <id name="accountId" type="int">
             <column name="AccountID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="roles" class="entity.Roles" fetch="select">
             <column name="RoleID" />
         </many-to-one>
-        <property name="userName" type="serializable">
+        <property name="userName" type="java.lang.String">
             <column name="UserName" not-null="true" unique="true" />
         </property>
-        <property name="userPassword" type="serializable">
+        <property name="userPassword" type="java.lang.String">
             <column name="UserPassword" not-null="true" />
         </property>
-        <property name="userFirstName" type="serializable">
+        <property name="userFirstName" type="java.lang.String">
             <column name="UserFirstName" />
         </property>
-        <property name="userLastName" type="serializable">
+        <property name="userLastName" type="java.lang.String">
             <column name="UserLastName" />
         </property>
         <property name="userBirthDay" type="timestamp">
@@ -29,13 +29,13 @@
         <property name="userGender" type="java.lang.Boolean">
             <column name="UserGender" />
         </property>
-        <property name="userAddress" type="serializable">
+        <property name="userAddress" type="java.lang.String">
             <column name="UserAddress" />
         </property>
-        <property name="userPhone" type="serializable">
+        <property name="userPhone" type="java.lang.String">
             <column name="UserPhone" />
         </property>
-        <property name="userEmail" type="serializable">
+        <property name="userEmail" type="java.lang.String">
             <column name="UserEmail" />
         </property>
         <property name="allowLogin" type="java.lang.Boolean">

@@ -50,7 +50,7 @@ public class createRole {
     public String resetField() {
         roleName = null;
         roleDescription = null;
-        return "reset";
+        return "false";
 
     }
 

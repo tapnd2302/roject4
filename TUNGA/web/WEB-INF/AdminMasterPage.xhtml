@@ -21,6 +21,13 @@
                 height: 66px;
             }
         </style>
+        <script language="JavaScript">
+            //var my_timeout=setTimeout("gotosite();",3000);
+            function gotosite()
+            {
+                window.location="createAccount.jsf";
+            }
+        </script>
     </h:head>
 
     <h:body>
@@ -34,7 +41,7 @@
                         </div>
                         <div class="layout-header">
                             <ul class="header-nav">
-                                <li id="roomsMenu" class="item header-home"><a href="/TUNGA/adminManager/User/rolemanager.jsf">USER MANAGER</a></li>
+                                <li id="roomsMenu" class="item header-home"><a href="/TUNGA/adminManager/UserManager/rolemanager.jsf">USER MANAGER</a></li>
                                 <li id="restaurantsMenu" class="iteme header-home"><a href="/TUNGA/adminManager/HotelManager/ListHotel.jsf">HOTEL MANAGER</a></li>
                                 <li id="newsMenu" class="item header-home"><a href="#">NEWS</a></li>
                                 <li id="activitiesMenu" class="iteme header-home"><a href="#">ACTIVITIES</a></li>
