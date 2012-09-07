@@ -5,8 +5,12 @@
 package managerBean;
 
 import entity.Roles;
-import helper.Role;
+import exception.ObjectException;
+import helper.ObjectHelper;
+import helper.RoleHelper;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -24,19 +28,23 @@ public class createRole {
     private List<Roles> role;
 
     public createRole() {
-        role = new Role().showRole();
+        RoleHelper<Roles> helper = new RoleHelper<Roles>();
+        role = helper.showRoleDesc();
         roleID = role.get(0).getRoleId();
     }
 
     public String insertData() {
-        Role r = new Role();
-        if (r.insertRole(roleName, roleDescription) != null) {
-            roleName = null;
-            roleDescription = null;
-            return "success";
-        } else {
+        Roles r = new Roles();
+        r.setRoleName(roleName);
+        r.setDescriptions(roleDescription);
+        ObjectHelper<Roles> obj = new ObjectHelper<Roles>();
+        try {
+            obj.add(r);
+        } catch (ObjectException ex) {
+            Logger.getLogger(createRole.class.getName()).log(Level.SEVERE, null, ex);
             return "false";
         }
+        return "success";
     }
 
     public String resetField() {

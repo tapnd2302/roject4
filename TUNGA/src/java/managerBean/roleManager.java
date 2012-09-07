@@ -5,12 +5,19 @@
 package managerBean;
 
 import entity.Roles;
-import helper.Role;
+import exception.ObjectException;
+import helper.ObjectHelper;
+import helper.RoleHelper;
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -18,19 +25,19 @@ import org.primefaces.event.RowEditEvent;
  * @author Administrator
  */
 @ManagedBean
-@RequestScoped
-public class roleManager {
+@ViewScoped
+public class roleManager implements Serializable {
 
     private List<Roles> roleList;
     private List<Roles> filteredCars;
-    private Roles selectedID;
+    private Roles selected;
 
-    public Roles getSelectedID() {
-        return selectedID;
+    public Roles getSelected() {
+        return selected;
     }
 
-    public void setSelectedID(Roles selectedID) {
-        this.selectedID = selectedID;
+    public void setSelected(Roles selected) {
+        this.selected = selected;
     }
 
     public List<Roles> getRoleList() {
@@ -50,34 +57,42 @@ public class roleManager {
     }
 
     public roleManager() {
-        roleList = new Role().showRole();
+        RoleHelper<Roles> helper = new RoleHelper<Roles>();
+        roleList = helper.showRole();
+//     roleList = new Role().showRole();     
+
     }
 
     public void onEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Car Edited", ((Roles) event.getObject()).getRoleName());
 
+        ObjectHelper<Roles> helper = new ObjectHelper<Roles>();
+        try {
+            helper.update((Roles) event.getObject());
+        } catch (ObjectException ex) {
+            Logger.getLogger(roleManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        FacesMessage msg = new FacesMessage("Edit Comleted", ((Roles) event.getObject()).getRoleName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void onCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Car Cancelled", ((Roles) event.getObject()).getRoleName());
-
+        FacesMessage msg = new FacesMessage("Edit Cancelled", ((Roles) event.getObject()).getRoleName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void deleteRole() {
-        Role ro = new Role();
-        Object result = ro.deleteRole(selectedID);
-        if (result == null) {
-            FacesMessage msg = new FacesMessage("Delete Success ...");
-
+        ObjectHelper<Roles> obj = new ObjectHelper<Roles>();
+        try {
+            obj.delete(selected);
+            FacesMessage msg = new FacesMessage("Delete Success");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-
-        } else {
-
-            FacesMessage msg = new FacesMessage("Delete False !!!");
-
+        } catch (ObjectException ex) {
+            FacesMessage msg = new FacesMessage("Delete Error");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+        RoleHelper<Roles> helper = new RoleHelper<Roles>();
+        roleList = helper.showRole();
+//        roleList = new Role().showRole();
     }
 }

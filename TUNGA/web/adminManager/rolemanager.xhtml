@@ -51,14 +51,7 @@
                             </f:facet> 
 
                             <p:column sortBy="#{role.roleId}" filterBy="#{role.roleId}" headerText="RoleID"> 
-                                <p:cellEditor>
-                                    <f:facet name="output">
                                         <h:outputText value="#{role.roleId}}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{role.roleId}"/>
-                                    </f:facet>
-                                </p:cellEditor>
                             </p:column>  
 
                             <p:column sortBy="#{role.roleName}" filterBy="#{role.roleName}" headerText="Role Name">  
@@ -87,15 +80,15 @@
                             </p:column>
                             <p:column headerText="Delete" >
                                 <p:commandButton icon="ui-icon-close" value="Delete"
-                                                 onclick="confirmation.show()" type="button" update="@form" >
-                                    <f:setPropertyActionListener value="#{role}" target="#{roleManager.selectedID}"/>
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{role}" target="#{roleManager.selected}"/>
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable> 
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
 
-                            <p:commandButton id="confirm" value="Yes Sure" update="form:dataTable, messages" oncomplete="confirmation.hide()"  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
                                              actionListener="#{roleManager.deleteRole()}" >
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
@@ -106,12 +99,5 @@
             </ui:define>
 
         </ui:composition>
-        <script language="JavaScript">
-            //var my_timeout=setTimeout("gotosite();",3000);
-            function gotosite()
-            {
-                window.location="rolemanager.jsf";
-            }
-        </script>
     </body>
 </html>
