@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+            <ui:define name="content">
+                <div id="us_left">
+                    <p:panelMenu>
+                        <p:submenu label="Role Manager">
+                            <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="User Manager">
+                            <p:menuitem value="User List" outcome="userManager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New User" outcome="createUser.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </div>
+                <div id="us_right">
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td><p:outputLabel for="roleID">Role: </p:outputLabel></td>
+                                <td><p:selectOneMenu id="roleID" value="#{createUser.selectItem}" style="width: 190px;" immediate="true">
+                                        <f:selectItems value="#{createUser.listRole}" var="item" itemLabel="#{item.roleName}"  itemValue="#{item}" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="userName">UserName : </p:outputLabel></td>
+                                <td><p:inputText id="userName" value="#{createUser.userName}" required="true" requiredMessage="This Field Not Null" validatorMessage="No Special Charaters" >
+                                        
+                                    </p:inputText>
+                                </td>
+                                <td><p:message for="userName"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="passWord">Password : </p:outputLabel></td>
+                                <td>
+                                    <p:password id="passWord" match="passWord1" value="#{createUser.passWord}" validatorMessage="Retype Password NotMatch"></p:password>
+                                </td>
+                                <td><p:message for="passWord"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="passWord1">Retype Password : </p:outputLabel></td>
+                                <td><p:password id="passWord1" value="#{createUser.passWord}"></p:password></td>
+
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="firstName">FirstName : </p:outputLabel></td>
+                                <td><p:inputText id="firstName" value="#{createUser.firstName}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="lastName">LastName : </p:outputLabel></td>
+                                <td><p:inputText id="lastName" value="#{createUser.lastName}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="birthDay">BirthDay : </p:outputLabel></td>
+                                <td><p:calendar id="birthDay" navigator="true"  readonlyInput="true" yearRange="c-40:c-16" value="${createUser.birthday}" pattern="MM/dd/yyyy" showOn="button"></p:calendar></td>
+
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="gender">Gender : </p:outputLabel></td>
+                                <td><p:selectOneMenu id="gender">
+                                        <f:selectItem itemLabel="Male" itemValue="1"/>
+                                        <f:selectItem itemLabel="Female" itemValue="0"/>
+                                    </p:selectOneMenu></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="address">Address : </p:outputLabel></td>
+                                <td><p:inputTextarea cols="25" rows="3" id="address" value="#{createUser.address}"></p:inputTextarea></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="phone">Phone : </p:outputLabel></td>
+                                <td><p:inputMask id="phone"  value="#{createUser.phone}" mask="999-999-999-99">
+                                </p:inputMask>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="email">Email : </p:outputLabel></td>
+                                <td><p:inputText id="email" value="#{createUser.email}" validatorMessage="Invalid Email">
+                                        <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]{2,3}"/>
+                                    </p:inputText>
+                                </td>
+                                <td>
+                                    <p:message for="email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="allowLogin">Allow Login : </p:outputLabel></td>
+                                <td><p:selectOneMenu id="allowLogin">
+                                        <f:selectItem itemValue="1" itemLabel="Yes"/>
+                                        <f:selectItem itemValue="0" itemLabel="No"/>
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton value="Create New" action="#{createUser.insertData()}" ajax="false" update="@form"/></td>
+                                <td><p:commandButton value="Reset Field" action="#{createUser.resetField()}" update="@form"/></td>
+                            </tr>
+                        </table>
+
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
