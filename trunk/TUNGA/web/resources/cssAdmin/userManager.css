@@ -12,4 +12,11 @@
     background-color: #d6d6db;
     float: left;
     display: block;
+    
+}
+table tr td{
+    font-weight: bold;
+}
+.ui-outputlabel-rfi{
+    color: red;
 }
