@@ -23,18 +23,9 @@
         <property name="hrinfo" type="java.lang.String">
             <column name="HRInfo" />
         </property>
-        <property name="hrimage" type="java.lang.String">
-            <column name="HRImage" />
-        </property>
         <property name="hrstatus" type="java.lang.Boolean">
             <column name="HRStatus" />
         </property>
-        <set name="imageses" inverse="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <one-to-many class="entity.Images" />
-        </set>
         <set name="bookings" inverse="true">
             <key>
                 <column name="HRID" />

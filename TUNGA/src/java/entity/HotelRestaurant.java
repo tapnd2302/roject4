@@ -18,9 +18,7 @@ public class HotelRestaurant  implements java.io.Serializable {
      private String hrphone;
      private String hremail;
      private String hrinfo;
-     private String hrimage;
      private Boolean hrstatus;
-     private Set<Images> imageses = new HashSet<Images>(0);
      private Set<Booking> bookings = new HashSet<Booking>(0);
 
     public HotelRestaurant() {
@@ -30,16 +28,14 @@ public class HotelRestaurant  implements java.io.Serializable {
     public HotelRestaurant(int hrid) {
         this.hrid = hrid;
     }
-    public HotelRestaurant(int hrid, String hrname, String hraddress, String hrphone, String hremail, String hrinfo, String hrimage, Boolean hrstatus, Set<Images> imageses, Set<Booking> bookings) {
+    public HotelRestaurant(int hrid, String hrname, String hraddress, String hrphone, String hremail, String hrinfo, Boolean hrstatus, Set<Booking> bookings) {
        this.hrid = hrid;
        this.hrname = hrname;
        this.hraddress = hraddress;
        this.hrphone = hrphone;
        this.hremail = hremail;
        this.hrinfo = hrinfo;
-       this.hrimage = hrimage;
        this.hrstatus = hrstatus;
-       this.imageses = imageses;
        this.bookings = bookings;
     }
    
@@ -85,26 +81,13 @@ public class HotelRestaurant  implements java.io.Serializable {
     public void setHrinfo(String hrinfo) {
         this.hrinfo = hrinfo;
     }
-    public Serializable getHrimage() {
-        return this.hrimage;
-    }
     
-    public void setHrimage(String hrimage) {
-        this.hrimage = hrimage;
-    }
     public Boolean getHrstatus() {
         return this.hrstatus;
     }
     
     public void setHrstatus(Boolean hrstatus) {
         this.hrstatus = hrstatus;
-    }
-    public Set<Images> getImageses() {
-        return this.imageses;
-    }
-    
-    public void setImageses(Set<Images> imageses) {
-        this.imageses = imageses;
     }
     public Set<Booking> getBookings() {
         return this.bookings;
