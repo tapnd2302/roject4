@@ -32,11 +32,10 @@ CREATE TABLE HOTEL_RESTAURANT  ---HR: HOTEL & RESTAURANT
 	HRID int identity primary key,
 	AreaID int,
 	HRName nvarchar(100),
-	HRAddress nvarchar(max),
+	HRAddress nvarchar(200),
 	HRPhone nvarchar(15),
-	HREmail nvarchar(max),
+	HREmail nvarchar(100),
 	HRInfo nvarchar(max),
-	HRImage nvarchar(max),
 	HRStatus bit default 1
 )
 GO
@@ -158,7 +157,7 @@ CREATE TABLE IMAGES
 	ImageID int identity primary key,
 	TypeImage int,  --- 1: Image of User, 2:Image of Hotel & Restaurant, 3: Image Of Room, 4: Image Of Food
 	ID int,         --- ID is AccountID or HRID Or FoodID or RoomID
-	Descriptions nvarchar(50),
+	Descriptions nvarchar(200),
 	ImageLink nvarchar(max)
 )
 Go

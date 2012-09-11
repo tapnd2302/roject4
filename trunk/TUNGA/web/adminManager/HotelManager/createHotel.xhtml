@@ -62,7 +62,7 @@
                                         <p:commandButton value=" Create New " action="#{createHotel.newHotel()}" ajax="false"/>
                                     </td>
                                     <td>
-                                        <p:commandButton value=" Reset Field " update="@form"/>
+                                        <p:commandButton value=" Reset Field " action="#{createHotel.delImage()}" />
                                     </td>
                                 </tr>
                             </table>
@@ -70,11 +70,16 @@
                             
                         </p:panel>
                         <p:panel id="pnUpload" visible="#{createHotel.checkUp}" style="width: 620px">
-                                <p:outputLabel for="HRImage">Images:</p:outputLabel>
-                                <p:fileUpload mode="advanced" id="HRImage"></p:fileUpload>
+                            
+                            <p:messages id="msg"/>
+                            <p:fileUpload id="HRImage" fileUploadListener="#{createHotel.saveImage}"
+                                          sizeLimit="1500000" update="msg"
+                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" 
+                                          mode="advanced" />
+                            
                                 <br />
                                 <p:commandButton value="Success" action="#{createHotel.success()}" update="@form" ajax="false"/>
-                                <p:commandButton value="Back" action="#{createHotel.back}" ajax="false" update="@form"/>
+                                <p:commandButton value="Back" action="#{createHotel.back()}" ajax="false"/>
                         </p:panel>
                     </h:form>
                 </div>
