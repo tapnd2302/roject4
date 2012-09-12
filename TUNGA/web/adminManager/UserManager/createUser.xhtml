@@ -28,15 +28,16 @@
                         <table>
                             <tr>
                                 <td><p:outputLabel for="roleID">Role: </p:outputLabel></td>
-                                <td><p:selectOneMenu id="roleID" value="#{createUser.selectItem}" style="width: 190px;" immediate="true">
-                                        <f:selectItems value="#{createUser.listRole}" var="item" itemLabel="#{item.roleName}"  itemValue="#{item}" />
+                                <td><p:selectOneMenu id="roleID" value="#{createUser.selectItem}" style="width: 190px;">
+                                        <f:selectItem itemLabel="Select One" itemValue=""/>
+                                        <f:selectItems value="#{createUser.listRole}" var="item" itemLabel="#{item.roleName}" itemValue="#{item.roleId}" />
                                     </p:selectOneMenu>
                                 </td>
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="userName">UserName : </p:outputLabel></td>
                                 <td><p:inputText id="userName" value="#{createUser.userName}" required="true" requiredMessage="This Field Not Null" validatorMessage="No Special Charaters" >
-                                        
+
                                     </p:inputText>
                                 </td>
                                 <td><p:message for="userName"/></td>
@@ -55,7 +56,11 @@
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="firstName">FirstName : </p:outputLabel></td>
-                                <td><p:inputText id="firstName" value="#{createUser.firstName}"></p:inputText></td>
+                                <td><p:inputText id="firstName" value="#{createUser.firstName}">
+                                        <f:validator validatorId="intValidator"/>
+                                    </p:inputText>
+                                    <p:message for="firstName"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="lastName">LastName : </p:outputLabel></td>
@@ -63,12 +68,12 @@
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="birthDay">BirthDay : </p:outputLabel></td>
-                                <td><p:calendar id="birthDay" navigator="true"  readonlyInput="true" yearRange="c-40:c-16" value="${createUser.birthday}" pattern="MM/dd/yyyy" showOn="button"></p:calendar></td>
+                                <td><p:calendar id="birthDay" navigator="true"  readonlyInput="true" yearRange="c-40:1996" value="${createUser.birthday}" pattern="MM/dd/yyyy" showOn="button"></p:calendar></td>
 
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="gender">Gender : </p:outputLabel></td>
-                                <td><p:selectOneMenu id="gender">
+                                <td><p:selectOneMenu id="gender" value="#{createUser.gender}">
                                         <f:selectItem itemLabel="Male" itemValue="1"/>
                                         <f:selectItem itemLabel="Female" itemValue="0"/>
                                     </p:selectOneMenu></td>
@@ -80,7 +85,7 @@
                             <tr>
                                 <td><p:outputLabel for="phone">Phone : </p:outputLabel></td>
                                 <td><p:inputMask id="phone"  value="#{createUser.phone}" mask="999-999-999-99">
-                                </p:inputMask>
+                                    </p:inputMask>
                                 </td>
                             </tr>
                             <tr>
@@ -94,19 +99,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="allowLogin">Allow Login : </p:outputLabel></td>
-                                <td><p:selectOneMenu id="allowLogin">
+                                <td><p:outputLabel for="allowLogin" >Allow Login : </p:outputLabel></td>
+                                <td><p:selectOneMenu id="allowLogin" value="#{createUser.allowLogin}">
                                         <f:selectItem itemValue="1" itemLabel="Yes"/>
                                         <f:selectItem itemValue="0" itemLabel="No"/>
                                     </p:selectOneMenu>
                                 </td>
                             </tr>
                             <tr>
-                                <td><p:commandButton value="Create New" action="#{createUser.insertData()}" ajax="false" update="@form"/></td>
+                                <td><p:commandButton value="Create New" action="#{createUser.insertData()}" ajax="false"/></td>
                                 <td><p:commandButton value="Reset Field" action="#{createUser.resetField()}" update="@form"/></td>
                             </tr>
                         </table>
-
                     </h:form>
                 </div>
             </ui:define>
