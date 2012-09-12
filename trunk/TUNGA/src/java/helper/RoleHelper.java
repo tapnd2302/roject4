@@ -13,6 +13,7 @@ import org.hibernate.Query;
  * @author Administrator
  */
 public class RoleHelper<T> extends ObjectHelper<T> {
+
     public List<T> showRole() {
         org.hibernate.Transaction tr = session.beginTransaction();
         Query q = session.createQuery("from Roles");
@@ -20,9 +21,19 @@ public class RoleHelper<T> extends ObjectHelper<T> {
         tr.commit();
         return result;
     }
-        public List<T> showRoleDesc() {
+
+    public List<T> showRoleDesc() {
         org.hibernate.Transaction tr = session.beginTransaction();
         Query q = session.createQuery("from Roles order by roleid desc");
+        List<T> result = q.list();
+        tr.commit();
+        return result;
+    }
+
+    public List<T> showRoleSelect(String select) {
+        org.hibernate.Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("from Roles where RoleId = :id");
+        q.setParameter("id", Integer.parseInt(select));
         List<T> result = q.list();
         tr.commit();
         return result;

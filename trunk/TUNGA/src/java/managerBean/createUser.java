@@ -8,13 +8,16 @@ import entity.Roles;
 import entity.Users;
 import exception.ObjectException;
 import helper.ObjectHelper;
+import helper.RoleHelper;
 import helper.UserHelper;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -23,7 +26,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class createUser {
+public class createUser implements Serializable{
 
     private Integer accountID;
     private Integer roleID;
@@ -38,14 +41,30 @@ public class createUser {
     private String email;
     private Integer allowLogin;
     private List<Roles> listRole;
-    private Roles selectItem;
+    private Roles selectRole;
+    private String selectItem;
 
-    public Roles getSelectItem() {
+    public String getSelectItem() {
         return selectItem;
     }
 
-    public void setSelectItem(Roles selectItem) {
+    public void setSelectItem(String selectItem) {
         this.selectItem = selectItem;
+        System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk "+selectItem);
+        
+        RoleHelper<Roles> r = new RoleHelper<Roles>();
+        List<Roles> List = r.showRoleSelect(selectItem);
+        selectRole = List.get(0);
+        
+        System.out.println("----------------------  "+selectRole);
+    }
+
+    public Roles getSelectRole() {
+        return selectRole;
+    }
+
+    public void setSelectRole(Roles selectRole) {
+        this.selectRole = selectRole;
     }
 
     public Integer getAccountID() {
@@ -159,7 +178,7 @@ public class createUser {
 
     public String insertData() {
         Users u = new Users();
-        u.setRoles(selectItem);
+        u.setRoles(selectRole);
         u.setUserName(userName);
         u.setUserPassword(passWord);
         u.setUserFirstName(userName);
