@@ -46,35 +46,35 @@ public class HotelRestaurant  implements java.io.Serializable {
     public void setHrid(int hrid) {
         this.hrid = hrid;
     }
-    public Serializable getHrname() {
+    public String getHrname() {
         return this.hrname;
     }
     
     public void setHrname(String hrname) {
         this.hrname = hrname;
     }
-    public Serializable getHraddress() {
+    public String getHraddress() {
         return this.hraddress;
     }
     
     public void setHraddress(String hraddress) {
         this.hraddress = hraddress;
     }
-    public Serializable getHrphone() {
+    public String getHrphone() {
         return this.hrphone;
     }
     
     public void setHrphone(String hrphone) {
         this.hrphone = hrphone;
     }
-    public Serializable getHremail() {
+    public String getHremail() {
         return this.hremail;
     }
     
     public void setHremail(String hremail) {
         this.hremail = hremail;
     }
-    public Serializable getHrinfo() {
+    public String getHrinfo() {
         return this.hrinfo;
     }
     

@@ -24,6 +24,20 @@ public class ObjectHelper<T> {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
+    public void addList(List<T> obj) throws ObjectException {
+        try {
+            Transaction ts = this.session.beginTransaction();
+            for (T t : obj) {
+                
+                this.session.save(t);
+            
+            }
+            ts.commit();
+            
+        } catch (Exception e) {
+            throw new ObjectException(e.getMessage());
+        }
+    }
     public void add(T obj) throws ObjectException {
         try {
             Transaction ts = this.session.beginTransaction();

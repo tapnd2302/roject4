@@ -6,27 +6,18 @@
     <class name="entity.Images" table="IMAGES" schema="dbo" catalog="PROJECT4">
         <id name="imageId" type="int">
             <column name="ImageID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="foods" class="entity.Foods" fetch="select">
-            <column name="ID" />
-        </many-to-one>
-        <many-to-one name="rooms" class="entity.Rooms" update="false" insert="false" fetch="select">
-            <column name="ID" />
-        </many-to-one>
-        <many-to-one name="users" class="entity.Users" update="false" insert="false" fetch="select">
-            <column name="ID" />
-        </many-to-one>
-        <many-to-one name="hotelRestaurant" class="entity.HotelRestaurant" update="false" insert="false" fetch="select">
-            <column name="ID" />
-        </many-to-one>
         <property name="typeImage" type="java.lang.Integer">
             <column name="TypeImage" />
         </property>
-        <property name="descriptions" type="serializable">
+        <property name="id" type="java.lang.Integer">
+            <column name="Id" />
+        </property>
+        <property name="descriptions" type="java.lang.String">
             <column name="Descriptions" />
         </property>
-        <property name="imageLink" type="serializable">
+        <property name="imageLink" type="java.lang.String">
             <column name="ImageLink" />
         </property>
     </class>
