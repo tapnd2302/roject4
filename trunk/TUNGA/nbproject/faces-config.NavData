@@ -4,13 +4,17 @@
     <Scope Scope="Project">
         <Node id="index.jsp" x="378" y="37" zoom="true"/>
         <Node id="restaurants.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="adminManager/UserManager/userManager.xhtml" x="150" y="150" zoom="true"/>
         <Node id="adminManager/login.xhtml" x="83" y="71" zoom="true"/>
         <Node id="adminManager/default.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="adminManager/HotelManager/ListHotel.xhtml" x="42" y="283" zoom="true"/>
+        <Node id="adminManager/HotelManager/ListHotel.xhtml" x="22" y="290" zoom="true"/>
+        <Node id="adminManager/UserManager/rolemanager.xhtml" x="646" y="277" zoom="true"/>
         <Node id="check_rooms.xhtml" x="141" y="498" zoom="true"/>
         <Node id="adminManager/index.jsp" x="145" y="416" zoom="true"/>
         <Node id="default.xhtml" x="136" y="16" zoom="true"/>
-        <Node id="adminManager/HotelManager/createHotel.xhtml" x="11" y="143" zoom="true"/>
+        <Node id="adminManager/UserManager/createUser.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="adminManager/HotelManager/createHotel.xhtml" x="23" y="213" zoom="true"/>
+        <Node id="adminManager/UserManager/createRole.xhtml" x="650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

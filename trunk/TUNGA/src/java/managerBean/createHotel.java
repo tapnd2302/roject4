@@ -7,10 +7,12 @@ package managerBean;
 
 
 import entity.HotelRestaurant;
+import entity.Images;
 import exception.ObjectException;
 import helper.ObjectHelper;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -18,39 +20,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.apache.tomcat.jni.FileInfo;
+import javax.swing.JOptionPane;
 import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class createHotel {
     private String _name;
     private String _Address;
     private String _phone;
     private String _email;
     private String _info;
-    private boolean check;
-    private boolean checkUp;
-    HotelRestaurant hr = new HotelRestaurant();
-    List<String> linkImg = null;
+    private boolean btnss;
+
+    int idHotel;
+    private  List<String> listname;
+    private List<Images> listImg;
     
-    public boolean isCheckUp() {
-        return checkUp;
+    
+
+    public boolean isBtnss() {
+        return btnss;
     }
 
-    public void setCheckUp(boolean checkUp) {
-        this.checkUp = checkUp;
+    public void setBtnss(boolean btnss) {
+        this.btnss = btnss;
     }
-    public boolean isCheck() {
-        return check;
-    }
-
-    public void setCheck(boolean check) {
-        this.check = check;
-    }
-
+      
+    
     public String getAddress() {
         return _Address;
     }
@@ -92,51 +91,80 @@ public class createHotel {
     }
 
     public createHotel() {
-        check = true;
-        checkUp = false;
+        btnss = false;
+        listImg = new ArrayList<Images>();
+        listname = new ArrayList<String>();
     }
     
     public void newHotel(){
+        HotelRestaurant hr = new HotelRestaurant();
         hr.setHrname(_name);
         hr.setHraddress(_Address);
         hr.setHremail(_email);
         hr.setHrphone(_phone);
         hr.setHrinfo(_info);
         hr.setHrstatus(true);
-        check = false;
-        checkUp = true;
-    }
-    public String success(){
         ObjectHelper<HotelRestaurant> OHP = new ObjectHelper<HotelRestaurant>();
         try {
             OHP.add(hr);
-            
-            
-            
-            
+            idHotel = hr.getHrid();
         } catch (ObjectException ex) {
             Logger.getLogger(createHotel.class.getName()).log(Level.SEVERE, null, ex);
-            return "false";
         }
+    }
+    public String uploadlate(){
+        newHotel();
+        if (btnss == true) {
+            for (String str : listname) {
+                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
+                f.delete();
+            }
+        }
+        FacesMessage msg = new FacesMessage("Success! " + _name + " is Created"); 
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        return "success";
+        
+    }
+    public String btnsuccess(){
+        if (btnss == true) {
+            newHotel();
+            for (String str : listname) {
+                Images img = new Images();
+                img.setTypeImage(2);
+                img.setId(idHotel);
+                img.setImageLink(str);
+                listImg.add(img);
+            }
+            ObjectHelper<Images> OHPImages = new ObjectHelper<Images>();
+            try {
+                OHPImages.addList(listImg);
+            } catch (ObjectException ex) {
+                Logger.getLogger(createHotel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(null, "Successful!");
+            return "success";
+        }
+        else{
+            FacesMessage msg = new FacesMessage("Please upload image or choose upload late"); 
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        return "false";
+    }
+    
+    
+    public String resetField(){
+        _Address = null;
+        _email = null;
+        _info = null;
+        _name = null;
+        _phone = null;
+        btnss = false;
         return "success";
     }
-    public void back(){
-        hr = new HotelRestaurant();
-        check = true;
-        checkUp = false;
-    }
     
-    
-    public void delImage(){
-        File f = new File(destination + nameImage);
-        f.delete();
-        
-    }
-    
-    private String nameImage = "";
-    private String destination= FacesContext.getCurrentInstance().getExternalContext().getRealPath("images/hotel/hotel");
-    public void saveImage(FileUploadEvent event){
-        
+
+    private String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+    public void saveimage(FileUploadEvent event){
         FacesMessage msg = new FacesMessage("Success! " + event.getFile().getFileName() + " is uploaded."); 
         FacesContext.getCurrentInstance().addMessage(null, msg);
         
@@ -145,6 +173,7 @@ public class createHotel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        btnss = true;
     }
     
     public void copyFile(String fileName, InputStream in) {
@@ -153,9 +182,9 @@ public class createHotel {
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyhhmmss");
             Random rd = new Random();
-            nameImage = sdf.format(cal.getTime()) + Integer.toString(rd.nextInt(100)) + fileName;
-            OutputStream out = new FileOutputStream(new File(destination + nameImage));
-            int read = 0;
+            fileName = sdf.format(cal.getTime()) + Integer.toString(rd.nextInt(100)) + fileName;
+            OutputStream out = new FileOutputStream(new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ fileName));
+            int read = 0; 
             byte[] bytes = new byte[1024];
 
             while ((read = in.read(bytes)) != -1) {
@@ -164,7 +193,7 @@ public class createHotel {
             in.close();
             out.flush();
             out.close();
-            linkImg.add(nameImage);
+            listname.add(fileName);
             
         } catch (IOException e) {
             e.printStackTrace();
