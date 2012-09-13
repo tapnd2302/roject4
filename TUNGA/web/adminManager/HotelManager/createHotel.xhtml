@@ -58,8 +58,8 @@
                             <tr><td colspan="2">Image:<br/></td></tr>
                             <tr>
                                 <td colspan="2"><p:fileUpload id="HRImage" fileUploadListener="#{createHotel.saveimage}"
-                                          sizeLimit="1500000" update="messages" mode="advanced" label="Choose Images"
-                                          multiple="true"
+                                          sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
+                                          multiple="true" 
                                           allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
                             </tr>
                         </table>
@@ -67,7 +67,7 @@
                         <br />
                         <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
                         <p:panel id="pnBtn" style="width: 620px">
-                            <table style="width: 550px">
+                            <table id="table" style="width: 550px">
                                 <tr>
                                     <td>
                                         <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}" ajax="false"/>
@@ -84,7 +84,7 @@
                         <p:confirmDialog id="confirmDialog" message="Are you sure don't upload images?"  
                                          header="Create process" severity="alert" widgetVar="confirmation">  
 
-                            <p:commandButton id="confirm" value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:pnText:table" oncomplete="confirmation.hide()"  
                                              actionListener="#{createHotel.uploadlate()}" ajax="false">
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   

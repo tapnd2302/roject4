@@ -102,6 +102,11 @@
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
+                            <p:column headerText="Image" style="width:100px">  
+                                <p:commandLink action="#{hotelManager.redirectImage()}">Images
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandLink>
+                            </p:column>
                             <p:column headerText="Options" style="width:100px">  
                                 <p:rowEditor />  
                             </p:column>
@@ -114,13 +119,12 @@
                         </p:dataTable>
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
-
                             <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
                                              actionListener="#{hotelManager.btnDelete()}" >
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
-
                         </p:confirmDialog>
+                      
                     </h:form>
                 </div>
             </ui:define>

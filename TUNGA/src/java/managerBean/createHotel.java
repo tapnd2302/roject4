@@ -122,8 +122,13 @@ public class createHotel {
         }
         FacesMessage msg = new FacesMessage("Success! " + _name + " is Created"); 
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        _Address = null;
+        _email = null;
+        _info = null;
+        _name = null;
+        _phone = null;
+        btnss = false;
         return "success";
-        
     }
     public String btnsuccess(){
         if (btnss == true) {
@@ -198,6 +203,6 @@ public class createHotel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
 }
