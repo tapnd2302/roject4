@@ -81,4 +81,8 @@ public class hotelManager {
         HotelHelper<HotelRestaurant> helper = new HotelHelper<HotelRestaurant>();
         listHR = helper.showHR();
     }
+    
+    public String redirectImage(){
+        return "imagesManager.jsf?faces-redirect=true&id=";
+    }
 }
