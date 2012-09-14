@@ -7,16 +7,26 @@
     display: block;
 }
 #us_right{
-    width: 1110px;
+    width: 1210px;
     height: 610px; 
-    background-color: #d6d6db;
     float: left;
     display: block;
     
 }
+.create{
+    width: 1110px;
+    height: 610px; 
+    background-color: #d6d6db;
+}
 table tr td{
     font-weight: bold;
 }
+
 .ui-outputlabel-rfi{
     color: red;
 }
+.ui-datatable .ui-widget{
+    width:40px;
+}
+.ui-datatable .ui-column-filter{display: none;}
+

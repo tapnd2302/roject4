@@ -71,7 +71,7 @@ public class Users  implements java.io.Serializable {
     public void setRoles(Roles roles) {
         this.roles = roles;
     }
-    public Serializable getUserName() {
+    public String getUserName() {
         return this.userName;
     }
     
@@ -92,7 +92,7 @@ public class Users  implements java.io.Serializable {
     public void setUserFirstName(String userFirstName) {
         this.userFirstName = userFirstName;
     }
-    public Serializable getUserLastName() {
+    public String getUserLastName() {
         return this.userLastName;
     }
     
@@ -120,7 +120,7 @@ public class Users  implements java.io.Serializable {
     public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
     }
-    public Serializable getUserPhone() {
+    public String getUserPhone() {
         return this.userPhone;
     }
     
@@ -169,10 +169,7 @@ public class Users  implements java.io.Serializable {
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
     }
-
-
-
-
+ 
 }
 
 

@@ -79,7 +79,7 @@
                                 <p:rowEditor />  
                             </p:column>
                             <p:column headerText="Delete" >
-                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                <p:commandButton icon="ui-icon-close" 
                                                  oncomplete="confirmation.show()">
                                     <f:setPropertyActionListener value="#{role}" target="#{roleManager.selected}"/>
                                 </p:commandButton>
@@ -88,7 +88,7 @@
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
 
-                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" ajax="false" oncomplete="confirmation.hide()"  
                                              actionListener="#{roleManager.deleteRole()}" >
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   

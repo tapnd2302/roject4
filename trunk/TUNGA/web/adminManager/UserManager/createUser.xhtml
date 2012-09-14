@@ -24,12 +24,11 @@
                     </p:panelMenu>
                 </div>
                 <div id="us_right">
-                    <h:form>
+                    <h:form class="create">
                         <table>
                             <tr>
                                 <td><p:outputLabel for="roleID">Role: </p:outputLabel></td>
                                 <td><p:selectOneMenu id="roleID" value="#{createUser.selectItem}" style="width: 190px;">
-                                        <f:selectItem itemLabel="Select One" itemValue=""/>
                                         <f:selectItems value="#{createUser.listRole}" var="item" itemLabel="#{item.roleName}" itemValue="#{item.roleId}" />
                                     </p:selectOneMenu>
                                 </td>
@@ -76,7 +75,8 @@
                                 <td><p:selectOneMenu id="gender" value="#{createUser.gender}">
                                         <f:selectItem itemLabel="Male" itemValue="1"/>
                                         <f:selectItem itemLabel="Female" itemValue="0"/>
-                                    </p:selectOneMenu></td>
+                                    </p:selectOneMenu>
+                                </td>
                             </tr>
                             <tr>
                                 <td><p:outputLabel for="address">Address : </p:outputLabel></td>

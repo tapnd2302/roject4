@@ -88,7 +88,7 @@ public class roleManager implements Serializable {
             FacesMessage msg = new FacesMessage("Delete Success");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         } catch (ObjectException ex) {
-            FacesMessage msg = new FacesMessage("Delete Error");
+            FacesMessage msg = new FacesMessage("Delete Error, Because " + ex.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
         RoleHelper<Roles> helper = new RoleHelper<Roles>();

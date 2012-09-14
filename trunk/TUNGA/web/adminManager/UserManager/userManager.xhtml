@@ -27,68 +27,106 @@
                     <h:form id="form" style="height: 500px">
                         <p:growl id="messages" showDetail="true"/>  
 
-                        <p:dataTable id="dataTable" var="role" value="#{roleManager.roleList}"  
+                        <p:dataTable id="dataTable" var="users" value="#{userManager.usersList}"  
                                      paginator="true" rows="10"  
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                      rowsPerPageTemplate="5,10,15"
-                                     widgetVar="roleTable" filteredValue="#{roleManager.filteredCars}"
-                                     editable="true">  
+                                     widgetVar="userTable" filteredValue="#{userManager.filteredCars}"
+                                     >  
 
-                            <p:ajax event="rowEdit" listener="#{roleManager.onEdit}" update=":form:messages" />  
-                            <p:ajax event="rowEditCancel" listener="#{roleManager.onCancel}" update=":form:messages" />  
+<!--                            <p:ajax event="rowEdit" listener="#{userManager.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{userManager.onCancel}" update=":form:messages" />  -->
 
                             <f:facet name="header">  
                                 <p:outputPanel>  
                                     <h:outputText value="Search all fields:"/>  
-                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:250px" />  
+                                    <p:inputText id="globalFilter" onkeyup="userTable.filter()" style="width:250px" />  
                                 </p:outputPanel>  
                             </f:facet> 
 
-                            <p:column sortBy="#{role.roleId}" filterBy="#{role.roleId}" headerText="RoleID"> 
-                                <h:outputText value="#{role.roleId}}" />  
+                            <p:column sortBy="#{users.accountId}" filterBy="#{users.accountId}" headerText="AccountID"> 
+                                <h:outputText value="#{users.accountId}}" />  
                             </p:column>  
-
-                            <p:column sortBy="#{role.roleName}" filterBy="#{role.roleName}" headerText="Role Name">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{role.roleName}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{role.roleName}"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>  
-
-                            <p:column sortBy="#{role.descriptions}" headerText="Role Description">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{role.descriptions}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{role.descriptions}"/>
-                                    </f:facet>
-                                </p:cellEditor>
-                            </p:column>  
-                            <p:column headerText="Options" style="width:100px">  
-                                <p:rowEditor />  
+<!--                            <p:column sortBy="#{users.roles.roleName}" filterBy="#{users.roles.roleName}" headerText="Role Name">  
+                                <h:outputText value="#{users.roles.roleName}" />  
+                            </p:column>  -->
+                            <p:column sortBy="#{users.userName}" filterBy="#{users.userName}" headerText="User Name">  
+                                <h:outputText value="#{users.userName}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userFirstName}" filterBy="#{users.userFirstName}" headerText="User FirstName">  
+                                <h:outputText value="#{users.userFirstName}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userLastName}" filterBy="#{users.userLastName}" headerText="User LastName">  
+                                <h:outputText value="#{users.userLastName}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userBirthDay}" filterBy="#{users.userBirthDay}" headerText="Birth Day">  
+                                <h:outputText value="#{users.userBirthDay.toString().substring(0, 10)}">
+                                </h:outputText>  
+                            </p:column>
+                            <p:column sortBy="#{users.userGender}" filterBy="#{users.userGender}" headerText="User Gender">  
+                                <h:outputText value="#{users.userGender}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userAddress}" filterBy="#{users.userAddress}" headerText="User Address">  
+                                <h:outputText value="#{users.userAddress}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userPhone}" filterBy="#{users.userPhone}" headerText="User Phone">  
+                                <h:outputText value="#{users.userPhone}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.userEmail}" filterBy="#{users.userEmail}" headerText="User Email">  
+                                <h:outputText value="#{users.userEmail}" />  
+                            </p:column>
+                            <p:column sortBy="#{users.allowLogin}" filterBy="#{users.allowLogin}" headerText="User AllowLogin">  
+                                <h:outputText value="#{users.allowLogin}" />  
+                            </p:column>
+                            <p:column headerText="Edit">
+                                <p:commandButton icon="ui-icon-disk" 
+                                                 oncomplete="dlg2.show()">
+                                    <f:setPropertyActionListener value="#{users}" target="#{userManager.seleted}"/>
+                                </p:commandButton>
                             </p:column>
                             <p:column headerText="Delete" >
-                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                <p:commandButton icon="ui-icon-close"
                                                  oncomplete="confirmation.show()">
-                                    <f:setPropertyActionListener value="#{role}" target="#{roleManager.selected}"/>
+                                    <f:setPropertyActionListener value="#{users}" target="#{userManager.selected}"/>
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable> 
+                        
+<!--                        confirm confirmation-->
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
 
                             <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
-                                             actionListener="#{roleManager.deleteRole()}" >
+                                             actionListener="#{userManager.deleteUser()}" >
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+                        </p:confirmDialog> 
+                        
 
-                        </p:confirmDialog>
                     </h:form>
+
+<!--                        edit confirmation-->
+                        <p:dialog id="modalDialog" header="Modal Dialog" widgetVar="dlg2" modal="true" height="500">  
+                        <h:form>  
+                            <p:growl id="messages" showDetail="true"/>  
+                            <table>
+                                <tr>
+                                    <td><p:outputLabel for="userName">UserName : </p:outputLabel></td>
+                                    <td><p:inputText  immediate="true" id="userName" value="#{userManager.seleted.userName}" >
+                                        </p:inputText>
+                                    </td>
+                                    <td><p:message for="userName"/></td>
+                                </tr>
+                            </table>
+
+                            <p:commandButton id="confirm" value="Yes Sure" update=":form:dataTable" oncomplete="dlg2.hide()"  
+                                             actionListener="#{userManager.editUser()}" >
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="dlg2.hide()" type="button" />    
+
+                        </h:form>  
+                    </p:dialog>
+                   
                 </div>
             </ui:define>
 
