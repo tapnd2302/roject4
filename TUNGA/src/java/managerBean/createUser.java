@@ -26,7 +26,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class createUser implements Serializable{
+public class createUser implements Serializable {
 
     private Integer accountID;
     private Integer roleID;
@@ -50,13 +50,12 @@ public class createUser implements Serializable{
 
     public void setSelectItem(String selectItem) {
         this.selectItem = selectItem;
-        System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk "+selectItem);
-        
-        RoleHelper<Roles> r = new RoleHelper<Roles>();
-        List<Roles> List = r.showRoleSelect(selectItem);
-        selectRole = List.get(0);
-        
-        System.out.println("----------------------  "+selectRole);
+
+        if (selectItem != null) {
+            RoleHelper<Roles> r = new RoleHelper<Roles>();
+            List<Roles> List = r.showRoleSelect(selectItem);
+            selectRole = List.get(0);
+        }
     }
 
     public Roles getSelectRole() {

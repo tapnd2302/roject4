@@ -28,9 +28,7 @@ public class createRole {
     private List<Roles> role;
 
     public createRole() {
-        RoleHelper<Roles> helper = new RoleHelper<Roles>();
-        role = helper.showRoleDesc();
-        roleID = role.get(0).getRoleId();
+       
     }
 
     public String insertData() {
