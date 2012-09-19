@@ -1,1 +1,13 @@
-cfc
+CREATE TABLE BOOKINGPARTY
+(
+     Id INT IDENTITY PRIMARY KEY,
+     FullName NVARCHAR(50),
+     Email NVARCHAR(100),
+     Phone NVARCHAR(11),
+     [Address] NVARCHAR(200),
+     Scale INT ,
+     [Time] DATETIME,
+     Conntent NVARCHAR(MAX)
+)
+GO
+
