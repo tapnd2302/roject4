@@ -12,13 +12,13 @@ public class Bookingparty  implements java.io.Serializable {
 
 
      private int id;
-     private Serializable fullName;
-     private Serializable email;
-     private Serializable phone;
-     private Serializable address;
+     private String fullName;
+     private String email;
+     private String phone;
+     private String address;
      private Integer scale;
      private Date time;
-     private Serializable conntent;
+     private String conntent;
 
     public Bookingparty() {
     }
@@ -27,7 +27,8 @@ public class Bookingparty  implements java.io.Serializable {
     public Bookingparty(int id) {
         this.id = id;
     }
-    public Bookingparty(int id, Serializable fullName, Serializable email, Serializable phone, Serializable address, Integer scale, Date time, Serializable conntent) {
+    public Bookingparty(int id, String fullName, String email, String phone, String address, Integer scale, Date time, String conntent) 
+    {
        this.id = id;
        this.fullName = fullName;
        this.email = email;
@@ -37,67 +38,70 @@ public class Bookingparty  implements java.io.Serializable {
        this.time = time;
        this.conntent = conntent;
     }
-   
-    public int getId() {
-        return this.id;
+
+    public String getAddress() {
+        return address;
     }
-    
-    public void setId(int id) {
-        this.id = id;
-    }
-    public Serializable getFullName() {
-        return this.fullName;
-    }
-    
-    public void setFullName(Serializable fullName) {
-        this.fullName = fullName;
-    }
-    public Serializable getEmail() {
-        return this.email;
-    }
-    
-    public void setEmail(Serializable email) {
-        this.email = email;
-    }
-    public Serializable getPhone() {
-        return this.phone;
-    }
-    
-    public void setPhone(Serializable phone) {
-        this.phone = phone;
-    }
-    public Serializable getAddress() {
-        return this.address;
-    }
-    
-    public void setAddress(Serializable address) {
+
+    public void setAddress(String address) {
         this.address = address;
     }
-    public Integer getScale() {
-        return this.scale;
+
+    public String getConntent() {
+        return conntent;
     }
-    
-    public void setScale(Integer scale) {
-        this.scale = scale;
-    }
-    public Date getTime() {
-        return this.time;
-    }
-    
-    public void setTime(Date time) {
-        this.time = time;
-    }
-    public Serializable getConntent() {
-        return this.conntent;
-    }
-    
-    public void setConntent(Serializable conntent) {
+
+    public void setConntent(String conntent) {
         this.conntent = conntent;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getFullName() {
+        return fullName;
+    }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Integer getScale() {
+        return scale;
+    }
+
+    public void setScale(Integer scale) {
+        this.scale = scale;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 }
 
 

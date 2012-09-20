@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f ="http://java.sun.com/jsf/core"> 
+     <body>
+        <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
+            <ui:define name="content">
+                <div class="body_restaurants">
+                    <div class="left_restaurants">
+                        <p:panelMenu style="width: 200px;">
+                            <p:submenu label="Type of food">
+                                <p:menuitem value="Vegetarian foods" outcome="Foods.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Salty foods" outcome="Foods.jsf?id=2" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Booking party" >
+                                <p:menuitem value="Wedding party" outcome="bookingparty.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Birthday party" outcome="bookingparty.jsf?id=2" ajax="false" />
+                                <p:menuitem value="Junket party" outcome="bookingparty.jsf?id=3" ajax="false"/>
+                            </p:submenu >
+                            <p:submenu label="Other information">
+                                <p:menuitem value ="Contact" outcome="contact.jsf" ajax="false"/>
+                                <p:menuitem value="Promotion" outcome="promotion.jsf" ajax="false"/>
+
+                            </p:submenu>
+                        </p:panelMenu>
+                    </div>
+                    <!-- Phần code riệng   -->
+                   <h:form>
+                    <div class="right_bookingparty">
+                        <div class="title_bookingparty">
+                            Booking party
+                        </div> 
+                        <div class="content_bookingparty" >
+                            <div class="left_book">
+                                <table style="width: 450px; height:300px;">
+                                    <tr>
+                                        <td class="st1">
+                                          Full Name(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:growl id="messages" showDetail="true"/>  
+                                            <p:inputText value="#{bookingParty.fullName}">
+                                                
+                                            </p:inputText>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="st1">
+                                           Email(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:inputText value="#{bookingParty.email}">
+                                                
+                                            </p:inputText>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="st1">
+                                          Phone number(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:inputText value="#{bookingParty.phone}">
+                                                
+                                            </p:inputText>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="st1">
+                                          Address(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:inputText value="#{bookingParty.address}">
+                                                
+                                            </p:inputText>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="st1">
+                                          Scale(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:selectOneMenu value="#{bookingParty.scale}">  
+                                                    <f:selectItem itemLabel="Select the number" itemValue="" />  
+                                                    <f:selectItem itemLabel="5 table" itemValue="5" />  
+                                                    <f:selectItem itemLabel="10 table" itemValue="10" />  
+                                                    <f:selectItem itemLabel="15 table" itemValue="15" />  
+                                                    <f:selectItem itemLabel="20 table" itemValue="20" />  
+                                                    <f:selectItem itemLabel="30 table" itemValue="30" />
+                                                    <f:selectItem itemLabel="40 table" itemValue="40" />
+                                                    <f:selectItem itemLabel="50 table" itemValue="50" /> 
+                                                    <f:selectItem itemLabel="60 table" itemValue="60" /> 
+                                                    <f:selectItem itemLabel="70 table" itemValue="70" /> 
+                                                    <f:selectItem itemLabel="80 table" itemValue="80" /> 
+                                                    <f:selectItem itemLabel="90 table" itemValue="90" /> 
+                                                    <f:selectItem itemLabel="100 table" itemValue="100" /> 
+                                              </p:selectOneMenu>  
+                                        </td>
+                                    </tr> 
+                                    <tr>
+                                        <td class="st1">
+                                          Date Time(*)
+                                        </td>
+                                        <td class="st2">
+                                            <p:calendar id="timeBooking" navigator="true"  readonlyInput="true" yearRange="Now-c:1999" pattern="dd/MM/yyyy" showOn="button" value="#{bookingParty.time}">
+                                            </p:calendar> 
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="right_book">
+                                <img src="./images/restaurants/nh3formdattiec.jpg" style="width: 250px; height: 280px" /> 
+                            </div>
+                        </div>
+                        <div class="note_restaurants">
+                            <table style="width:700px; height:120; display: block">
+                                <tr>
+                                    <td style="width: 110px;text-align: right; vertical-align: inherit">
+                                        Content
+                                    </td>
+                                    <td style="width: 590px">
+                                        <p:inputTextarea value="#{bookingParty.content}">
+                                            
+                                        </p:inputTextarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: right">
+                                        <p:commandButton update="messages" value="Submit" actionListener ="#{bookingParty.add()}" ajax="false">
+                                            
+                                        </p:commandButton>
+                                    </td>
+                                </tr>
+                            </table>
+                          
+                        </div>
+                    </div>   
+                  </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

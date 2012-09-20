@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f ="http://java.sun.com/jsf/core"> 
+     <body>
+        <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
+            <ui:define name="content">
+                <div class="body_restaurants">
+                    <div class="left_restaurants">
+                        <p:panelMenu style="width: 200px;">
+                            <p:submenu label="Type of food">
+                                <p:menuitem value="Vegetarian foods" outcome="Foods.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Salty foods" outcome="Foods.jsf?id=2" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Booking party" >
+                                <p:menuitem value="Wedding party" outcome="bookingparty.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Birthday party" outcome="bookingparty.jsf?id=2" ajax="false" />
+                                <p:menuitem value="Junket party" outcome="bookingparty.jsf?id=3" ajax="false"/>
+                            </p:submenu >
+                            <p:submenu label="Other information">
+                                <p:menuitem value ="Contact" outcome="contact.jsf" ajax="false"/>
+                                <p:menuitem value="Promotion" outcome="promotion.jsf" ajax="false"/>
+
+                            </p:submenu>
+                        </p:panelMenu>
+                    </div>
+                    <!-- Phần code riệng   -->
+                    <h:form>
+                    <div class="body_contact">
+                        <div class="left_contact">
+                            <div class="title_contact" >
+                                Contact
+                            </div>
+                            <table style="width: 400px;height:400px; float:left;">
+                                <tr>
+                                    <td class="stc1">
+                                      Full Name(*)  
+                                    </td>
+                                    <td class="stc2">
+                                        <p:inputText>
+                                            
+                                        </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc1">
+                                        Email(*)
+                                    </td>
+                                    <td class="stc2">
+                                        <p:inputText>
+                                            
+                                        </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc1">
+                                        Phone number(*)
+                                    </td>
+                                    <td class="stc2">
+                                        <p:inputText>
+                                            
+                                        </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc1">
+                                        Address
+                                    </td>
+                                    <td class="stc2">
+                                        <p:inputText>
+                                            
+                                        </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc1">
+                                       Thread(*)
+                                    </td>
+                                    <td class="stc2">
+                                        <p:inputText>
+                                            
+                                        </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc1">
+                                       Content(*)
+                                    </td>
+                                    <td class="stc2">
+                                        <h:inputTextarea class="txta_contact">
+                                            
+                                        </h:inputTextarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="submit_contact">
+                                 <p:commandButton value="Submit">
+                                 </p:commandButton>
+                            </div>
+                        </div>
+                        <div class="right_contact">
+                            <div class="title_map">
+                                Google Map
+                            </div>
+                            <div class="map">
+                                <p:gmap center="36.129504,-115.16496" zoom="15" type="ROADMAP" model="#{mapBean.advancedModel}" style="width:350px;height:300px">  
+  
+                                    <p:ajax event="overlaySelect" listener="#{mapBean.onMarkerSelect}" />  
+  
+                                    <p:gmapInfoWindow>  
+                                        <p:outputPanel style="text-align:center;display:block;margin:auto:">  
+                                            <p:graphicImage title="3131 South Las Vegas Boulevard, Las Vegas, NV 89109,USA" value="./images/hotel/wynn.jpg" height="150"/>  
+                                                <br />  
+                                                <h:outputText value="#{mapBean.marker.title}" />  
+
+                                        </p:outputPanel>  
+
+                                    </p:gmapInfoWindow>  
+                                </p:gmap>  
+                            </div>
+                            <div class="about_map">
+                                
+                                    <p>
+                                     Wynn Las Vegas is just over 5 miles from the McCarran Rent-A-Car Center.
+                                     Simply exit the Center on Gilespie St. and head toward E. Arby Ave.
+                                     Turn left onto Hidden Well Rd. Merge onto I-15 toward Salt Lake City. 
+                                     Take the Spring Mtn. Road exit and keep left to take the ramp toward Spring Mtn.
+                                     Road East/Las Vegas Blvd. Merge onto Spring Mtn. Road and turn left onto S. 
+                                     Las Vegas Blvd. Wynn Las Vegas will be on your right.
+
+                                    </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                 </h:form>  
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Role Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+            <ui:define name="content">
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu>
+                            <p:submenu label="Role Manager">
+                                <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="User Manager">
+                                <p:menuitem value="User List" outcome="userManager.jsf" ajax="false"/>
+                                <p:menuitem value="Create New User" outcome="createUser.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                <div id="us_right">
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="true"/>  
+
+                        <p:dataTable id="dataTable" var="role" value="#{roleManager.roleList}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="roleTable" filteredValue="#{roleManager.filteredCars}"
+                                     editable="true">  
+
+                            <p:ajax event="rowEdit" listener="#{roleManager.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{roleManager.onCancel}" update=":form:messages" />  
+
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{role.roleId}" filterBy="#{role.roleId}" headerText="RoleID"> 
+                                        <h:outputText value="#{role.roleId}}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{role.roleName}" filterBy="#{role.roleName}" headerText="Role Name">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.roleName}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.roleName}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{role.descriptions}" headerText="Role Description">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.descriptions}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.descriptions}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:rowEditor />  
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" 
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{role}" target="#{roleManager.selected}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable> 
+                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="confirmation">  
+
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" ajax="false" oncomplete="confirmation.hide()"  
+                                             actionListener="#{roleManager.deleteRole()}" >
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
