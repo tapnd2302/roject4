@@ -19,7 +19,7 @@ div.main
 {
     display:block;
     width: 1001px;
-    height: 650px;
+    min-height: 650px;
     margin: auto;    
     padding: auto;
 }
@@ -33,7 +33,7 @@ div.main
     float:left;
     background: none repeat scroll 0 0 #000000;
     clear: both;
-    height: 540px;
+    min-height: 540px;
     top: 83px;
     width: 1001px;
     z-index: 20;

@@ -4,20 +4,20 @@
 <!-- Generated Sep 20, 2012 1:15:33 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="entity.Bookingparty" table="BOOKINGPARTY" schema="dbo" catalog="PROJECT4">
-        <id name="id" type="int">
+        <id name="id" type="java.lang.Integer">
             <column name="Id" />
-            <generator class="assigned" />
+            <generator class="identity"/>
         </id>
-        <property name="fullName" type="serializable">
+        <property name="fullName" type="java.lang.String">
             <column name="FullName" />
         </property>
-        <property name="email" type="serializable">
+        <property name="email" type="java.lang.String">
             <column name="Email" />
         </property>
-        <property name="phone" type="serializable">
+        <property name="phone" type="java.lang.String">
             <column name="Phone" />
         </property>
-        <property name="address" type="serializable">
+        <property name="address" type="java.lang.String">
             <column name="Address" />
         </property>
         <property name="scale" type="java.lang.Integer">
@@ -26,7 +26,7 @@
         <property name="time" type="timestamp">
             <column name="Time" length="23" />
         </property>
-        <property name="conntent" type="serializable">
+        <property name="conntent" type="java.lang.String">
             <column name="Conntent" />
         </property>
     </class>

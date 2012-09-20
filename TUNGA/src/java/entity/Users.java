@@ -31,7 +31,6 @@ public class Users  implements java.io.Serializable {
 
     public Users() {
     }
-
 	
     public Users(int accountId, String userName, String userPassword) {
         this.accountId = accountId;

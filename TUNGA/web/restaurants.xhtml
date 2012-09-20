@@ -3,27 +3,44 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f ="http://java.sun.com/jsf/core">
- 
-         
- 
+      xmlns:f ="http://java.sun.com/jsf/core"> 
     <body>
         <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
             <ui:define name="content">
-                <h:form>
-                    <div class="main_restaurants">
-                        <div class="left_main_restaurants" >
-                            
-                        </div>                      
+                <div class="body_restaurants">
+                    <div class="left_restaurants">
+                        <p:panelMenu style="width: 198px;">
+                            <p:submenu label="Type of food">
+                                <p:menuitem value="Vegetarian foods" outcome="Foods.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Salty foods" outcome="Foods.jsf?id=2" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Booking party" >
+                                <p:menuitem value="Wedding party" outcome="bookingparty.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Birthday party" outcome="bookingparty.jsf?id=2" ajax="false" />
+                                <p:menuitem value="Junket party" outcome="bookingparty.jsf?id=3" ajax="false"/>
+                            </p:submenu >
+                            <p:submenu label="Other information">
+                                <p:menuitem value ="Contact" outcome="contact.jsf" ajax="false"/>
+                                <p:menuitem value="Promotion" outcome="promotion.jsf" ajax="false"/>
+
+                            </p:submenu>
+                        </p:panelMenu>
                     </div>
-                        
-                </h:form>
+                    <div class="right_restaurants" >
+                        <p:galleria value="#{galleria.images}"  
+                                        var="image" effect="slide" effectSpeed="1000"  
+                                        panelWidth="500" panelHeight="250" frameWidth="160" frameHeight="70"  
+                                        filmstripPosition="top" showCaptions="true" showOverlays="true">  
+
+                            <p:graphicImage value="#{image}"/>  
+                            <p:galleriaOverlay>  
+                                    Description for ccdcf goes here  
+                            </p:galleriaOverlay>  
+                        </p:galleria>   
+                    </div>                    
+                </div>
             </ui:define>
         </ui:composition>
-        
     </body>
-        
-    
-    
 </html>
-    
+
