@@ -14,9 +14,10 @@ public class Foods  implements java.io.Serializable {
 
      private int foodId;
      private Typefoods typefoods;
-     private Serializable foodName;
+     private String foodName;
+     private String foodImages;
      private Double foodPrices;
-     private Serializable foodDescription;
+     private String foodDescription;
      private Boolean foodStatus;
      private Set<HomedeliveryDetails> homedeliveryDetailses = new HashSet<HomedeliveryDetails>(0);
      private Set<Images> imageses = new HashSet<Images>(0);
@@ -28,77 +29,89 @@ public class Foods  implements java.io.Serializable {
     public Foods(int foodId) {
         this.foodId = foodId;
     }
-    public Foods(int foodId, Typefoods typefoods, Serializable foodName, Double foodPrices, Serializable foodDescription, Boolean foodStatus, Set<HomedeliveryDetails> homedeliveryDetailses, Set<Images> imageses) {
+    public Foods(int foodId, Typefoods typefoods, String foodName,String foodImages, Double foodPrices,String foodDescription, Boolean foodStatus, Set<HomedeliveryDetails> homedeliveryDetailses, Set<Images> imageses) {
        this.foodId = foodId;
        this.typefoods = typefoods;
        this.foodName = foodName;
+       this.foodImages = foodImages;
        this.foodPrices = foodPrices;
        this.foodDescription = foodDescription;
        this.foodStatus = foodStatus;
        this.homedeliveryDetailses = homedeliveryDetailses;
        this.imageses = imageses;
     }
-   
-    public int getFoodId() {
-        return this.foodId;
+
+    public String getFoodDescription() {
+        return foodDescription;
     }
-    
+
+    public void setFoodDescription(String foodDescription) {
+        this.foodDescription = foodDescription;
+    }
+
+    public int getFoodId() {
+        return foodId;
+    }
+
     public void setFoodId(int foodId) {
         this.foodId = foodId;
     }
-    public Typefoods getTypefoods() {
-        return this.typefoods;
+
+    public String getFoodImages() {
+        return foodImages;
     }
-    
-    public void setTypefoods(Typefoods typefoods) {
-        this.typefoods = typefoods;
+
+    public void setFoodImages(String foodImages) {
+        this.foodImages = foodImages;
     }
-    public Serializable getFoodName() {
-        return this.foodName;
+
+    public String getFoodName() {
+        return foodName;
     }
-    
-    public void setFoodName(Serializable foodName) {
+
+    public void setFoodName(String foodName) {
         this.foodName = foodName;
     }
+
     public Double getFoodPrices() {
-        return this.foodPrices;
+        return foodPrices;
     }
-    
+
     public void setFoodPrices(Double foodPrices) {
         this.foodPrices = foodPrices;
     }
-    public Serializable getFoodDescription() {
-        return this.foodDescription;
-    }
-    
-    public void setFoodDescription(Serializable foodDescription) {
-        this.foodDescription = foodDescription;
-    }
+
     public Boolean getFoodStatus() {
-        return this.foodStatus;
+        return foodStatus;
     }
-    
+
     public void setFoodStatus(Boolean foodStatus) {
         this.foodStatus = foodStatus;
     }
+
     public Set<HomedeliveryDetails> getHomedeliveryDetailses() {
-        return this.homedeliveryDetailses;
+        return homedeliveryDetailses;
     }
-    
+
     public void setHomedeliveryDetailses(Set<HomedeliveryDetails> homedeliveryDetailses) {
         this.homedeliveryDetailses = homedeliveryDetailses;
     }
+
     public Set<Images> getImageses() {
-        return this.imageses;
+        return imageses;
     }
-    
+
     public void setImageses(Set<Images> imageses) {
         this.imageses = imageses;
     }
 
+    public Typefoods getTypefoods() {
+        return typefoods;
+    }
 
-
-
+    public void setTypefoods(Typefoods typefoods) {
+        this.typefoods = typefoods;
+    }
 }
 
 

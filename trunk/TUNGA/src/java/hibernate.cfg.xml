@@ -16,6 +16,7 @@
     <mapping resource="entity/HotelRestaurant.hbm.xml"/>
     <mapping resource="entity/Roombooking.hbm.xml"/>
     <mapping resource="entity/Booking.hbm.xml"/>
+    <mapping resource="entity/Bookingparty.hbm.xml"/>
     <mapping resource="entity/Tablebooking.hbm.xml"/>
     <mapping resource="entity/Homedelivery.hbm.xml"/>
     <mapping resource="entity/News.hbm.xml"/>
