@@ -6,18 +6,21 @@
     <class name="entity.Foods" table="FOODS" schema="dbo" catalog="PROJECT4">
         <id name="foodId" type="int">
             <column name="FoodID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="typefoods" class="entity.Typefoods" fetch="select">
             <column name="TypeFoodID" />
         </many-to-one>
-        <property name="foodName" type="serializable">
+        <property name="foodName" type="java.lang.String">
             <column name="FoodName" />
+        </property>
+        <property name="foodImages" type="java.lang.String">
+            <column name="FoodImages" />
         </property>
         <property name="foodPrices" type="java.lang.Double">
             <column name="FoodPrices" precision="53" scale="0" />
         </property>
-        <property name="foodDescription" type="serializable">
+        <property name="foodDescription" type="java.lang.String">
             <column name="FoodDescription" />
         </property>
         <property name="foodStatus" type="java.lang.Boolean">
