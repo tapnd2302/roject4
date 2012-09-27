@@ -10,6 +10,7 @@ import exception.ObjectException;
 import helper.ObjectHelper;
 import helper.RoleHelper;
 import helper.TypeImageHelper;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @ViewScoped
-public class listTypeImager {
+public class listTypeImager implements Serializable{
 
     private List<Typeimages> roleList;
     private List<Typeimages> filteredCars;

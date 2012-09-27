@@ -4,28 +4,20 @@
  */
 package helper;
 
-import entity.Foods;
 import java.util.List;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.HibernateUtil;
 
 /**
  *
  * @author HP
  */
-public class FoodsHelper<T> {
-    protected Session session;
+public class FoodsHelper<T> extends ObjectHelper<T> {
 
-    public FoodsHelper() {
-       this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-    }
-
-    public List<Foods> getFoods() {
-        Transaction tr = this.session.beginTransaction();
-        Query q = this.session.createQuery("From Foods");
-        List<Foods> result = q.list();
+    public List<T> getFoods() {
+        Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("from Foods");
+        List<T> result = q.list();
         tr.commit();
         return result;
     }
