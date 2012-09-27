@@ -152,6 +152,14 @@ CREATE TABLE FEEDBACK
 	DateCreate datetime default getdate()
 )
 GO
+CREATE TABLE TYPEIMAGES
+(
+	TypeImageID int identity primary key,
+	TypeName nvarchar(50),
+	TypeDescription nvarchar(200)
+)
+GO
+
 CREATE TABLE IMAGES
 (
 	ImageID int identity primary key,
@@ -278,5 +286,14 @@ GO
 
 ALTER TABLE [dbo].[ROOMBOOKING] CHECK CONSTRAINT [FK_ROOMBOOKING_BOOKING]
 GO
+
+ALTER TABLE [dbo].[IMAGES]  WITH CHECK ADD  CONSTRAINT [FK_IMAGES_TYPEIMAGES] FOREIGN KEY([TypeImage])
+REFERENCES [dbo].[TYPEIMAGES] ([TypeImageID])
+GO
+
+ALTER TABLE [dbo].[IMAGES] CHECK CONSTRAINT [FK_IMAGES_TYPEIMAGES]
+GO
+
+
 
 

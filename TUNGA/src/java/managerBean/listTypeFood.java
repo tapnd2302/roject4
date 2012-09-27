@@ -10,6 +10,7 @@ import exception.ObjectException;
 import helper.HotelHelper;
 import helper.ObjectHelper;
 import helper.TypeFoodHelper;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @ViewScoped
-public class listTypeFood {
+public class listTypeFood implements Serializable{
     private List<Typefoods> listTypeFood;
     private List<Typefoods> filteredCars;
     private Typefoods selected;

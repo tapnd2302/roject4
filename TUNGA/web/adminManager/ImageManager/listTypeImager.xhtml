@@ -21,7 +21,71 @@
                     </p:panelMenu>
                 </div>
                 <div id="us_right">
-                    
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="true"/>  
+
+                        <p:dataTable id="dataTable" var="role" value="#{listTypeImager.roleList}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="roleTable" filteredValue="#{listTypeImager.filteredCars}"
+                                     editable="true">  
+
+                            <p:ajax event="rowEdit" listener="#{listTypeImager.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{listTypeImager.onCancel}" update=":form:messages" />  
+
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{role.typeImageId}" filterBy="#{role.typeImageId}" headerText="Type ID"> 
+                                <h:outputText value="#{role.typeImageId}}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{role.typeName}" filterBy="#{role.typeName}" headerText="Type Name">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.typeName}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.typeName}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{role.typeDescription}" headerText="Type Description">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{role.typeDescription}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{role.typeDescription}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:rowEditor />  
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" 
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{role}" target="#{listTypeImager.selected}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable> 
+                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="confirmation">  
+
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" ajax="false" oncomplete="confirmation.hide()"  
+                                             actionListener="#{listTypeImager.deleteRole()}" >
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog>
+                    </h:form>
            
                 </div>
             </ui:define>

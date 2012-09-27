@@ -6,6 +6,7 @@ import entity.HotelRestaurant;
 import exception.ObjectException;
 import helper.HotelHelper;
 import helper.ObjectHelper;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import org.primefaces.event.RowEditEvent;
 
 @ManagedBean
 @ViewScoped
-public class hotelManager {
+public class hotelManager implements Serializable{
 
     private List<HotelRestaurant> listHR;
     private List<HotelRestaurant> filteredCars;

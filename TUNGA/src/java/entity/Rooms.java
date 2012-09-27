@@ -1,5 +1,5 @@
 package entity;
-// Generated Sep 5, 2012 10:40:14 PM by Hibernate Tools 3.2.1.GA
+// Generated Sep 27, 2012 7:29:24 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -18,7 +18,6 @@ public class Rooms  implements java.io.Serializable {
      private Boolean roomStatus;
      private Serializable roomDescription;
      private Set<Roombooking> roombookings = new HashSet<Roombooking>(0);
-     private Set<Images> imageses = new HashSet<Images>(0);
 
     public Rooms() {
     }
@@ -27,14 +26,13 @@ public class Rooms  implements java.io.Serializable {
     public Rooms(int roomId) {
         this.roomId = roomId;
     }
-    public Rooms(int roomId, Typerooms typerooms, Integer hrid, Boolean roomStatus, Serializable roomDescription, Set<Roombooking> roombookings, Set<Images> imageses) {
+    public Rooms(int roomId, Typerooms typerooms, Integer hrid, Boolean roomStatus, Serializable roomDescription, Set<Roombooking> roombookings) {
        this.roomId = roomId;
        this.typerooms = typerooms;
        this.hrid = hrid;
        this.roomStatus = roomStatus;
        this.roomDescription = roomDescription;
        this.roombookings = roombookings;
-       this.imageses = imageses;
     }
    
     public int getRoomId() {
@@ -78,13 +76,6 @@ public class Rooms  implements java.io.Serializable {
     
     public void setRoombookings(Set<Roombooking> roombookings) {
         this.roombookings = roombookings;
-    }
-    public Set<Images> getImageses() {
-        return this.imageses;
-    }
-    
-    public void setImageses(Set<Images> imageses) {
-        this.imageses = imageses;
     }
 
 
