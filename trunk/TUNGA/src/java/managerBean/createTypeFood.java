@@ -8,6 +8,7 @@ import entity.Typefoods;
 import exception.ObjectException;
 import helper.HotelHelper;
 import helper.ObjectHelper;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class createTypeFood {
+public class createTypeFood implements Serializable{
     private String typeFoodName;
     private String typeFoodDescription;
 

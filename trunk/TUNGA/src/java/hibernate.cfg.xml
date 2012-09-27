@@ -27,5 +27,6 @@
     <mapping resource="entity/Feedback.hbm.xml"/>
     <mapping resource="entity/Foods.hbm.xml"/>
     <mapping resource="entity/Users.hbm.xml"/>
+    <mapping resource="entity/Typeimages.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

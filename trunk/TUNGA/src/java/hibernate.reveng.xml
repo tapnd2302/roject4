@@ -19,4 +19,5 @@
     <table-filter match-name="FEEDBACK"/>
     <table-filter match-name="IMAGES"/>
     <table-filter match-name="TYPEFOODS"/>
+    <table-filter match-name="TYPEIMAGES"/>
 </hibernate-reverse-engineering>

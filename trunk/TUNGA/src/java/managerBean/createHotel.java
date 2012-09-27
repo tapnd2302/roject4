@@ -135,7 +135,7 @@ public class createHotel {
             newHotel();
             for (String str : listname) {
                 Images img = new Images();
-                img.setTypeImage(2);
+//                img.setTypeImage();
                 img.setId(idHotel);
                 img.setImageLink(str);
                 listImg.add(img);

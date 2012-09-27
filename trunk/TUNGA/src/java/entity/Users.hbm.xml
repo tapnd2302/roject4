@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="entity.Users" table="USERS" schema="dbo" catalog="PROJECT4">
         <id name="accountId" type="int">
             <column name="AccountID" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="roles" class="entity.Roles" fetch="select">
             <column name="RoleID" />
         </many-to-one>
-        <property name="userName" type="java.lang.String">
+        <property name="userName" type="serializable">
             <column name="UserName" not-null="true" unique="true" />
         </property>
-        <property name="userPassword" type="java.lang.String">
+        <property name="userPassword" type="serializable">
             <column name="UserPassword" not-null="true" />
         </property>
-        <property name="userFirstName" type="java.lang.String">
+        <property name="userFirstName" type="serializable">
             <column name="UserFirstName" />
         </property>
-        <property name="userLastName" type="java.lang.String">
+        <property name="userLastName" type="serializable">
             <column name="UserLastName" />
         </property>
         <property name="userBirthDay" type="timestamp">
@@ -29,24 +29,18 @@
         <property name="userGender" type="java.lang.Boolean">
             <column name="UserGender" />
         </property>
-        <property name="userAddress" type="java.lang.String">
+        <property name="userAddress" type="serializable">
             <column name="UserAddress" />
         </property>
-        <property name="userPhone" type="java.lang.String">
+        <property name="userPhone" type="serializable">
             <column name="UserPhone" />
         </property>
-        <property name="userEmail" type="java.lang.String">
+        <property name="userEmail" type="serializable">
             <column name="UserEmail" />
         </property>
         <property name="allowLogin" type="java.lang.Boolean">
             <column name="AllowLogin" />
         </property>
-        <set name="imageses" inverse="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <one-to-many class="entity.Images" />
-        </set>
         <set name="homedeliveries" inverse="true">
             <key>
                 <column name="AccountID" />
