@@ -107,6 +107,9 @@ public class createFood {
         return "listFood.jsf?faces-redirect=true";
     }
     public String resetField(){
-        return "";
+        this.setFoodDescription("");
+        this.setFoodName("");
+        this.setFoodPrices(0.0);
+        return "createFood.jsf?faces-redirect=true";
     }
 }

@@ -5,12 +5,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
-
     <body>
 
         <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
-
-
             <ui:define name="content">
                 <div id="us_left">
                     <p:panelMenu>
@@ -29,12 +26,20 @@
                         <table>
                             <tr>
                                 <td><p:outputLabel for="typeImg">Type Image:(*) </p:outputLabel></td>
-                                <td><p:inputText id="typeImg" value="#{createTypeImage.typeImgName}" required="true" requiredMessage="Required Input Role Name" ></p:inputText></td>
+                                <td>
+                                    <p:selectOneMenu id="typeImg" value="#{createImage.selectItem}" style="width: 190px;">
+                                        <f:selectItems value="#{createImage.listType}" var="item" itemLabel="#{item.typeName}" itemValue="#{item.typeImageId}" />
+                                    </p:selectOneMenu>
+                                </td>
                                 <td><p:message for="typeImg" /></td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="typeImgName">Type Image Description:(*) </p:outputLabel></td>
-                                <td><p:inputText id="typeImgName" value="#{createTypeImage.typeImgDescription}"></p:inputText></td>
+                                <td><p:outputLabel for="idIMG">ID Of Item:(*) </p:outputLabel></td>
+                                <td><p:inputText id="idIMG" value="#{createImage.id}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="imgDes">Image Description:(*) </p:outputLabel></td>
+                                <td><p:inputText id="imgDes" value="#{createImage.descriptions}"></p:inputText></td>
                             </tr>
                             <tr>
                                 <td><p:commandButton value="Create New" action="#{createTypeImage.insertData()}" ajax="false" update="@form"/></td>
@@ -43,7 +48,7 @@
                         </table>
 
                     </h:form>
-           
+
                 </div>
             </ui:define>
 
