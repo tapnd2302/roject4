@@ -6,12 +6,12 @@
     <class name="entity.Typefoods" table="TYPEFOODS" schema="dbo" catalog="PROJECT4">
         <id name="typeFoodId" type="int">
             <column name="TypeFoodID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <property name="typeFoodName" type="serializable">
+        <property name="typeFoodName" type="java.lang.String">
             <column name="TypeFoodName" />
         </property>
-        <property name="typeFoodDescription" type="serializable">
+        <property name="typeFoodDescription" type="java.lang.String">
             <column name="TypeFoodDescription" />
         </property>
         <set name="foodses" inverse="true">

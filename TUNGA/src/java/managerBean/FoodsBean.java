@@ -39,7 +39,7 @@ public class FoodsBean {
         id = f.getFoodId();
         type = f.getTypefoods();
         name = f.getFoodName();
-        images = f.getFoodImages();
+//        images = f.getFoodImages()s;
         price = f.getFoodPrices();
         description =  f.getFoodDescription();
     }    
