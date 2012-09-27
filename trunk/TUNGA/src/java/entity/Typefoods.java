@@ -13,8 +13,8 @@ public class Typefoods  implements java.io.Serializable {
 
 
      private int typeFoodId;
-     private Serializable typeFoodName;
-     private Serializable typeFoodDescription;
+     private String typeFoodName;
+     private String typeFoodDescription;
      private Set<Foods> foodses = new HashSet<Foods>(0);
 
     public Typefoods() {
@@ -24,7 +24,7 @@ public class Typefoods  implements java.io.Serializable {
     public Typefoods(int typeFoodId) {
         this.typeFoodId = typeFoodId;
     }
-    public Typefoods(int typeFoodId, Serializable typeFoodName, Serializable typeFoodDescription, Set<Foods> foodses) {
+    public Typefoods(int typeFoodId, String typeFoodName, String typeFoodDescription, Set<Foods> foodses) {
        this.typeFoodId = typeFoodId;
        this.typeFoodName = typeFoodName;
        this.typeFoodDescription = typeFoodDescription;
@@ -38,18 +38,18 @@ public class Typefoods  implements java.io.Serializable {
     public void setTypeFoodId(int typeFoodId) {
         this.typeFoodId = typeFoodId;
     }
-    public Serializable getTypeFoodName() {
+    public String getTypeFoodName() {
         return this.typeFoodName;
     }
     
-    public void setTypeFoodName(Serializable typeFoodName) {
+    public void setTypeFoodName(String typeFoodName) {
         this.typeFoodName = typeFoodName;
     }
-    public Serializable getTypeFoodDescription() {
+    public String getTypeFoodDescription() {
         return this.typeFoodDescription;
     }
     
-    public void setTypeFoodDescription(Serializable typeFoodDescription) {
+    public void setTypeFoodDescription(String typeFoodDescription) {
         this.typeFoodDescription = typeFoodDescription;
     }
     public Set<Foods> getFoodses() {

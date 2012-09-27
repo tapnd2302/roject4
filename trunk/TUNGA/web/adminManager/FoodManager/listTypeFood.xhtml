@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                   <p:panelMenu>
+                        <p:submenu label="Type Food Manager">
+                            <p:menuitem value="Type Food List" outcome="listTypeFood.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Type Food" outcome="createTypeFood.jsf" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="Food Manager">
+                            <p:menuitem value="Food List" outcome="listFood.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Food" outcome="createFood.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </div>
+                <div id="us_right">
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="true"/>  
+
+                        <p:dataTable id="dataTable" var="typeFood" value="#{listTypeFood.listTypeFood}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="roleTable" filteredValue="#{listTypeFood.filteredCars}"
+                                     editable="true">  
+
+                            <p:ajax event="rowEdit" listener="#{listTypeFood.onEdit}" update=":form:messages" />  
+                            <p:ajax event="rowEditCancel" listener="#{listTypeFood.onCancel}" update=":form:messages" />  
+
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="roleTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{typeFood.typeFoodId}" filterBy="#{typeFood.typeFoodId}" headerText="Type Food ID"> 
+                                <h:outputText value="#{typeFood.typeFoodId}}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{typeFood.typeFoodName}" filterBy="#{typeFood.typeFoodName}" headerText="Type Food Name">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{typeFood.typeFoodName}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{typeFood.typeFoodName}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{typeFood.typeFoodDescription}" headerText="Type Food Description">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{typeFood.typeFoodDescription}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{typeFood.typeFoodDescription}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:rowEditor />  
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" 
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{typeFood}" target="#{listTypeFood.selected}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable> 
+                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="confirmation">  
+
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" ajax="false" oncomplete="confirmation.hide()"  
+                                             actionListener="#{listTypeFood.deleteRole()}" >
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog>
+                    </h:form>
+                </div>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
