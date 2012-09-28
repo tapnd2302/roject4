@@ -297,3 +297,7 @@ GO
 
 
 
+INSERT INTO TYPEIMAGES VALUES ('UserIMG','Image of User')
+INSERT INTO TYPEIMAGES VALUES ('Hotel&Restaunrant','Hotel And Restaurant Image')
+INSERT INTO TYPEIMAGES VALUES ('Room','Image of Room')
+INSERT INTO TYPEIMAGES VALUES ('Food','Image of Food')

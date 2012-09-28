@@ -7,9 +7,11 @@ package managerBean;
 import entity.Foods;
 import entity.Typefoods;
 import exception.ObjectException;
+import helper.FoodsHelper;
 import helper.HotelHelper;
 import helper.ObjectHelper;
 import helper.TypeFoodHelper;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +24,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class createFood {
+public class createFood implements Serializable{
 
     private List<Typefoods> listTypeFood;
     private String foodName;
@@ -104,7 +106,9 @@ public class createFood {
         } catch (ObjectException ex) {
             Logger.getLogger(createFood.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "listFood.jsf?faces-redirect=true";
+        FoodsHelper<Foods> fHelper = new FoodsHelper<Foods>();
+        int ID = fHelper.getFoodsMaxID().get(0).getFoodId();
+        return "../ImageManager/createImage.jsf?faces-redirect=true&ID="+ID+"&type=4";
     }
     public String resetField(){
         this.setFoodDescription("");
