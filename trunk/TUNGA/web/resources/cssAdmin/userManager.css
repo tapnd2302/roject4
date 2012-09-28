@@ -25,8 +25,9 @@ table tr td{
 .ui-outputlabel-rfi{
     color: red;
 }
-.ui-datatable .ui-widget{
+/*.ui-datatable .ui-widget{
     width:40px;
-}
+}*/
 .ui-datatable .ui-column-filter{display: none;}
 
+    

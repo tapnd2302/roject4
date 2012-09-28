@@ -9,6 +9,7 @@ package managerBean;
 import entity.HotelRestaurant;
 import entity.Images;
 import exception.ObjectException;
+import helper.HotelHelper;
 import helper.ObjectHelper;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -24,6 +25,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.swing.JOptionPane;
 import org.primefaces.event.FileUploadEvent;
+import sun.misc.Cleaner;
 
 @ManagedBean
 @ViewScoped
@@ -38,6 +40,32 @@ public class createHotel {
     int idHotel;
     private  List<String> listname;
     private List<Images> listImg;
+    private Images selectedImg;
+    private String _desImg;
+    
+    
+    public List<Images> getListImg() {
+        return listImg;
+    }
+
+    public void setListImg(List<Images> listImg) {
+        this.listImg = listImg;
+    }
+    public String getDesImg() {
+        return _desImg;
+    }
+
+    public void setDesImg(String _desImg) {
+        this._desImg = _desImg;
+    }
+
+    public Images getSelectedImg() {
+        return selectedImg;
+    }
+
+    public void setSelectedImg(Images selectedImg) {
+        this.selectedImg = selectedImg;
+    }
     
     
 
@@ -112,27 +140,14 @@ public class createHotel {
             Logger.getLogger(createHotel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public String uploadlate(){
-        newHotel();
-        if (btnss == true) {
-            for (String str : listname) {
-                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
-                f.delete();
-            }
-        }
-        FacesMessage msg = new FacesMessage("Success! " + _name + " is Created"); 
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        _Address = null;
-        _email = null;
-        _info = null;
-        _name = null;
-        _phone = null;
+    
+
+    /***************** Button Create Hotel ****************/
+    public void btnsuccess(){
         btnss = false;
-        return "success";
-    }
-    public String btnsuccess(){
-        if (btnss == true) {
-            newHotel();
+        newHotel();
+        
+        if (!listname.isEmpty()) {
             for (String str : listname) {
                 Images img = new Images();
 //                img.setTypeImage();
@@ -142,29 +157,59 @@ public class createHotel {
             }
             ObjectHelper<Images> OHPImages = new ObjectHelper<Images>();
             try {
+                
                 OHPImages.addList(listImg);
+                btnss = true;
             } catch (ObjectException ex) {
                 Logger.getLogger(createHotel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, "Successful!");
-            return "success";
+            listname.clear();
+            listImg.clear();
         }
-        else{
-            FacesMessage msg = new FacesMessage("Please upload image or choose upload late"); 
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-        return "false";
+
+        FacesMessage msg = new FacesMessage("Success! " + _name + " is Created"); 
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        _Address = null;
+        _email = null;
+        _info = null;
+        _name = null;
+        _phone = null;
     }
     
+//    public void addDesImg(){
+//        ObjectHelper<Images> helperImg = new HotelHelper<Images>();
+//        selectedImg.setDescriptions(_desImg);
+//        try {
+//            helperImg.update(selectedImg);
+//        } catch (ObjectException ex) {
+//            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        FacesMessage msg = new FacesMessage("Success");
+//        FacesContext.getCurrentInstance().addMessage(null, msg);
+//    }
     
-    public String resetField(){
+    public String ok(){
+        FacesMessage msg = new FacesMessage("Successful");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        return "success";
+    }
+    
+    public void resetField(){
+        if (!listname.isEmpty()) {
+            for (String str : listname) {
+                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
+                f.delete();
+            }
+            listname.clear();
+            listImg.clear();
+        }
         _Address = null;
         _email = null;
         _info = null;
         _name = null;
         _phone = null;
         btnss = false;
-        return "success";
     }
     
 
@@ -178,7 +223,7 @@ public class createHotel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        btnss = true;
+        
     }
     
     public void copyFile(String fileName, InputStream in) {
@@ -188,6 +233,7 @@ public class createHotel {
             SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyhhmmss");
             Random rd = new Random();
             fileName = sdf.format(cal.getTime()) + Integer.toString(rd.nextInt(100)) + fileName;
+            
             OutputStream out = new FileOutputStream(new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ fileName));
             int read = 0; 
             byte[] bytes = new byte[1024];
