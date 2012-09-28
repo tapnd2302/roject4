@@ -14,10 +14,10 @@
             <ui:define name="content">
                 <div id="us_left">
                     <p:panelMenu>
-                        <p:submenu label="Type Image Manager">
+<!--                        <p:submenu label="Type Image Manager">
                             <p:menuitem value="Type Image List" outcome="listTypeImager.jsf" ajax="false"/>
                             <p:menuitem value="Create New Type Image" outcome="createTypeImage.jsf" ajax="false"/>
-                        </p:submenu>
+                        </p:submenu>-->
                         <p:submenu label="Image Manager">
                             <p:menuitem value="Image List" outcome="listImage.jsf" ajax="false"/>
                             <p:menuitem value="Create New Image" outcome="createImage.jsf" ajax="false"/>
@@ -70,7 +70,7 @@
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>  
-                            <p:column headerText="Options" style="width:100px">  
+<!--                            <p:column headerText="Options" style="width:100px">  
                                 <p:rowEditor />  
                             </p:column>
                             <p:column headerText="Delete" >
@@ -78,9 +78,9 @@
                                                  oncomplete="confirmation.show()">
                                     <f:setPropertyActionListener value="#{role}" target="#{listTypeImager.selected}"/>
                                 </p:commandButton>
-                            </p:column>
+                            </p:column>-->
                         </p:dataTable> 
-                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+<!--                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
 
                             <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" ajax="false" oncomplete="confirmation.hide()"  
@@ -88,7 +88,7 @@
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
 
-                        </p:confirmDialog>
+                        </p:confirmDialog>-->
                     </h:form>
            
                 </div>

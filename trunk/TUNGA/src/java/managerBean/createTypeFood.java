@@ -52,7 +52,7 @@ public class createTypeFood implements Serializable{
         } catch (ObjectException ex) {
             Logger.getLogger(createTypeFood.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "listFood.jsf?faces-redirect=true";
+        return "listTypeFood.jsf?faces-redirect=true";
     }
     public String resetField(){
         this.typeFoodName = "";
