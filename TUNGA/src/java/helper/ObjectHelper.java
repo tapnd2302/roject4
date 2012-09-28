@@ -38,6 +38,22 @@ public class ObjectHelper<T> {
             throw new ObjectException(e.getMessage());
         }
     }
+    
+    public void delList(List<T> obj) throws ObjectException {
+        try {
+            Transaction ts = this.session.beginTransaction();
+            for (T t : obj) {
+                
+                this.session.delete(t);
+            
+            }
+            ts.commit();
+            
+        } catch (Exception e) {
+            throw new ObjectException(e.getMessage());
+        }
+    }
+    
     public void add(T obj) throws ObjectException {
         try {
             Transaction ts = this.session.beginTransaction();

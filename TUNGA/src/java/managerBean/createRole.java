@@ -28,7 +28,7 @@ public class createRole {
     private List<Roles> role;
 
     public createRole() {
-       
+
     }
 
     public String insertData() {

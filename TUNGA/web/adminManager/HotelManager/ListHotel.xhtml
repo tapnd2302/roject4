@@ -31,13 +31,13 @@
                         <p:growl id="messages" showDetail="false"/>  
 
                         <p:dataTable id="dataTable" var="hotel" value="#{hotelManager.listHR}"  
-                                     paginator="true" rows="10"  
+                                     paginator="true" rows="10"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                      rowsPerPageTemplate="5,10,15"
                                      widgetVar="hotelTable" filteredValue="#{hotelManager.filteredCars}"
                                      editable="true">  
 
-                            
+
                             <f:facet name="header">  
                                 <p:outputPanel>  
                                     <h:outputText value="Search all fields:"/>  
@@ -100,15 +100,10 @@
                                     </f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Image" style="width:100px">  
-                                <p:commandLink action="#{hotelManager.redirectImage()}">Images
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:commandLink action="#{hotelManager.showHotel()}" oncomplete="dlgEdit.show();" update="@form">Edit
                                     <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
                                 </p:commandLink>
-                            </p:column>
-                            <p:column headerText="Options" style="width:100px">  
-                                <p:commandButton icon="ui-icon-pencil" value="Edit" action="#{hotelManager.showHotel()}" oncomplete="dlgEdit.show();" update="@form">
-                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
-                                </p:commandButton>
                             </p:column>
                             <p:column headerText="Delete" >
                                 <p:commandButton icon="ui-icon-close" value="Delete"
@@ -117,50 +112,99 @@
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable>
+
+                        
                         <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
                                          header="Delete process" severity="alert" widgetVar="confirmation">  
                             <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
-                                             actionListener="#{hotelManager.btnDelete()}" >
+                                             action="#{hotelManager.btnDelete()}">
                             </p:commandButton>
                             <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
                         </p:confirmDialog>
-                        
-                        
-                        <p:dialog id="dialogEdit" header="Edit Hotel" widgetVar="dlgEdit" modal="true" height="500" width="400" showEffect="clip" hideEffect="clip">
 
-                            <h:form>  
+
+                        <p:dialog id="dialogEdit" header="Edit Hotel" widgetVar="dlgEdit" modal="true" height="500" width="800" showEffect="clip" hideEffect="clip">
+
+                            <h:panelGrid columns="2" cellpadding="5">
                                 <h:panelGrid columns="2" cellpadding="5">  
                                     <h:outputLabel for="name" value="Hotel's Name:" />  
                                     <p:inputText value="#{hotelManager.name}"   
-                                            id="name" label="Name" />
+                                                 id="name" label="Name" />
                                     <h:outputLabel for="address" value="Address:" />  
                                     <p:inputText value="#{hotelManager.address}"   
-                                            id="address" label="Address" />
+                                                 id="address" label="Address" />
                                     <h:outputLabel for="phone" value="Phone:" />  
                                     <p:inputText value="#{hotelManager.phone}"   
-                                            id="phone" label="Phone" />
+                                                 id="phone" label="Phone" />
                                     <h:outputLabel for="email" value="Email:" />  
                                     <p:inputText value="#{hotelManager.email}"   
-                                            id="email" label="Email" />
+                                                 id="email" label="Email" />
                                     <h:outputLabel for="info" value="Infomation:" />  
                                     <p:inputText value="#{hotelManager.info}"   
-                                            id="info" label="Infomation" />
-                                    <h:outputLabel value="Images:" />  
-                                    
-                                    <f:facet name="footer">  
-                                        <p:commandButton value="Update" update=":form:messages, :form:dataTable"
-                                                         actionListener="#{hotelManager.btnEdit}"
-                                                         oncomplete="handleEditRequest(args)"/>
-                                        <p:commandButton value="Cancel" onclick="dlgEdit.hide();" action="#{hotelManager.btnCancel()}" update=":form:messages"/>
-                                    </f:facet>  
-                                </h:panelGrid>  
+                                                 id="info" label="Infomation" />
 
-                            </h:form> 
+                                </h:panelGrid>
+
+                                <p:scrollPanel style="width: 420px; height: 260px" mode="native">
+                                    <p:dataGrid id="dataImage" var="dataImg" value="#{hotelManager.listImage}"> 
+
+                                        <p:column>
+                                            <p:panel>
+                                                <p:lightBox>
+                                                    <h:outputLink value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}">
+                                                        <p:graphicImage id="img" width="220px" height="170px" value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}"/>
+                                                        <p:tooltip for="img" value="#{dataImg.descriptions}" showEffect="clip" hideEffect="slide" />
+                                                    </h:outputLink>
+                                                </p:lightBox>
+                                            </p:panel>
+                                        </p:column>
+                                        <p:column>
+                                            <h:panelGrid columns="2" cellpadding="7">
+                                                <p:commandLink oncomplete="editDesImg.show();" action="#{hotelManager.showDesImg()}" update=":form:dlgEditDesImg">Edit Description
+                                                    <f:setPropertyActionListener value="#{dataImg}" target="#{hotelManager.selectedImg}"/>
+                                                </p:commandLink>
+
+                                                <p:commandLink oncomplete="cfDelImg.show();">Delete Image
+                                                    <f:setPropertyActionListener value="#{dataImg}" target="#{hotelManager.selectedImg}"/>
+                                                </p:commandLink>
+                                            </h:panelGrid>
+                                        </p:column>
+                                    </p:dataGrid>
+                                </p:scrollPanel>
+                            </h:panelGrid>
+                            <f:facet name="footer">
+                                <p:commandButton value="Update" update=":form:messages, :form:dataTable"
+                                                 actionListener="#{hotelManager.btnEdit}"
+                                                 oncomplete="handleEditRequest(args)"/>
+                                <p:commandButton value="Cancel" onclick="dlgEdit.hide();" action="#{hotelManager.btnCancel()}" update=":form:messages"/>
+                            </f:facet>
                         </p:dialog>
+
+
+                        <p:dialog id="dlgEditDesImg" header="Edit Description for Image" widgetVar="editDesImg" modal="true" height="200" width="350" showEffect="clip" hideEffect="clip">
+                            <h:outputLabel for="txtdesImg" value="Description:" />  
+                            <p:inputTextarea rows="6" cols="33" value="#{hotelManager.desImg}" id="txtdesImg" label="Description" />
+                            <f:facet name="footer">
+                                <p:commandButton value="Update" update=":form:messages,dataImage"
+                                                 actionListener="#{hotelManager.editDesImg()}" onclick="editDesImg.hide();"/>
+                                <p:commandButton value="Cancel" onclick="editDesImg.hide();"/>
+                            </f:facet>
+                        </p:dialog>
+
+                        <p:confirmDialog id="cfDlgDelImg" message="Are you sure delete this Image?"
+                                         header="Delete Image" severity="alert" widgetVar="cfDelImg">  
+                            <p:commandButton id="btncfDelImg" value="Yes Sure" update="messages, dataImage"   
+                                             actionListener="#{hotelManager.delImg()}" oncomplete="cfDelImg.hide();">
+                            </p:commandButton>
+                            <p:commandButton id="btnclDelImg" value="Not Yet" onclick="cfDelImg.hide();" type="button" />   
+                        </p:confirmDialog>
+
+
+
                         <script type="text/javascript">  
                             function handleEditRequest(args) {  
                                 if(args.edit != true) {  
-                                    jQuery('dialogEdit').effect("shake", { times:3 }, 100);  //effect cho dialog -- lo^~i
+                                    jQuery('asd').effect("shake", { times:3 }, 100);
                                 } else {  
                                     dlgEdit.hide();  
                                 }  
