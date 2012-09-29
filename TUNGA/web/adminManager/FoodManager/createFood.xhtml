@@ -25,41 +25,70 @@
                 </div>
                 <div id="us_right">
                     <h:form class="create">
-                        <table>
+                       <div style="float: left; min-width:750px; min-height:400px; margin: 100px 0px 0px 190px; background-color:#B0C4DE; border-radius:10px; border:1px solid fuchsia">
+                           <table style="width: 550px; height: 300px; float: left; margin: 50px 0px 0px 150px">
                             <tr>
-                                <td><p:outputLabel for="typeFood">Food Type:(*) </p:outputLabel></td>
-                                <td><p:selectOneMenu id="typeFood" value="#{createFood.selectItem}" style="width: 190px;">
+                                <td style="width:130px; height:auto; text-align:right">
+                                    <p:outputLabel for="typeFood">Food Type:</p:outputLabel>
+                                </td>
+                                <td style="width:185px; height:auto;padding-left:15px">
+                                    <p:selectOneMenu id="typeFood" value="#{createFood.selectItem}" style="width: 190px;">
                                         <f:selectItems value="#{createFood.listTypeFood}" var="item" itemLabel="#{item.typeFoodName}" itemValue="#{item.typeFoodId}" />
                                     </p:selectOneMenu>
                                 </td>
-                                <td><p:message for="typeFood" /></td>
+                                <td>
+                                    <p:message for="typeFood" />
+                                </td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="foodName">Food Name:(*) </p:outputLabel></td>
-                                <td><p:inputText id="foodName" value="#{createFood.foodName}"></p:inputText></td>
+                                <td style="width:130px; height:auto; text-align:right"><p:outputLabel for="foodName">Food Name: </p:outputLabel></td>
+                                <td style="width:185px; height:auto;padding-left:15px">
+                                    <p:inputText id="foodName" value="#{createFood.foodName}" required="true" requiredMessage="This field not null"></p:inputText>
+                                </td>
+                                <td><p:message for="foodName"/></td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="foodPrices">Food Prices </p:outputLabel></td>
-                                <td><p:inputText id="foodPrices" value="#{createFood.foodPrices}"></p:inputText></td>
+                                <td style="width:130px; height:auto; text-align:right">
+                                    <p:outputLabel for="foodPrices">Food Prices: </p:outputLabel>
+                                </td>
+                                <td style="width:185px; height:auto;padding-left:15px">
+                                    <p:inputText id="foodPrices" value="#{createFood.foodPrices}" required="true" requiredMessage="This field not null" validatorMessage="Please write the number" >
+                                        <f:validateRegex pattern="^\d+$"/>
+                                    </p:inputText>
+                                </td>
+                                <td><p:message for="foodPrices"/></td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="foodDesciption">Food Description:(*) </p:outputLabel></td>
-                                <td><p:inputText id="foodDesciption" value="#{createFood.foodDescription}"></p:inputText></td>
+                                <td style="width:130px; height:auto; text-align:right">
+                                    <p:outputLabel for="foodDesciption"> Description:(*)</p:outputLabel>
+                                </td>
+                                <td style="width:185px; height:auto;padding-left:15px">
+                                    <p:inputText id="foodDesciption" value="#{createFood.foodDescription}" required="true" requiredMessage="This field not null">
+                                    </p:inputText>
+                                </td>
+                                <td><p:message for="foodDesciption"/></td>
                             </tr>
                             <tr>
-                                <td><p:outputLabel for="foodStatus">Food Status: </p:outputLabel></td>
-                                <td><p:selectOneMenu id="foodStatus" value="#{createFood.foodStatus}" >
+                                <td style="width:130px; height:auto; text-align:right"><p:outputLabel for="foodStatus">Food Status: </p:outputLabel></td>
+                                <td style="width:185px; height:auto;padding-left:15px">
+                                    <p:selectOneMenu id="foodStatus" value="#{createFood.foodStatus}" >
                                         <f:selectItem itemLabel="Yes" itemValue="1" />
                                         <f:selectItem itemLabel="No" itemValue="0"/>
                                     </p:selectOneMenu>
                                 </td>
                             </tr>
                             <tr>
-                                <td><p:commandButton value="Create New" action="#{createFood.insertData()}" ajax="false" update="@form"/></td>
-                                <td><p:commandButton value="Reset Field" action="#{createFood.resetField()}" update="@form"/></td>
+                                <td colspan="3" style="text-align: center">
+                                    <div style="float: left; margin-left: 120px;">
+                                        
+                                    <p:commandButton value="Create New" action="#{createFood.insertData()}" ajax="false" update="@form"/>
+                                    <p:commandButton value="Reset Field" action="#{createFood.resetField()}" update="@form"/>
+                                    </div>
+                                </td>
+                               
                             </tr>
                         </table>
-
+                       </div> 
                     </h:form>
                 </div>
             </ui:define>
