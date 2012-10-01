@@ -37,13 +37,24 @@
                                 <table style="width: 450px; height:300px;">
                                     <tr>
                                         <td class="st1">
-                                          Full Name(*)
+                                          Full name(*)
                                         </td>
                                         <td class="st2">
                                             <p:growl id="messages" showDetail="true"/>  
-                                            <p:inputText value="#{bookingParty.fullName}">
-                                                
+                                            <p:inputText id="fullName" value="#{bookingParty.fullName}" required="true" requiredMessage="Required input full name" >    
                                             </p:inputText>
+                                           
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="fullName"/>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -51,9 +62,20 @@
                                            Email(*)
                                         </td>
                                         <td class="st2">
-                                            <p:inputText value="#{bookingParty.email}">
-                                                
+                                            <p:inputText id="email" value="#{bookingParty.email}" validatorMessage="Invalid Email" required="true" requiredMessage="Required input email">
+                                                <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]{2,3}"/>
                                             </p:inputText>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="email"/>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -61,9 +83,20 @@
                                           Phone number(*)
                                         </td>
                                         <td class="st2">
-                                            <p:inputText value="#{bookingParty.phone}">
-                                                
+                                            <p:inputText id="phone" value="#{bookingParty.phone}" validatorMessage="Write from 9 to 11 number"  required="true" requiredMessage="Required input phone number">
+                                                <f:validateRegex pattern="^[0-9]{9,11}$"/>
                                             </p:inputText>
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="phone"/>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -71,17 +104,29 @@
                                           Address(*)
                                         </td>
                                         <td class="st2">
-                                            <p:inputText value="#{bookingParty.address}">
+                                            <p:inputText id="address" value="#{bookingParty.address}" required="true" requiredMessage="Required input address">
                                                 
                                             </p:inputText>
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="address"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
                                         <td class="st1">
                                           Scale(*)
                                         </td>
                                         <td class="st2">
-                                            <p:selectOneMenu value="#{bookingParty.scale}">  
+                                            <p:selectOneMenu id ="scale" value="#{bookingParty.scale}" required="true" requiredMessage="Required input scale">  
                                                     <f:selectItem itemLabel="Select the number" itemValue="" />  
                                                     <f:selectItem itemLabel="5 table" itemValue="5" />  
                                                     <f:selectItem itemLabel="10 table" itemValue="10" />  
@@ -98,13 +143,36 @@
                                               </p:selectOneMenu>  
                                         </td>
                                     </tr> 
+                                     <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="scale"/>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="st1">
                                           Date Time(*)
                                         </td>
                                         <td class="st2">
-                                            <p:calendar id="timeBooking" navigator="true"  readonlyInput="true" yearRange="Now-c:1999" pattern="dd/MM/yyyy" showOn="button" value="#{bookingParty.time}">
-                                            </p:calendar> 
+                                            <p:calendar id="time" navigator="true"  readonlyInput="true"  yearRange="now:2022" pattern="dd/MM/yyyy" showOn="button" value="#{bookingParty.time}" required="true" requiredMessage="Required input date time ">
+                                            </p:calendar>
+                                           
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="st3">
+                                            
+                                        </td>
+                                        <td class="st4">
+                                            
+                                            <div id="validation">
+                                            <p:message for="time"/>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>
@@ -127,9 +195,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: right">
-                                        <p:commandButton update="messages" value="Submit" actionListener ="#{bookingParty.add()}" ajax="false">
-                                            
-                                        </p:commandButton>
+                                        <p:commandButton update="@form" value="Submit" actionListener ="#{bookingParty.add()}" ajax="false"/>
                                     </td>
                                 </tr>
                             </table>

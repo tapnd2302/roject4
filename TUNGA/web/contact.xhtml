@@ -39,19 +39,37 @@
                                       Full Name(*)  
                                     </td>
                                     <td class="stc2">
-                                        <p:inputText>
-                                            
-                                        </p:inputText>
+                                        <p:inputText id="fullName" required="true" requiredMessage="Required input full name"/>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="stc3">
+ 
+                                    </td>
+                                    <td class="stc4">
+                                        <div id="validation_con">
+                                             <p:message for = "fullName"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                 <tr>
                                     <td class="stc1">
                                         Email(*)
                                     </td>
                                     <td class="stc2">
-                                        <p:inputText>
-                                            
+                                        <p:inputText id="email" required="true" requiredMessage="Required input email" validatorMessage="Invalid Email" >
+                                            <f:validateRegex pattern="[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]{2,3}"/>
                                         </p:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="stc3">
+                                       
+                                    </td>
+                                    <td class="stc4">
+                                        <div id="validation_con">
+                                              <p:message for="email"/>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,9 +77,20 @@
                                         Phone number(*)
                                     </td>
                                     <td class="stc2">
-                                        <p:inputText>
-                                            
+                                        <p:inputText id="phone"  validatorMessage="Write from 9 to 11 number"  required="true" requiredMessage="Required input phone number">
+                                              <f:validateRegex pattern="^[0-9]{9,11}$"/>
                                         </p:inputText>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td class="stc3">
+                                       
+                                    </td>
+                                    <td class="stc4">
+                                      <div id="validation_con">
+                                              <p:message for="phone"/>
+                                       </div>
+                                      
                                     </td>
                                 </tr>
                                 <tr>
@@ -79,9 +108,18 @@
                                        Thread(*)
                                     </td>
                                     <td class="stc2">
-                                        <p:inputText>
-                                            
-                                        </p:inputText>
+                                        <p:inputText id="thread" required="true" requiredMessage="Required input thread"/>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td class="stc3">
+                                       
+                                    </td>
+                                    <td class="stc4">
+                                       <div id="validation_con">
+                                          <p:message for="thread"/>
+                                       </div>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -89,14 +127,25 @@
                                        Content(*)
                                     </td>
                                     <td class="stc2">
-                                        <h:inputTextarea class="txta_contact">
+                                        <h:inputTextarea id="contents" class="txta_contact" required="true" requiredMessage="Required input content">
                                             
                                         </h:inputTextarea>
                                     </td>
                                 </tr>
+                                 <tr>
+                                    <td class="stc3">
+                                       
+                                    </td>
+                                    <td class="stc4">
+                                        <div id="validation_con">
+                                          <p:message for="contents"/>
+                                       </div>
+                                        
+                                    </td>
+                                </tr>
                             </table>
                             <div class="submit_contact">
-                                 <p:commandButton value="Submit">
+                                <p:commandButton  value="Submit" ajax="false" update="@form" >
                                  </p:commandButton>
                             </div>
                         </div>

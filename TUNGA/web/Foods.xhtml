@@ -26,25 +26,61 @@
                             </p:submenu>
                         </p:panelMenu>
                     </div>
-                    
-                    
-                    <h:form id="foods">
                         <div class="body_foods">
                             <div class="title_foods_menu">
                                 Foods menu
                             </div>
+                           
                             <div class="list_foods">
-                                <h:dataTable var="food" value="#{foodsBean.listF}">
-                                    <p:column>
-                                        <f:facet name="header">Name</f:facet>
-                                        <h:outputText value="#{food.foodName}"/>
-                                    </p:column>
-                                </h:dataTable>
+                                <p:dataGrid var="food" value="#{foodsBean.listF}" columns="1" 
+                                            rows="4" paginator="true"  
+                                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+                                            {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
+                                            {RowsPerPageDropdown}"  
+                                            rowsPerPageTemplate="4,8,12">
+                                    <div> 
+                                        <h:form id="foods">
+                                            <div style="width: 150px; text-align: left; height: 150px; float: left;" > 
+                                                <p:lightBox styleClass="imagebox">
+                                                    <h:outputLink style="width: 700px; height:600px"  value="#{food.foodImages}" title="#{food.foodName}">
+
+                                                        <p:graphicImage value="#{food.foodImages}" style="float: left ;width: 150px; height: 120px; border: 0.5px solid #378DE5"/>
+                                                </h:outputLink>
+                                                </p:lightBox>
+                                            </div>
+                                            <div  style="width: 500px; height:150px; vertical-align: top;float: left; margin-left: 30px" >
+                                                <div style=" width:400px; height: 30px; font-size: 19px; font-weight: bold">
+                                                        <h:outputText value="#{food.foodName}"/>   
+                                                </div>
+                                                <div style="width: 500px; height:90px;">
+                                                    <h:outputText value="#{food.foodDescription}"/> 
+                                                </div>
+                                                <div  style="width: 500px;float: left; margin-top: -20px; height: 30px;">
+                                                    <div style="width: 180px; height: 30px; float: left; color:#2781E7; font-style: italic; font-weight: bold;font-size: 16px; ">
+                                                        Price : 
+                                                        <strong style="float: right; min-width:100px;color:red; height: 20px; background: #E2E6F3">
+                                                            <h:outputText value="#{food.foodPrices}"/>  ($)
+                                                        </strong>
+                                                    </div>
+                                                    <div style="width: 150px; height: 30px; float: left; padding-left: 100px; padding-bottom:5px">
+                                                        <h:commandButton action="#{cartBean.addCart()}"  image="/images/hotel/icon_shopping.png">
+ 
+                                                            <f:setPropertyActionListener target="#{cartBean.selectItem}" value="#{food}"/>
+                                                        </h:commandButton>                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>  
+                                 </p:dataGrid>  
                             </div>
-                        </div>
-                    </h:form>  
+                            <div class="view_cart">
+                               <a href="viewcart.jsf">
+                                   <img style="width: 120px; height: 30px" title="View cart" src="./images/hotel/view_cart.jpg"/>
+                               </a>  
+                           </div>  
+                      </div>
                 </div>  
-                
             </ui:define> 
           </ui:composition>     
     </body>

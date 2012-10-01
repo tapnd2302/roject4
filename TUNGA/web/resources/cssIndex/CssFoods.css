@@ -3,7 +3,7 @@
 {
   width: 800px;
   float: right;
-  min-height: 940px;
+  height: auto;
   background-color: #818181;
 }
 .title_foods_menu
@@ -23,8 +23,15 @@
 {
   float: left;
   width: 760px;
-  min-height: 400px;
   margin: 10px 0px 0px 20px;
   background-color: #ece3a5;
   
+}
+.view_cart
+{
+    float: right;
+    width: 400px;
+    height: auto;
+    text-align: right;
+    margin:10px 30px 0px 0px;
 }
