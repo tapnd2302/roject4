@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated Sep 5, 2012 10:40:15 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="entity.Foods" table="FOODS" schema="dbo" catalog="PROJECT4">
         <id name="foodId" type="int">
@@ -13,6 +13,9 @@
         </many-to-one>
         <property name="foodName" type="java.lang.String">
             <column name="FoodName" />
+        </property>
+        <property name="foodImages" type="java.lang.String">
+            <column name="FoodImages" />
         </property>
         <property name="foodPrices" type="java.lang.Double">
             <column name="FoodPrices" precision="53" scale="0" />
@@ -28,6 +31,12 @@
                 <column name="FoodID" />
             </key>
             <one-to-many class="entity.HomedeliveryDetails" />
+        </set>
+        <set name="imageses" inverse="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="entity.Images" />
         </set>
     </class>
 </hibernate-mapping>

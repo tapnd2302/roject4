@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f ="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
+            <ui:define name="content">
+                <div class="body_restaurants">
+                    <div class="left_restaurants">
+                        <p:panelMenu style="width: 200px;">
+                            <p:submenu label="Type of food">
+                                <p:menuitem value="Vegetarian foods" outcome="Foods.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Salty foods" outcome="Foods.jsf?id=2" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Booking party" >
+                                <p:menuitem value="Wedding party" outcome="bookingparty.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Birthday party" outcome="bookingparty.jsf?id=2" ajax="false" />
+                                <p:menuitem value="Junket party" outcome="bookingparty.jsf?id=3" ajax="false"/>
+                            </p:submenu >
+                            <p:submenu label="Other information">
+                                <p:menuitem value ="Contact" outcome="contact.jsf" ajax="false"/>
+                                <p:menuitem value="Promotion" outcome="promotion.jsf" ajax="false"/>
+
+                            </p:submenu>
+                        </p:panelMenu>
+                    </div>
+                    <div class="body_cart">
+                        <h:form id="form">
+                            <div class="title_cart">
+                                Shopping cart
+                            </div>
+                            <div class="list_cart">
+
+                                <p:growl id="messages" showDetail="true"/>   
+
+                                <p:dataTable id="dataTable" var="cart" value="#{cartBean.listP}"  
+                                             paginator="true" rows="10"  
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                             rowsPerPageTemplate="5,10,15"
+                                             widgetVar="roleTable" filteredValue="#{listFood.filteredCars}"
+                                             editable="true">  
+                                    <p:ajax event="rowEdit" listener="#{cartBean.updateCart}" update=":form:messages" />  
+                                    <p:ajax event="rowEditCancel" listener="#{cartBean.onCancel}" update=":form:messages"/> 
+                                    <p:column headerText="Image">
+                                        <p:graphicImage style="width: 50px; height: 40px" value="#{cart.proImage}"/>
+                                    </p:column>
+                                    <p:column headerText="Name">
+                                        <h:outputText value="#{cart.prodName}"/>
+                                    </p:column>
+                                    <p:column headerText="Price">
+                                        <h:outputText value="#{cart.price}"/>
+                                    </p:column>  
+                                    <p:column sortBy="#{cart.quantity}" headerText="Quantity">     
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <h:outputText value="#{cart.quantity}"/>
+                                            </f:facet>
+
+                                            <f:facet name="input">
+                                                <h:inputText style="width: 70px" value="#{cart.quantity}"/>
+                                            </f:facet>
+                                        </p:cellEditor>                 
+                                    </p:column>
+                                    <p:column headerText="Edit">
+                                        <p:rowEditor/>
+                                    </p:column>
+                                    <p:column headerText="Amount">
+                                        <h:outputText style="color:orangered; font-weight: bold " value="#{cart.quantity * cart.price}"/>
+                                    </p:column>
+                                    <p:column headerText="Remove">
+                                        <h:commandLink actionListener="#{cartBean.removeItems()}" >
+                                            <h:graphicImage value="/images/hotel/deletered.png" title="Remove item"/>
+                                            <f:setPropertyActionListener target="#{cartBean.filteredCars}" value="#{cart}"/>
+                                        </h:commandLink>
+                                    </p:column>
+                                </p:dataTable>
+
+                            </div>
+                            <div class="btnCart">
+                                <table style="width: 500px; text-align: center">
+                                    <tr>
+                                        <td>
+                                            <p:commandButton action="Foods.jsf" value="Continue Buy"/>
+                                        </td>
+                                        <td>
+                                            <p:commandButton value="Payment"/>
+                                        </td>
+                                        <td>
+                                            <p:commandButton actionListener="#{cartBean.removeCart()}" value="Destroy Cart"/>
+                                        </td>
+                                    </tr>
+                                </table> 
+                            </div>
+                        </h:form> 
+                    </div>
+                </div> 
+            </ui:define>
+        </ui:composition>     
+    </body>
+</html>

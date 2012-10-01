@@ -4,13 +4,14 @@
  */
 package managerBean;
 
+
 import entity.Foods;
 import entity.Typefoods;
 import helper.FoodsHelper;
-import java.awt.Image;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class FoodsBean {
-    
+  
     private List<Foods> listF;
     private List<Foods> filteredCars;
     private Foods f;
@@ -29,17 +30,17 @@ public class FoodsBean {
     private String images;
     private Double price;
     private String description;
-
+    
     public FoodsBean() {
-       FoodsHelper<Foods> helper  = new FoodsHelper<Foods>();
-       listF = helper.getFoods();
+      FoodsHelper<Foods> helper  = new FoodsHelper<Foods>();
+      listF = helper.getFoods();
     }
     
     public void showF(){
         id = f.getFoodId();
         type = f.getTypefoods();
         name = f.getFoodName();
-//        images = f.getFoodImages()s;
+        images = f.getFoodImages();
         price = f.getFoodPrices();
         description =  f.getFoodDescription();
     }    

@@ -41,6 +41,17 @@
   width: 290px;
   width: auto;    
 }
+.stc3
+{
+  width: 110px;
+  width: auto;
+  text-align: right;
+}
+.stc4
+{
+  width: 290px;
+  width: auto;    
+}
 .txta_contact
 {
  width: 252px;
@@ -91,4 +102,9 @@
   margin: 0px 0px 0px 30px;
   font-size: 11px;
   font-style: italic;
+}
+#validation_con{
+    float: left;
+    width: 260px;
+    margin-top:1px;
 }

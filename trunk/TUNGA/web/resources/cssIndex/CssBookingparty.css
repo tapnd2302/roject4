@@ -2,7 +2,7 @@
 .right_bookingparty{
   width: 800px;
   float: right;
-  height: 540px;
+  min-height: 540px;
   background-color: #818181;
 }
 .title_bookingparty{
@@ -22,7 +22,7 @@
 {
   width: 700px;
   float: left;
-  height: 310px;
+  min-height: 310px;
   margin: 20px 0px 0px 50px;
   float: left;
 }
@@ -30,7 +30,7 @@
 {
    float: left;
    width:450px;
-   height: 300px;
+   min-height: 300px;
 }
 .right_book
 {
@@ -50,6 +50,14 @@
    width: 350px;
    height:auto;
 }
+.st3{
+  width: 110px;
+  height: auto;
+}
+.st4{
+  width: 350px;
+  height: auto; 
+}
 .ui-inputfield{
     width: 250px;
 }
@@ -64,4 +72,11 @@
 {
     width: 583px;
     height: 80px;
+}
+#validation
+{
+  float: left;
+  min-width:260px;
+  margin-top:3px ;
+  height: auto
 }

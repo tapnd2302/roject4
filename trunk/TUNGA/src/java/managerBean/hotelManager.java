@@ -3,11 +3,9 @@ package managerBean;
 
 
 import entity.HotelRestaurant;
-import entity.Images;
 import exception.ObjectException;
 import helper.HotelHelper;
 import helper.ObjectHelper;
-import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,36 +33,7 @@ public class hotelManager implements Serializable{
     private String _email;
     private String _info;
     private int _id;
-    private List<Images> listImage;
-    private Images selectedImg;
-    private String _desImg;
 
-    public String getDesImg() {
-        return _desImg;
-    }
-
-    public void setDesImg(String _desImg) {
-        this._desImg = _desImg;
-    }
-    
-    
-    public Images getSelectedImg() {
-        return selectedImg;
-    }
-
-    public void setSelectedImg(Images selectedImg) {
-        this.selectedImg = selectedImg;
-    }
-
-
-    public List<Images> getListImage() {
-        return listImage;
-    }
-
-    public void setListImage(List<Images> listImage) {
-        this.listImage = listImage;
-    }
-    
     public int getId() {
         return _id;
     }
@@ -137,21 +106,13 @@ public class hotelManager implements Serializable{
         this.filteredCars = filteredCars;
     }
     
-    
-    
-    
     public hotelManager() {
         HotelHelper<HotelRestaurant> helper = new HotelHelper<HotelRestaurant>();
         listHR = helper.showHR();
-      
     }
     
-    
-    
-    
-    
     public void btnEdit(ActionEvent actionEvent){
-        ObjectHelper<HotelRestaurant> helper = new ObjectHelper<HotelRestaurant>();
+        ObjectHelper<HotelRestaurant> helper = new HotelHelper<HotelRestaurant>();
         RequestContext context = RequestContext.getCurrentInstance();
         FacesMessage msg = null;  
         boolean edit = false;
@@ -179,19 +140,9 @@ public class hotelManager implements Serializable{
     }
 
     public void btnDelete(){
-        HotelHelper<Images> holhelper = new HotelHelper<Images>();
-        listImage = holhelper.showImage(hr.getHrid());
-        for (Images img : listImage) {
-                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ img.getImageLink());
-                f.delete();
-            }
-        
+        ObjectHelper<HotelRestaurant> objHelper = new HotelHelper<HotelRestaurant>();
         try {
-            ObjectHelper<Images> objHelperImg = new ObjectHelper<Images>();
-            objHelperImg.delList(listImage);
-            
-            ObjectHelper<HotelRestaurant> objHelperHR = new ObjectHelper<HotelRestaurant>();
-            objHelperHR.delete(hr);
+            objHelper.delete(hr);
             FacesMessage msg = new FacesMessage("Delete Success");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         } catch (ObjectException ex) {
@@ -201,7 +152,9 @@ public class hotelManager implements Serializable{
         listHR = helper.showHR();
     }
     
-   
+    public String redirectImage(){
+        return "imagesManager.jsf?faces-redirect=true&id=";
+    }
     
     public void btnCancel(){
         FacesMessage msg = new FacesMessage("Edit Canceled");
@@ -216,39 +169,5 @@ public class hotelManager implements Serializable{
         _email = hr.getHremail();
         _info = hr.getHrinfo();
         _id = hr.getHrid();
-        HotelHelper<Images> helper = new HotelHelper<Images>();
-        listImage = helper.showImage(_id);
-    }
-    
-    private String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-    public void delImg(){
-        ObjectHelper<Images> helperImg = new ObjectHelper<Images>();
-        try {
-            helperImg.delete(selectedImg);
-            File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ selectedImg.getImageLink());
-            f.delete();
-            FacesMessage msg = new FacesMessage("Deleted");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        } catch (ObjectException ex) {
-            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        HotelHelper<Images> helper = new HotelHelper<Images>();
-        listImage = helper.showImage(_id);
-    }
-    
-    public void showDesImg(){
-        _desImg = selectedImg.getDescriptions();
-    }
-    
-    public void editDesImg(){
-        ObjectHelper<Images> helperImg = new ObjectHelper<Images>();
-        selectedImg.setDescriptions(_desImg);
-        try {
-            helperImg.update(selectedImg);
-        } catch (ObjectException ex) {
-            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        FacesMessage msg = new FacesMessage("Success");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

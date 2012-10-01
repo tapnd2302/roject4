@@ -1,5 +1,5 @@
 package entity;
-// Generated Sep 27, 2012 7:29:24 AM by Hibernate Tools 3.2.1.GA
+// Generated Sep 5, 2012 10:40:14 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.io.Serializable;
@@ -15,10 +15,12 @@ public class Foods  implements java.io.Serializable {
      private int foodId;
      private Typefoods typefoods;
      private String foodName;
+     private String foodImages;
      private Double foodPrices;
      private String foodDescription;
      private Boolean foodStatus;
      private Set<HomedeliveryDetails> homedeliveryDetailses = new HashSet<HomedeliveryDetails>(0);
+     private Set<Images> imageses = new HashSet<Images>(0);
 
     public Foods() {
     }
@@ -27,69 +29,89 @@ public class Foods  implements java.io.Serializable {
     public Foods(int foodId) {
         this.foodId = foodId;
     }
-    public Foods(int foodId, Typefoods typefoods, String foodName, Double foodPrices, String foodDescription, Boolean foodStatus, Set<HomedeliveryDetails> homedeliveryDetailses) {
+    public Foods(int foodId, Typefoods typefoods, String foodName,String foodImages, Double foodPrices,String foodDescription, Boolean foodStatus, Set<HomedeliveryDetails> homedeliveryDetailses, Set<Images> imageses) {
        this.foodId = foodId;
        this.typefoods = typefoods;
        this.foodName = foodName;
+       this.foodImages = foodImages;
        this.foodPrices = foodPrices;
        this.foodDescription = foodDescription;
        this.foodStatus = foodStatus;
        this.homedeliveryDetailses = homedeliveryDetailses;
+       this.imageses = imageses;
     }
-   
-    public int getFoodId() {
-        return this.foodId;
-    }
-    
-    public void setFoodId(int foodId) {
-        this.foodId = foodId;
-    }
-    public Typefoods getTypefoods() {
-        return this.typefoods;
-    }
-    
-    public void setTypefoods(Typefoods typefoods) {
-        this.typefoods = typefoods;
-    }
-    public String getFoodName() {
-        return this.foodName;
-    }
-    
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
-    public Double getFoodPrices() {
-        return this.foodPrices;
-    }
-    
-    public void setFoodPrices(Double foodPrices) {
-        this.foodPrices = foodPrices;
-    }
+
     public String getFoodDescription() {
-        return this.foodDescription;
+        return foodDescription;
     }
-    
+
     public void setFoodDescription(String foodDescription) {
         this.foodDescription = foodDescription;
     }
-    public Boolean getFoodStatus() {
-        return this.foodStatus;
+
+    public int getFoodId() {
+        return foodId;
     }
-    
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
+
+    public String getFoodImages() {
+        return foodImages;
+    }
+
+    public void setFoodImages(String foodImages) {
+        this.foodImages = foodImages;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
+
+    public Double getFoodPrices() {
+        return foodPrices;
+    }
+
+    public void setFoodPrices(Double foodPrices) {
+        this.foodPrices = foodPrices;
+    }
+
+    public Boolean getFoodStatus() {
+        return foodStatus;
+    }
+
     public void setFoodStatus(Boolean foodStatus) {
         this.foodStatus = foodStatus;
     }
+
     public Set<HomedeliveryDetails> getHomedeliveryDetailses() {
-        return this.homedeliveryDetailses;
+        return homedeliveryDetailses;
     }
-    
+
     public void setHomedeliveryDetailses(Set<HomedeliveryDetails> homedeliveryDetailses) {
         this.homedeliveryDetailses = homedeliveryDetailses;
     }
 
+    public Set<Images> getImageses() {
+        return imageses;
+    }
 
+    public void setImageses(Set<Images> imageses) {
+        this.imageses = imageses;
+    }
 
+    public Typefoods getTypefoods() {
+        return typefoods;
+    }
 
+    public void setTypefoods(Typefoods typefoods) {
+        this.typefoods = typefoods;
+    }
 }
 
 

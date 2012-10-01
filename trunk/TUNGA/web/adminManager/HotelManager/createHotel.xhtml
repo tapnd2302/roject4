@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <head>
         <title>Create New Hotel</title>
         <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
@@ -12,9 +11,9 @@
 
         <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
 
-
+        
             <ui:define name="content">
-
+            
                 <div id="us_left">
                     <h:form>
                         <p:panelMenu style="width: 220px;">
@@ -25,45 +24,45 @@
                         </p:panelMenu>
                     </h:form>
                 </div>
-
-
+                
+                
                 <div id="us_right" align="center">
                     <h:form id="form">
                         <br/>
                         <p:panel id="pnText" style="width: 620px">
-                            <table style="width: 600px">
-                                <tr>
-                                    <td><p:outputLabel for="HRName">Hotel's Name:</p:outputLabel></td>
-                                    <td><p:inputText id="HRName" value="#{createHotel.name}" required="true" requiredMessage="Please Input Hotel's Name"></p:inputText></td>
-
-                                </tr>
-                                <tr>
-                                    <td><p:outputLabel for="HRAddress">Address:</p:outputLabel></td>
-                                    <td><p:inputText id="HRAddress" value="#{createHotel.address}" required="true" requiredMessage="Please Input Address"></p:inputText></td>
-
-                                </tr>
-                                <tr>
-                                    <td><p:outputLabel for="HRPhone">Phone Number:</p:outputLabel></td>
-                                    <td><p:inputText id="HRPhone" value="#{createHotel.phone}" required="true" requiredMessage="Please Input Phone Number"></p:inputText></td>
-
-                                </tr>
-                                <tr>
-                                    <td><p:outputLabel for="HREmail">Email:</p:outputLabel></td>
-                                    <td><p:inputText id="HREmail" value="#{createHotel.email}" required="true" requiredMessage="Please Input Email"></p:inputText></td>
-
-                                </tr>
-                                <tr>
-                                    <td><p:outputLabel for="HRInfo">Information:</p:outputLabel></td>
-                                    <td><p:inputText id="HRInfo" value="#{createHotel.info}" ></p:inputText></td>
-                                </tr>
-                                <tr><td colspan="2">Image:<br/></td></tr>
-                                <tr>
-                                    <td colspan="2"><p:fileUpload id="HRImage" fileUploadListener="#{createHotel.saveimage}"
-                                                                  sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
-                                                                  multiple="true" 
-                                                                  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
-                                </tr>
-                            </table>
+                        <table style="width: 600px">
+                            <tr>
+                                <td><p:outputLabel for="HRName">Hotel's Name:</p:outputLabel></td>
+                                <td><p:inputText id="HRName" value="#{createHotel.name}" required="true" requiredMessage="Please Input Hotel's Name"></p:inputText></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRAddress">Address:</p:outputLabel></td>
+                                <td><p:inputText id="HRAddress" value="#{createHotel.address}" required="true" requiredMessage="Please Input Address"></p:inputText></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRPhone">Phone Number:</p:outputLabel></td>
+                                <td><p:inputText id="HRPhone" value="#{createHotel.phone}" required="true" requiredMessage="Please Input Phone Number"></p:inputText></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HREmail">Email:</p:outputLabel></td>
+                                <td><p:inputText id="HREmail" value="#{createHotel.email}" required="true" requiredMessage="Please Input Email"></p:inputText></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="HRInfo">Information:</p:outputLabel></td>
+                                <td><p:inputText id="HRInfo" value="#{createHotel.info}" ></p:inputText></td>
+                            </tr>
+                            <tr><td colspan="2">Image:<br/></td></tr>
+                            <tr>
+                                <td colspan="2"><p:fileUpload id="HRImage" fileUploadListener="#{createHotel.saveimage}"
+                                          sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
+                                          multiple="true" 
+                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
+                            </tr>
+                        </table>
                         </p:panel>
                         <br />
                         <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
@@ -71,51 +70,29 @@
                             <table id="table" style="width: 550px">
                                 <tr>
                                     <td>
-                                        <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}"
-                                                         oncomplete="#{createHotel.btnss != true ? 'dlgAddDes.hide()' : 'dlgAddDes.show()'}" 
-                                                         update="messages"/>
+                                        <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}" ajax="false"/>
                                     </td>
                                     <td>
-                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}" update="@form"/>
+                                        <p:commandButton value="Create And Upload Images Late" oncomplete="confirmation.show()"/>
+                                    </td>
+                                    <td>
+                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}" ajax="false"/>
                                     </td>
                                 </tr>
                             </table>
                         </p:panel>
-                        
-                        
-                        <p:confirmDialog id="cfDlgAddDes" message="Do you want add description for Images?"  
-                                         header="Alert" severity="alert" widgetVar="dlgAddDes">  
-                            <p:commandButton id="addDesSuc" value="Yes Sure" oncomplete="dlgAddDes.hide();">
-                            </p:commandButton>
-                            <p:commandButton id="addDesCan" value="Late" onclick="dlgAddDes.hide()" type="button" />   
-                        </p:confirmDialog>
+                        <p:confirmDialog id="confirmDialog" message="Are you sure don't upload images?"  
+                                         header="Create process" severity="alert" widgetVar="confirmation">  
 
-<!--                        <p:dialog id="dlgInpDesImg" header="Input Description for Image" widgetVar="inpDesImg" modal="true" height="400" width="600" showEffect="clip" hideEffect="clip">
-                            
-                                <p:dataTable id="dataImage" var="dataImg" value="#{createHotel.listImg}"> 
-                                    <p:column headerText="Image">
-                                        <p:panel>
-                                            <p:lightBox>
-                                                <h:outputLink value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}">
-                                                    <p:graphicImage width="220px" height="170px" value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}"/>
-                                                </h:outputLink>
-                                            </p:lightBox>
-                                        </p:panel>
-                                    </p:column>
-                                    <p:column headerText="Description">
-                                        <p:inputTextarea rows="6" cols="33" value="#{createHotel.desImg}" id="txtdesImg" label="Description" />
-                                        <br/>
-                                        <p:commandButton value="Add" icon="ui-icon-edit" update="messages">
-                                            <f:setPropertyActionListener value="#{dataImg}" target="#{createHotel.selectedImg}"/>
-                                        </p:commandButton>
-                                    </p:column>
-                                </p:dataTable>
-                            
-                            <p:commandButton value="Close" icon="ui-icon-close" action="#{createHotel.ok()}" oncomplete="inpDesImg.hide();" update=":form, messages"/>
-                        </p:dialog>-->
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:pnText:table" oncomplete="confirmation.hide()"  
+                                             actionListener="#{createHotel.uploadlate()}" ajax="false">
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+
+                        </p:confirmDialog>
                     </h:form>
                 </div>
-
+                
             </ui:define>
 
 

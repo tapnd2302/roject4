@@ -12,7 +12,6 @@ import helper.FoodsHelper;
 import helper.ObjectHelper;
 import helper.RoleHelper;
 import helper.TypeFoodHelper;
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +27,7 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @ViewScoped
-public class listFood implements Serializable{
+public class listFood {
 
     private List<Foods> listFood;
     private List<Foods> filteredCars;
