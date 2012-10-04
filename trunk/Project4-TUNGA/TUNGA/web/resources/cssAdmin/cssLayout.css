@@ -1,0 +1,79 @@
+
+body {
+    background: url('./../../images/adminMasterPage/login/login_bg.jpg') no-repeat top center #000;
+    font-family: "AvenirLTStd55Roman", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    min-width: 1001px;
+}
+div.main-wrapper 
+{
+    min-height: 600px;
+    height: 100%;
+    min-width: 1001px;
+    width: 1349px;
+    margin: auto;
+    padding: auto;
+}
+div.main 
+{
+    display:block;
+    width: 1001px;
+    height: 650px;
+    margin: auto;    
+    padding: auto;
+}
+#top {
+    border-bottom: 1px solid #7e7e7e;
+    height: 92px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#content{
+    float:left;
+    background: none repeat scroll 0 0 #000000;
+    clear: both;
+    height: 590px;
+    top: 83px;
+    width: 1440px;
+    z-index: 20;
+    font: normal 13px/17px AvenirLTStd35Light, Arial, Helvetica, sans-serif;
+    padding: 0 0 20px;
+    margin: 0 0 0 5px;
+}
+#bottom {
+    float: left;
+    width:1360px;
+    height:10px;
+    font-size: 13px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+

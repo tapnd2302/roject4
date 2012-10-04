@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Images Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+            
+
+            <ui:define name="content">
+                
+                <p:galleria value="#{test.images}"
+            var="aaaa" effect="slide" effectSpeed="1000"  
+            panelWidth="500" panelHeight="250" frameWidth="160" frameHeight="70"  
+            filmstripPosition="top" showCaptions="true" showOverlays="true">  
+  
+            <p:graphicImage value="../../images/hotel/#{aaaa}" title="#{aaaa}"/>  
+            <p:galleriaOverlay title="#{aaaa}">  
+                Description for #{aaaa} goes here  
+            </p:galleriaOverlay>  
+
+        </p:galleria>  
+            </ui:define>
+
+            
+        </ui:composition>
+
+    </body>
+</html>

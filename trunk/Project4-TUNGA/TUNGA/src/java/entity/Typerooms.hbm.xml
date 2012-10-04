@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Typerooms" table="TYPEROOMS" schema="dbo" catalog="PROJECT4">
+        <id name="typeRoomId" type="int">
+            <column name="TypeRoomID" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeRoomName" type="serializable">
+            <column name="TypeRoomName" unique="true" />
+        </property>
+        <property name="typeRoomPrice" type="java.lang.Double">
+            <column name="TypeRoomPrice" precision="53" scale="0" />
+        </property>
+        <property name="typeRoomDescription" type="serializable">
+            <column name="TypeRoomDescription" />
+        </property>
+        <set name="roomses" inverse="true">
+            <key>
+                <column name="TypeRoomID" />
+            </key>
+            <one-to-many class="entity.Rooms" />
+        </set>
+    </class>
+</hibernate-mapping>

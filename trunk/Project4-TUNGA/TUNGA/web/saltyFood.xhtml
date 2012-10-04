@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f ="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
+            <ui:define name="content">
+                <div class="body_restaurants">
+                    <div class="left_restaurants">
+                        <p:panelMenu style="width: 200px;">
+                            <p:submenu label="Type of food">
+                                <p:menuitem value="Vegetarian foods" outcome="Foods.jsf" ajax="false"/>
+                                <p:menuitem value="Salty foods" outcome="saltyFood.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Booking party" >
+                                <p:menuitem value="Wedding party" outcome="bookingparty.jsf?id=1" ajax="false"/>
+                                <p:menuitem value="Birthday party" outcome="bookingparty.jsf?id=2" ajax="false" />
+                                <p:menuitem value="Junket party" outcome="bookingparty.jsf?id=3" ajax="false"/>
+                            </p:submenu >
+                            <p:submenu label="Other information">
+                                <p:menuitem value ="Contact" outcome="contact.jsf" ajax="false"/>
+                                <p:menuitem value="Promotion" outcome="promotion.jsf" ajax="false"/>
+
+                            </p:submenu>
+                        </p:panelMenu>
+                    </div>
+                    <div class="body_foods">
+                        <div class="title_foods_menu">
+                            Foods menu
+                        </div>
+                        <h:form id="form">  
+
+                            <p:dataGrid var="item" value="#{saltyFood.listIMG}" columns="3"  
+                                        rows="6" paginator="true"  
+                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                        rowsPerPageTemplate="6,9,12">  
+
+                                <p:panel header="#{item.imageId}" style="text-align:center">  
+                                    <h:panelGrid columns="1" style="width:100%">  
+                                        <p:graphicImage value="/images/hotel/#{item.imageLink}"/>   
+
+                                        <h:outputText value="#{item.id}" />  
+
+                                        <p:commandLink update=":form:carDetail" oncomplete="carDialog.show()" title="View Detail">  
+                                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
+                                            <f:setPropertyActionListener value="#{item}"   
+                                                                         target="#{saltyFood.selected}" />  
+                                        </p:commandLink>  
+                                    </h:panelGrid>  
+                                </p:panel>  
+
+                            </p:dataGrid>  
+
+                            <p:dialog header="Car Detail" widgetVar="carDialog" modal="true">  
+                                <p:outputPanel id="carDetail" style="text-align:center;" layout="block">  
+
+                                    <p:graphicImage style="width: 400px; height: 350px;" value="/images/hotel/#{saltyFood.selected.imageLink}"/>  
+
+                                    <h:panelGrid  columns="2" cellpadding="5">  
+                                        <h:outputLabel for="modelNo" value="Model No: " />  
+                                        <h:outputText id="modelNo" value="#{saltyFood.selected.id}" />  
+
+                                        <h:outputLabel for="year" value="Year: " />  
+                                        <h:outputText id="year" value="#{saltyFood.selected.imageId}" />  
+
+                                    </h:panelGrid>  
+                                </p:outputPanel>  
+                            </p:dialog>  
+
+                        </h:form>
+                    </div>
+                </div>  
+
+            </ui:define> 
+        </ui:composition>     
+    </body>
+</html>

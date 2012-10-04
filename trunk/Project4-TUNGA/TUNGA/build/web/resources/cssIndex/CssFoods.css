@@ -1,0 +1,31 @@
+
+.body_foods
+{
+  width: 1140px;
+  float: right;
+  min-height: 640px;
+  background-color: #818181;
+}
+.title_foods_menu
+{
+  float: left;
+  margin:10px 0px 0px 50px;
+  width: 680px;
+  height: 20px;
+  border-bottom: 1px solid;
+  padding-left: 20px;
+  color:white;
+  font-weight: bold;
+  vertical-align: text-bottom;
+  font-size: 20px;
+}
+.list_foods
+{
+  float: left;
+  width: 760px;
+  min-height: 400px;
+  margin: 10px 0px 0px 20px;
+  background-color: #ece3a5;
+  
+}
+table tr td img{height: 100px; width: 150px;}

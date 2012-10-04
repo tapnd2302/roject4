@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Typefoods" table="TYPEFOODS" schema="dbo" catalog="PROJECT4">
+        <id name="typeFoodId" type="int">
+            <column name="TypeFoodID" />
+            <generator class="identity" />
+        </id>
+        <property name="typeFoodName" type="java.lang.String">
+            <column name="TypeFoodName" />
+        </property>
+        <property name="typeFoodDescription" type="java.lang.String">
+            <column name="TypeFoodDescription" />
+        </property>
+        <set name="foodses" inverse="true">
+            <key>
+                <column name="TypeFoodID" />
+            </key>
+            <one-to-many class="entity.Foods" />
+        </set>
+    </class>
+</hibernate-mapping>

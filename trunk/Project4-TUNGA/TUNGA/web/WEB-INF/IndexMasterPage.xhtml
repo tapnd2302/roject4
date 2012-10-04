@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="resources/cssIndex/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/cssMaster.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/CssRestaurants.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/CssBookingparty.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/CssContact.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/CssFoods.css" rel="stylesheet" type="text/css" />
+        <link href="resources/cssIndex/stylesNew.css" rel="stylesheet" type="text/css"/>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+        <title>Facelets Template</title>
+
+        <style type="text/css">
+            .layout-header
+            {
+                height: 66px;
+            }
+        </style>
+
+    </h:head>
+
+    <h:body>
+        <div class="main">
+
+            <div id="top">
+                <ui:insert name="top">
+                    <div class="headerContainer"> 
+                        <div  style="float: left;height: 80px;width: 140px;" >
+                            <h:form>
+                                <p:commandLink id="header" action="default.jsf" ajax="false" > 
+                                    <p:graphicImage value="/images/indexMasterPage/Wynn-logo-pass.gif"/>
+                                </p:commandLink>
+                            </h:form>
+                        </div>
+
+                        <!--                        <div class="layout-header">
+                                                    <ul class="header-nav">
+                                                        <li id="roomsMenu" class="item header-home"><a href="#">ROOMS</a></li>
+                                                        <li id="restaurantsMenu" class="iteme header-home"><a href="#">RESTAURANTS</a></li>
+                                                        <li id="newsMenu" class="item header-home"><a href="Foods.jsf">FOODS</a></li>
+                                                        <li id="activitiesMenu" class="iteme header-home"><a href="#">ACTIVITIES</a></li>
+                                                        <li id="aboutusMenu" class="item header-home"><a href="#">ABOUT US</a></li>
+                                                        <li id="loginMenu" class="iteme header-home"><a href="#"></a>LOGIN</li>
+                                                        <li id="logoutMenu" class="iteme header-home"><a href="#"></a>LOG OUT</li>
+                                                        <li id="settingMenu" class="iteme header-home"><a href="#">SETTING</a></li>
+                                                    </ul>
+                                                </div> -->
+                        <div id='cssmenu'>
+                            <ul>
+                                <li class='active '><a href='#'><span>ROOMS</span></a></li>
+                                <li class='has-sub '><a href='#'><span>RESTAURANTS</span></a></li>
+                                <li><a href='Foods.jsf'><span>FOODS</span></a></li>
+                                <li><a href='#'><span>ACTIVITIES</span></a></li>
+                                <li><a href='#'><span>ABOUT US</span></a></li>
+                                <!--                                <li><a href='#'><span>LOGIN</span></a></li>
+                                                                <li><a href='#'><span>LOG OUT</span></a></li>-->
+                                <li><a href='adminManager/login.jsf'><span>Admin</span></a></li>
+                            </ul>
+                        </div>
+
+
+                        <div style="float: left; width: 300px; height: 50px; display: block;">
+                            <p:panel rendered="#{!indexMaster.login}" style="float: left; width: 300px; height: 50px; display: block; background-color: none;">
+                                <h:form>
+                                    <table>
+                                        <tr>
+                                            <td><p:outputLabel for="username">Login: </p:outputLabel></td>
+                                            <td> <p:inputText id="username" tabindex="1" value="#{indexMaster.userN}" style="width: 110px; height: 20px"/></td>
+                                            <td rowspan="2"><p:commandButton value="Login" tabindex="3" action="#{indexMaster.submit()}"  id="login">
+                                                </p:commandButton>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p:outputLabel for="pass">Password:  </p:outputLabel></td>
+                                            <td><p:password tabindex="2"  id="pass" value="#{indexMaster.pass}" style="width: 110px; height: 20px"/></td>
+                                        </tr>
+                                    </table>
+                                </h:form>
+                            </p:panel>
+                            <p:panel rendered="#{indexMaster.login}" style="float: left; width: 300px; height: 50px; display: block; background-color: none;">
+                                <h:form>
+                                    Welcome, <p:outputLabel value="#{indexMaster.userName}"/>.
+                                </h:form>
+                            </p:panel>
+                        </div>
+
+
+                    </div> 
+
+                </ui:insert>
+            </div>
+
+            <div id="content">
+                <ui:insert name="content">
+
+                </ui:insert>
+            </div>
+            <div id="bottom">
+                <ui:insert name="bottom">
+                    ©2012 Aprotrain Aptech - Team II - Ho Hinh Phu - Vong Khi Dau - Le Quy Toan - Nguyen Hoai Nam
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>

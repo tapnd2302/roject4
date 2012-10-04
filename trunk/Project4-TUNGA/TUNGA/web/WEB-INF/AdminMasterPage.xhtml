@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/cssAdmin/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/cssAdmin/cssMaster.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+        <link href="./../../resources/cssAdmin/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./../../resources/cssAdmin/cssMaster.css" rel="stylesheet" type="text/css" />
+        <link href="./../../resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+
+        <style type="text/css">
+            .layout-header
+            {
+                height: 66px;
+            }
+        </style>
+        <script language="JavaScript">
+            //var my_timeout=setTimeout("gotosite();",3000);
+            function gotosite()
+            {
+                window.location="createAccount.jsf";
+            }
+        </script>
+        
+    </h:head>
+
+    <h:body>
+        <div style="margin: auto;display: block;">
+            <div id="top">
+                <ui:insert name="top">
+                    <div class="headerContainer">
+                        <div class="header-logo">
+                            <a href="/"> 
+                            </a>
+                        </div>
+                        <div class="layout-header">
+                            <ul class="header-nav">
+                                <li id="roomsMenu" class="item header-home"><a href="/TUNGA/adminManager/UserManager/rolemanager.jsf">USER MANAGER</a></li>
+                                <li id="restaurantsMenu" class="iteme header-home"><a href="/TUNGA/adminManager/HotelManager/ListHotel.jsf">HOTEL MANAGER</a></li>
+                                <li id="newsMenu" class="item header-home"><a href="/TUNGA/adminManager/FoodManager/listTypeFood.jsf">FOOD MANAGER</a></li>
+                                <li id="activitiesMenu" class="iteme header-home"><a href="/TUNGA/adminManager/ImageManager/listTypeImager.jsf">IMAGE MANAGER</a></li>
+                                <li id="aboutusMenu" class="item header-home"><a href="#">ABOUT US</a></li>
+                                <li id="settingMenu" class="iteme header-home"><a href="/TUNGA/restaurants.jsf">SETTING</a></li>
+                            </ul>
+                        </div> 
+                    </div> 
+                </ui:insert>
+            </div>
+
+            <div id="content" class="center_content">
+                <ui:insert name="content">
+
+                </ui:insert>
+            </div>
+
+            <div id="bottom">
+                <ui:insert name="bottom">
+                    <ui:insert name="bottom">
+                        ©2012 Aprotrain Aptech - Team II - Ho Hinh Phu - Vong Khi Dau - Le Quy Toan - Nguyen Hoai Nam
+                    </ui:insert>
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Typeimages" table="TYPEIMAGES" schema="dbo" catalog="PROJECT4">
+        <id name="typeImageId" type="int">
+            <column name="TypeImageID" />
+            <generator class="identity" />
+        </id>
+        <property name="typeName" type="java.lang.String">
+            <column name="TypeName" />
+        </property>
+        <property name="typeDescription" type="java.lang.String">
+            <column name="TypeDescription" />
+        </property>
+        <set name="imageses" inverse="true">
+            <key>
+                <column name="TypeImage" />
+            </key>
+            <one-to-many class="entity.Images" />
+        </set>
+    </class>
+</hibernate-mapping>
