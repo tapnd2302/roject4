@@ -24,7 +24,6 @@ public class FoodsHelper<T> extends ObjectHelper<T> {
         tr.commit();
         return result;
     }
-<<<<<<< .mine
     public List<T> getFoodsMaxID() {
         Transaction tr = session.beginTransaction();
         Query q = session.createQuery("from Foods order by FoodId desc");
@@ -51,6 +50,5 @@ public class FoodsHelper<T> extends ObjectHelper<T> {
     }
      
   
-=======
->>>>>>> .r48
+
 }
