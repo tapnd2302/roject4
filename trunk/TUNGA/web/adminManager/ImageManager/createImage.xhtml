@@ -23,6 +23,7 @@
                 </div>
                 <div id="us_right">
                     <h:form class="create">
+                        <p:growl showDetail="false" sticky="false" life="5000" id="messages"/>
                         <table>
                             <tr>
                                 <td><p:outputLabel for="typeImg">Type Image:(*) </p:outputLabel></td>
@@ -42,8 +43,14 @@
                                 <td><p:inputText id="imgDes" value="#{createImage.descriptions}"></p:inputText></td>
                             </tr>
                             <tr>
-                                <td><p:commandButton value="Create New" action="#{createTypeImage.insertData()}" ajax="false" update="@form"/></td>
-                                <td><p:commandButton value="Reset Field" action="#{createTypeImage.resetField()}" update="@form"/></td>
+                                <td colspan="2"><p:fileUpload style="min-width:400px" id="HRImage" fileUploadListener="#{createImage.saveimage}"
+                                                                  sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
+                                                                  multiple="true" 
+                                                                  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton value="Create New" action="#{createImage.insertData()}" ajax="false" update="@form"/></td>
+                                <td><p:commandButton value="Reset Field" action="#{createImage.resetField()}" update="@form"/></td>
                             </tr>
                         </table>
 

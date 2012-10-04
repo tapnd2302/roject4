@@ -26,7 +26,17 @@ public class userManager implements Serializable{
     private List<Users> usersList;
     private List<Users> filteredCars;
     private Users selected;
+    private Users seletedEdit;
 
+    public Users getSeletedEdit() {
+        return seletedEdit;
+    }
+
+    public void setSeletedEdit(Users seletedEdit) {
+        this.seletedEdit = seletedEdit;
+    }
+    
+    
     public List<Users> getFilteredCars() {
         return filteredCars;
     }
@@ -67,5 +77,8 @@ public class userManager implements Serializable{
         }
         UserHelper<Users> helper = new UserHelper<Users>();
         usersList = helper.showRole();
+    }
+    public String edit(){
+        return "editUser.jsf?faces-redirect=true&id="+ seletedEdit.getAccountId();
     }
 }

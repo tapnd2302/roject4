@@ -6,8 +6,18 @@ package managerBean;
 
 
 import entity.Foods;
+import entity.Images;
 import entity.Typefoods;
+import entity.Typeimages;
 import helper.FoodsHelper;
+<<<<<<< .mine
+import helper.ImagesHelper;
+import helper.TypeFoodHelper;
+import helper.TypeImageHelper;
+import java.awt.Image;
+=======
+>>>>>>> .r48
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -20,6 +30,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class FoodsBean {
+<<<<<<< .mine
+=======
   
     private List<Foods> listF;
     private List<Foods> filteredCars;
@@ -30,7 +42,14 @@ public class FoodsBean {
     private String images;
     private Double price;
     private String description;
+>>>>>>> .r48
     
+<<<<<<< .mine
+    private List<Images> listIMG;
+    private List<Foods> listFood;
+    private Images selected;
+    private List<Foods> listVegetable;
+=======
     public FoodsBean() {
       FoodsHelper<Foods> helper  = new FoodsHelper<Foods>();
       listF = helper.getFoods();
@@ -44,77 +63,47 @@ public class FoodsBean {
         price = f.getFoodPrices();
         description =  f.getFoodDescription();
     }    
+>>>>>>> .r48
 
-    public String getDescription() {
-        return description;
+    public List<Foods> getListVegetable() {
+        return listVegetable;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setListVegetable(List<Foods> listVegetable) {
+        this.listVegetable = listVegetable;
     }
 
-    public Foods getF() {
-        return f;
+    public Images getSelected() {
+        return selected;
     }
 
-    public void setF(Foods f) {
-        this.f = f;
+    public void setSelected(Images selected) {
+        this.selected = selected;
     }
 
-    public List<Foods> getFilteredCars() {
-        return filteredCars;
+    public List<Foods> getListFood() {
+        return listFood;
     }
 
-    public void setFilteredCars(List<Foods> filteredCars) {
-        this.filteredCars = filteredCars;
+    public void setListFood(List<Foods> listFood) {
+        this.listFood = listFood;
     }
 
-    public int getId() {
-        return id;
+    public List<Images> getListIMG() {
+        return listIMG;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setListIMG(List<Images> listIMG) {
+        this.listIMG = listIMG;
     }
 
-    public String getImages() {
-        return images;
+    public FoodsBean() {
+        FoodsHelper<Foods> food = new FoodsHelper<Foods>();
+        listVegetable = food.getFoodsVegetable();
+        ImagesHelper<Images> img = new ImagesHelper<Images>();
+        listIMG = new ArrayList<Images>();
+        for(Foods f : listVegetable){
+            listIMG.add(img.showIMGConditional(f.getFoodId()));
+        }
     }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-
-    public List<Foods> getListF() {
-        return listF;
-    }
-
-    public void setListF(List<Foods> listF) {
-        this.listF = listF;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Typefoods getType() {
-        return type;
-    }
-
-    public void setType(Typefoods type) {
-        this.type = type;
-    }
-    
 }

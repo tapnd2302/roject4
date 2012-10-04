@@ -7,6 +7,7 @@ package managerBean;
 import entity.Roles;
 import entity.Users;
 import exception.ObjectException;
+import helper.FoodsHelper;
 import helper.ObjectHelper;
 import helper.RoleHelper;
 import helper.UserHelper;
@@ -16,17 +17,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author Administrator
+ * @author KyHuu
  */
 @ManagedBean
 @ViewScoped
-public class createUser implements Serializable {
+public class editUser implements Serializable{
 
     private Integer accountID;
     private Integer roleID;
@@ -43,29 +44,27 @@ public class createUser implements Serializable {
     private List<Roles> listRole;
     private Roles selectRole;
     private String selectItem;
+    private Users u;
+    private int accountId;
 
-    public String getSelectItem() {
-        return selectItem;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setSelectItem(String selectItem) {
-        this.selectItem = selectItem;
-
-        if (selectItem != null) {
-            RoleHelper<Roles> r = new RoleHelper<Roles>();
-            List<Roles> List = r.showRoleSelect(selectItem);
-            selectRole = List.get(0);
-        }
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
-    public Roles getSelectRole() {
-        return selectRole;
+    
+    public Users getU() {
+        return u;
     }
 
-    public void setSelectRole(Roles selectRole) {
-        this.selectRole = selectRole;
+    public void setU(Users u) {
+        this.u = u;
     }
 
+    
     public Integer getAccountID() {
         return accountID;
     }
@@ -96,14 +95,6 @@ public class createUser implements Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public List<Roles> getListRole() {
-        return listRole;
-    }
-
-    public void setListRole(List<Roles> listRole) {
-        this.listRole = listRole;
     }
 
     public String getEmail() {
@@ -138,6 +129,14 @@ public class createUser implements Serializable {
         this.lastName = lastName;
     }
 
+    public List<Roles> getListRole() {
+        return listRole;
+    }
+
+    public void setListRole(List<Roles> listRole) {
+        this.listRole = listRole;
+    }
+
     public String getPassWord() {
         return passWord;
     }
@@ -162,6 +161,29 @@ public class createUser implements Serializable {
         this.roleID = roleID;
     }
 
+    public String getSelectItem() {
+        return selectItem;
+    }
+
+    public void setSelectItem(String selectItem) {
+        this.selectItem = selectItem;
+        this.selectItem = selectItem;
+
+        if (selectItem != null) {
+            RoleHelper<Roles> r = new RoleHelper<Roles>();
+            List<Roles> List = r.showRoleSelect(selectItem);
+            selectRole = List.get(0);
+        }
+    }
+
+    public Roles getSelectRole() {
+        return selectRole;
+    }
+
+    public void setSelectRole(Roles selectRole) {
+        this.selectRole = selectRole;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -169,15 +191,31 @@ public class createUser implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public createUser() {
+    
+    public editUser() {
         UserHelper<Roles> helper = new UserHelper<Roles>();
         listRole = helper.showRole();
+        
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String msgID = request.getParameter("id");
+        
+        UserHelper<Users> user = new UserHelper<Users>();
+        u = user.showUsersCondition(msgID).get(0);
+        userName = u.getUserName();
+        passWord = u.getUserPassword();
+        firstName = u.getUserFirstName();
+        lastName = u.getUserLastName();
+        birthday = u.getUserBirthDay();
+        gender = (u.getUserGender().compareTo(Boolean.TRUE));
+        address = u.getUserAddress();
+        phone = u.getUserPhone();
+        email = u .getUserEmail();
+        allowLogin = u.getAllowLogin().compareTo(Boolean.TRUE);
+        accountId = u.getAccountId();
     }
-
-
-    public String insertData() {
+    public String updateData(){
         Users u = new Users();
+        u.setAccountId(accountId);
         u.setRoles(selectRole);
         u.setUserName(userName);
         u.setUserPassword(passWord);
@@ -191,18 +229,16 @@ public class createUser implements Serializable {
         u.setUserEmail(email);
         boolean allow = (allowLogin == 1) ? true : false;
         u.setAllowLogin(allow);
-
-        ObjectHelper<Users> helper = new ObjectHelper<Users>();
+        
+        ObjectHelper<Users> user = new ObjectHelper<Users>();
         try {
-            helper.add(u);
-            return "Success";
+            user.update(u);
         } catch (ObjectException ex) {
-            Logger.getLogger(createUser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(editUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "False";
+        return "userManager.jsf?faces-redirect=true";
     }
-
-    public String resetField() {
+    public String resetField(){
         return "";
     }
 }

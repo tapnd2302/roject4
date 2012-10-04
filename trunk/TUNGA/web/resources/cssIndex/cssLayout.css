@@ -18,14 +18,14 @@ div.main-wrapper
 div.main 
 {
     display:block;
-    width: 1001px;
+    width: 1345px;
     min-height: 650px;
     margin: auto;    
     padding: auto;
 }
 #top {
     float:left;
-    width:1001px;
+    width:1345px;
     height:80px;
 }
 
@@ -35,7 +35,7 @@ div.main
     clear: both;
     min-height: 540px;
     top: 83px;
-    width: 1001px;
+    width: 1345px;
     z-index: 20;
     font: normal 13px/17px AvenirLTStd35Light, Arial, Helvetica, sans-serif;
     padding: 0 0 20px;
@@ -43,7 +43,7 @@ div.main
 
 
 #bottom {
-    width:1001px;
+    width:1345px;
     height:80px;
     font-size: 13px;
     

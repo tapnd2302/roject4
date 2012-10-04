@@ -1,3 +1,3 @@
 <%
-    response.sendRedirect("adminManager/default.jsf");
+    response.sendRedirect("default.jsf");
 %>
