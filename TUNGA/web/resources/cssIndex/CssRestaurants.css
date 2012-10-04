@@ -1,21 +1,21 @@
 
 .body_restaurants
 {
-    width: 1000px;
+    width: 1344px;
     min-height: 540px;
     background-color:#555555;
 }
 .left_restaurants
 {
     float: left;
-    width: 199px;
-    height:540px; 
+    width: 200px;
+    height:640px; 
     background-color: #555555;
     border-right: 0.5px solid #cbcbcb;
 }
 .right_restaurants
 {
-  width: 800px;
+  width: 1000px;
   float: right;
   height: 540px;
   background-color: #E6E6FA;

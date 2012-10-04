@@ -37,5 +37,15 @@ public class UserHelper<T> extends ObjectHelper<T> {
         result = q.list();
         tr.commit();
         return result;
-    } 
+    }
+    public List<T> showUsersLogin(String id, String pass){
+        List<T> result = null;
+        Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("from Users u where u.userName = :id and u.userPassword = :pass");
+        q.setParameter("id", id);
+        q.setParameter("pass", pass);
+        result = q.list();
+        tr.commit();
+        return result;
+    }
 }

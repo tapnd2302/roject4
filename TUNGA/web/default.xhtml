@@ -11,7 +11,11 @@
         <ui:composition template="./WEB-INF/IndexMasterPage.xhtml">
 
             <ui:define name="content">
-                <h:graphicImage url="/images/indexMasterPage/0_800_Exterior-with-Lake-of-Dreams-photo-by-Barbara-Kraft_RGB.jpg"/>
+                <!--                <h:graphicImage url="/images/indexMasterPage/0_800_Exterior-with-Lake-of-Dreams-photo-by-Barbara-Kraft_RGB.jpg"/>-->
+                <p:galleria value="#{defaultIndex.images}" var="image" panelHeight="600" panelWidth="1340">  
+                    <p:graphicImage value="/images/Background/#{image}" style="width: 1340px; height: 800px;"/>  
+                </p:galleria>
+                <div style="width: 0;height: 0; background: url('/images/Background/1.jpg'); background: url('/images/Background/2.jpg'); background: url('/images/Background/3.jpg'); background: url('/images/Background/4.jpg'); background: url('/images/Background/5.jpg'); background: url('/images/Background/6.jpg')"></div>
             </ui:define>
 
         </ui:composition>

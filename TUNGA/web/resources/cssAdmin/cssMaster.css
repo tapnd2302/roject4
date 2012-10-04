@@ -16,17 +16,18 @@ div.header-logoAdmin{
     position:relative;
 }
 div.header-logo{
-    /*background: url("../img/wynn-logo.png") no-repeat scroll left top transparent;*/
-    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;
+    
+/*    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;*/
     float: left;
     height: 80px;
     width: 140px;
     position:relative;
-    animation:myfirst 5s;
-    -moz-animation:myfirst 5s; /* Firefox */
-   -webkit-animation:myfirst 5s; /* Safari and Chrome */
-   -o-animation:myfirst 5s; /* Opera */
+/*    animation:myfirst 5s;
+    -moz-animation:myfirst 5s;  Firefox 
+   -webkit-animation:myfirst 5s;  Safari and Chrome 
+   -o-animation:myfirst 5s;  Opera */
 }
+/*
 @keyframes myfirst
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
@@ -35,7 +36,7 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-moz-keyframes myfirst /* Firefox */
+@-moz-keyframes myfirst  Firefox 
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('./../../images/indexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
@@ -43,7 +44,7 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-webkit-keyframes myfirst /* Safari and Chrome */
+@-webkit-keyframes myfirst  Safari and Chrome 
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('./../../images/indexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
@@ -51,14 +52,14 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-o-keyframes myfirst /* Opera */
+@-o-keyframes myfirst  Opera 
 {
 0%   {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('../Images/IndexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
 50%  {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
 75%  {background: url('../Images/IndexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
-}
+}*/
 
 div.layout-header {
     float: left;

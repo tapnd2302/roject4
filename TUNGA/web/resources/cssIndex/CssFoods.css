@@ -1,9 +1,13 @@
 
 .body_foods
 {
-  width: 800px;
+  width: 1140px;
   float: right;
+<<<<<<< .mine
+  min-height: 640px;
+=======
   height: auto;
+>>>>>>> .r48
   background-color: #818181;
 }
 .title_foods_menu
@@ -27,6 +31,8 @@
   background-color: #ece3a5;
   
 }
+<<<<<<< .mine
+table tr td img{height: 100px; width: 150px;}=======
 .view_cart
 {
     float: right;
@@ -34,4 +40,4 @@
     height: auto;
     text-align: right;
     margin:10px 30px 0px 0px;
-}
+}>>>>>>> .r48

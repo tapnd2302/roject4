@@ -1,33 +1,35 @@
-﻿
 
+.ui-panel .ui-panel-content {
+    border: 0;
+    background-color: black;
+
+}
 
 div.headerContainer
 {
-/*  float:left;
-  width:1001px;
-  height:80px;*/
+    float:left;
+    width:1340px;
+    height:80px;
 }
 div.header-logoAdmin{
     /*background: url("../img/wynn-logo.png") no-repeat scroll left top transparent;*/
-    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;
+    /*    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;*/
     float: left;
     height: 80px;
     width: 140px;
     position:relative;
 }
 div.header-logo{
-    /*background: url("../img/wynn-logo.png") no-repeat scroll left top transparent;*/
-    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;
-    float: left;
-    height: 80px;
-    width: 140px;
-    position:relative;
-    animation:myfirst 5s;
-    -moz-animation:myfirst 5s; /* Firefox */
-   -webkit-animation:myfirst 5s; /* Safari and Chrome */
-   -o-animation:myfirst 5s; /* Opera */
+    /*    background: url('./../../images/indexMasterPage/Wynn-logo-pass.gif') no-repeat scroll left top transparent;*/
+
+    /*    position:relative;*/
+
+    /*    animation:myfirst 5s;*/
+    /*    -moz-animation:myfirst 5s;  Firefox 
+       -webkit-animation:myfirst 5s;  Safari and Chrome 
+       -o-animation:myfirst 5s;  Opera */
 }
-@keyframes myfirst
+/*@keyframes myfirst
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('./../../images/indexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
@@ -35,7 +37,7 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-moz-keyframes myfirst /* Firefox */
+@-moz-keyframes myfirst  Firefox 
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('./../../images/indexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
@@ -43,7 +45,7 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-webkit-keyframes myfirst /* Safari and Chrome */
+@-webkit-keyframes myfirst  Safari and Chrome 
 {
 0%   {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('./../../images/indexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
@@ -51,14 +53,14 @@ div.header-logo{
 75%  {background: url('./../../images/indexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('./../../images/indexMasterPage/contro.png'); left:0px; top:0px;}
 }
-@-o-keyframes myfirst /* Opera */
+@-o-keyframes myfirst  Opera 
 {
 0%   {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
 25%  {background: url('../Images/IndexMasterPage/contro.png');border: 1px solid OrangeRed; left:450px; top:0px;}
 50%  {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
 75%  {background: url('../Images/IndexMasterPage/contro.png'); left:870px; top:0px;}
 100% {background: url('../Images/IndexMasterPage/contro.png'); left:0px; top:0px;}
-}
+}*/
 
 div.layout-header {
     float: left;
@@ -69,22 +71,22 @@ div.layout-header {
 ul.header-nav 
 {
     float:left;
-    height: 25px;
+    height: 30px;
     margin-top: 30px; 
     padding-left:10px; 
     border-radius:10px;
     -moz-border-radius:5px 5px 5px 5px;
     -webkit-border-radius:5px 5px 5px 5px;
     -khtml-border-radius:5px 5px 5px 5px;
-     border: 1px solid blue;
-     width: 828px;
+    border: 1px solid blue;
+    width: 1150px;
 }
 
 ul.header-nav li {
     display: inline;
     list-style-type: none;
     margin-left: 40px;
-    font: normal 12px/15px AvenirLTStd35Light, Arial, Helvetica, sans-serif;
+    font: normal 16px AvenirLTStd35Light, Arial, Helvetica, sans-serif;
 }
 
 ul.header-nav li a 
@@ -92,15 +94,15 @@ ul.header-nav li a
     text-decoration:none;
     display: inline;
     list-style-type: none;
-    font: normal 12px/15px AvenirLTStd85Heavy, Arial ,Helvetica, sans-serif;
+    font: normal 16px AvenirLTStd85Heavy, Arial ,Helvetica, sans-serif;
     color:#95979a;
 }
 
 ul.header-nav li.header-selected-item a
 {
-   font: 12px/15px AvenirLTStd85Heavy,Arial,Helvetica,sans-serif !important;
-   color:#FFF;
-   font-weight:bold;
+    font: 16px AvenirLTStd85Heavy,Arial,Helvetica,sans-serif !important;
+    color:#FFF;
+    font-weight:bold;
 }
 
 ul.header-nav li.header-home a
@@ -118,8 +120,8 @@ ul.header-nav li.header-home a:hover
 
 ul.header-nav li a:hover
 {
-    font: normal 12px/15px AvenirLTStd85Heavy,Arial,Helvetica,sans-serif !important;
-	color:#FFFFFF
+    font: normal 16px AvenirLTStd85Heavy,Arial,Helvetica,sans-serif !important;
+    color:#FFFFFF
 
 }
 
