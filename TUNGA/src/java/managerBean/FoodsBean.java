@@ -10,13 +10,10 @@ import entity.Images;
 import entity.Typefoods;
 import entity.Typeimages;
 import helper.FoodsHelper;
-<<<<<<< .mine
 import helper.ImagesHelper;
 import helper.TypeFoodHelper;
 import helper.TypeImageHelper;
 import java.awt.Image;
-=======
->>>>>>> .r48
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -30,8 +27,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 public class FoodsBean {
-<<<<<<< .mine
-=======
+
   
     private List<Foods> listF;
     private List<Foods> filteredCars;
@@ -42,18 +38,10 @@ public class FoodsBean {
     private String images;
     private Double price;
     private String description;
->>>>>>> .r48
-    
-<<<<<<< .mine
     private List<Images> listIMG;
     private List<Foods> listFood;
     private Images selected;
     private List<Foods> listVegetable;
-=======
-    public FoodsBean() {
-      FoodsHelper<Foods> helper  = new FoodsHelper<Foods>();
-      listF = helper.getFoods();
-    }
     
     public void showF(){
         id = f.getFoodId();
@@ -63,7 +51,6 @@ public class FoodsBean {
         price = f.getFoodPrices();
         description =  f.getFoodDescription();
     }    
->>>>>>> .r48
 
     public List<Foods> getListVegetable() {
         return listVegetable;
@@ -97,7 +84,7 @@ public class FoodsBean {
         this.listIMG = listIMG;
     }
 
-    public FoodsBean() {
+    public FoodsBean(){
         FoodsHelper<Foods> food = new FoodsHelper<Foods>();
         listVegetable = food.getFoodsVegetable();
         ImagesHelper<Images> img = new ImagesHelper<Images>();
