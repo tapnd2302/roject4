@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Hotel Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+
+
+            <ui:define name="content">
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu style="width: 220px;">
+                            <p:submenu label="Hotel Manager">
+                                <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                <div id="us_right">
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="false"/>  
+
+                        <p:dataTable id="dataTable" var="hotel" value="#{hotelManager.listHR}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="hotelTable" filteredValue="#{hotelManager.filteredCars}"
+                                     editable="true">  
+
+                            
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="hotelTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{hotel.hrid}" filterBy="#{hotel.hrid}" headerText="Id"> 
+                                <h:outputText value="#{hotel.hrid}}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{hotel.hrname}" filterBy="#{hotel.hrname}" headerText="Name">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{hotel.hrname}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{hotel.hrname}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{hotel.hraddress}" headerText="Address">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{hotel.hraddress}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{hotel.hraddress}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column sortBy="#{hotel.hrphone}" headerText="Phone">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{hotel.hrphone}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{hotel.hrphone}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column sortBy="#{hotel.hremail}" headerText="Email">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{hotel.hremail}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{hotel.hremail}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column sortBy="#{hotel.hrinfo}" headerText="Infomation">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{hotel.hrinfo}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{hotel.hrinfo}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Image" style="width:100px">  
+                                <p:commandLink action="#{hotelManager.redirectImage()}">Images
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandLink>
+                            </p:column>
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:commandButton icon="ui-icon-pencil" value="Edit" action="#{hotelManager.showHotel()}" oncomplete="dlgEdit.show();" update="@form">
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <p:confirmDialog id="confirmDialog" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="confirmation">  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="confirmation.hide()"  
+                                             actionListener="#{hotelManager.btnDelete()}" >
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+                        </p:confirmDialog>
+                        
+                        
+                        <p:dialog id="dialogEdit" header="Edit Hotel" widgetVar="dlgEdit" modal="true" height="500" width="400" showEffect="clip" hideEffect="clip">
+
+                            <h:form>  
+                                <h:panelGrid columns="2" cellpadding="5">  
+                                    <h:outputLabel for="name" value="Hotel's Name:" />  
+                                    <p:inputText value="#{hotelManager.name}"   
+                                            id="name" label="Name" />
+                                    <h:outputLabel for="address" value="Address:" />  
+                                    <p:inputText value="#{hotelManager.address}"   
+                                            id="address" label="Address" />
+                                    <h:outputLabel for="phone" value="Phone:" />  
+                                    <p:inputText value="#{hotelManager.phone}"   
+                                            id="phone" label="Phone" />
+                                    <h:outputLabel for="email" value="Email:" />  
+                                    <p:inputText value="#{hotelManager.email}"   
+                                            id="email" label="Email" />
+                                    <h:outputLabel for="info" value="Infomation:" />  
+                                    <p:inputText value="#{hotelManager.info}"   
+                                            id="info" label="Infomation" />
+                                    <h:outputLabel value="Images:" />  
+                                    
+                                    <f:facet name="footer">  
+                                        <p:commandButton value="Update" update=":form:messages, :form:dataTable"
+                                                         actionListener="#{hotelManager.btnEdit}"
+                                                         oncomplete="handleEditRequest(args)"/>
+                                        <p:commandButton value="Cancel" onclick="dlgEdit.hide();" action="#{hotelManager.btnCancel()}" update=":form:messages"/>
+                                    </f:facet>  
+                                </h:panelGrid>  
+
+                            </h:form> 
+                        </p:dialog>
+                        <script type="text/javascript">  
+                            function handleEditRequest(args) {  
+                                if(args.edit != true) {  
+                                    jQuery('dialogEdit').effect("shake", { times:3 }, 100);  //effect cho dialog -- lo^~i
+                                } else {  
+                                    dlgEdit.hide();  
+                                }  
+                            }  
+                        </script>  
+                    </h:form>
+                </div>
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>

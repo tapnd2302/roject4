@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 27, 2012 7:29:26 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.RestaurantTables" table="RESTAURANT_TABLES" schema="dbo" catalog="PROJECT4">
+        <id name="resTableId" type="int">
+            <column name="ResTableID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="typetable" class="entity.Typetable" fetch="select">
+            <column name="TypeTableID" />
+        </many-to-one>
+        <property name="statusTable" type="java.lang.Boolean">
+            <column name="StatusTable" />
+        </property>
+        <property name="tableDescription" type="serializable">
+            <column name="TableDescription" />
+        </property>
+        <set name="tablebookings" inverse="true">
+            <key>
+                <column name="ResTableID" />
+            </key>
+            <one-to-many class="entity.Tablebooking" />
+        </set>
+    </class>
+</hibernate-mapping>

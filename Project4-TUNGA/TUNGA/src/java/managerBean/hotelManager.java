@@ -1,0 +1,254 @@
+
+package managerBean;
+
+
+import entity.HotelRestaurant;
+import entity.Images;
+import exception.ObjectException;
+import helper.HotelHelper;
+import helper.ObjectHelper;
+import java.io.File;
+import java.io.Serializable;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.CloseEvent;
+import org.primefaces.event.RowEditEvent;
+
+
+@ManagedBean
+@ViewScoped
+public class hotelManager implements Serializable{
+
+    private List<HotelRestaurant> listHR;
+    private List<HotelRestaurant> filteredCars;
+    private HotelRestaurant hr;
+    private String _name;
+    private String _address;
+    private String _phone;
+    private String _email;
+    private String _info;
+    private int _id;
+    private List<Images> listImage;
+    private Images selectedImg;
+    private String _desImg;
+
+    public String getDesImg() {
+        return _desImg;
+    }
+
+    public void setDesImg(String _desImg) {
+        this._desImg = _desImg;
+    }
+    
+    
+    public Images getSelectedImg() {
+        return selectedImg;
+    }
+
+    public void setSelectedImg(Images selectedImg) {
+        this.selectedImg = selectedImg;
+    }
+
+
+    public List<Images> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<Images> listImage) {
+        this.listImage = listImage;
+    }
+    
+    public int getId() {
+        return _id;
+    }
+
+    public void setId(int _id) {
+        this._id = _id;
+    }
+
+    public String getAddress() {
+        return _address;
+    }
+
+    public void setAddress(String _address) {
+        this._address = _address;
+    }
+
+    public String getEmail() {
+        return _email;
+    }
+
+    public void setEmail(String _email) {
+        this._email = _email;
+    }
+
+    public String getInfo() {
+        return _info;
+    }
+
+    public void setInfo(String _info) {
+        this._info = _info;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    public String getPhone() {
+        return _phone;
+    }
+
+    public void setPhone(String _phone) {
+        this._phone = _phone;
+    }
+    
+    public HotelRestaurant getHr() {
+        return hr;
+    }
+
+    public void setHr(HotelRestaurant hr) {
+        this.hr = hr;
+    }
+
+    public List<HotelRestaurant> getListHR() {
+        return listHR;
+    }
+
+    public void setListHR(List<HotelRestaurant> listHR) {
+        this.listHR = listHR;
+    }
+    
+    public List<HotelRestaurant> getFilteredCars() {
+        return filteredCars;
+    }
+
+    public void setFilteredCars(List<HotelRestaurant> filteredCars) {
+        this.filteredCars = filteredCars;
+    }
+    
+    
+    
+    
+    public hotelManager() {
+        HotelHelper<HotelRestaurant> helper = new HotelHelper<HotelRestaurant>();
+        listHR = helper.showHR();
+      
+    }
+    
+    
+    
+    
+    
+    public void btnEdit(ActionEvent actionEvent){
+        ObjectHelper<HotelRestaurant> helper = new ObjectHelper<HotelRestaurant>();
+        RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage msg = null;  
+        boolean edit = false;
+        if (!edit) { //check validator
+            hr.setHrid(_id);
+            hr.setHrname(_name);
+            hr.setHraddress(_address);
+            hr.setHrphone(_phone);
+            hr.setHremail(_email);
+            hr.setHrinfo(_info);
+            try {
+                helper.update(hr);
+            } catch (ObjectException ex) {
+                Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            edit = true;
+            msg = new FacesMessage("Update Comleted");
+        }
+        else {
+            edit = false;  
+            msg = new FacesMessage("Failed");
+        }
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+        context.addCallbackParam("edit", edit);
+    }
+
+    public void btnDelete(){
+        HotelHelper<Images> holhelper = new HotelHelper<Images>();
+        listImage = holhelper.showImage(hr.getHrid());
+        for (Images img : listImage) {
+                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ img.getImageLink());
+                f.delete();
+            }
+        
+        try {
+            ObjectHelper<Images> objHelperImg = new ObjectHelper<Images>();
+            objHelperImg.delList(listImage);
+            
+            ObjectHelper<HotelRestaurant> objHelperHR = new ObjectHelper<HotelRestaurant>();
+            objHelperHR.delete(hr);
+            FacesMessage msg = new FacesMessage("Delete Success");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } catch (ObjectException ex) {
+            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HotelHelper<HotelRestaurant> helper = new HotelHelper<HotelRestaurant>();
+        listHR = helper.showHR();
+    }
+    
+   
+    
+    public void btnCancel(){
+        FacesMessage msg = new FacesMessage("Edit Canceled");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    
+    public void showHotel(){
+        _name = hr.getHrname();
+        _address = hr.getHraddress();
+        _phone = hr.getHrphone();
+        _email = hr.getHremail();
+        _info = hr.getHrinfo();
+        _id = hr.getHrid();
+        HotelHelper<Images> helper = new HotelHelper<Images>();
+        listImage = helper.showImage(_id);
+    }
+    
+    private String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+    public void delImg(){
+        ObjectHelper<Images> helperImg = new ObjectHelper<Images>();
+        try {
+            helperImg.delete(selectedImg);
+            File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ selectedImg.getImageLink());
+            f.delete();
+            FacesMessage msg = new FacesMessage("Deleted");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } catch (ObjectException ex) {
+            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HotelHelper<Images> helper = new HotelHelper<Images>();
+        listImage = helper.showImage(_id);
+    }
+    
+    public void showDesImg(){
+        _desImg = selectedImg.getDescriptions();
+    }
+    
+    public void editDesImg(){
+        ObjectHelper<Images> helperImg = new ObjectHelper<Images>();
+        selectedImg.setDescriptions(_desImg);
+        try {
+            helperImg.update(selectedImg);
+        } catch (ObjectException ex) {
+            Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        FacesMessage msg = new FacesMessage("Success");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+}

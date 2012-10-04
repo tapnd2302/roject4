@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+
+            <ui:define name="content">
+                <div id="us_left">
+                    <p:panelMenu>
+                        <!--                        <p:submenu label="Type Image Manager">
+                                                    <p:menuitem value="Type Image List" outcome="listTypeImager.jsf" ajax="false"/>
+                                                    <p:menuitem value="Create New Type Image" outcome="createTypeImage.jsf" ajax="false"/>
+                                                </p:submenu>-->
+                        <p:submenu label="Image Manager">
+                            <p:menuitem value="Image List" outcome="listImage.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Image" outcome="createImage.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </div>
+                <div id="us_right">
+                    <h:form id="form">  
+
+                        <p:dataGrid var="item" value="#{listImage.listIMG}" columns="3"  
+                                    rows="6" paginator="true"  
+                                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                    rowsPerPageTemplate="6,9,12">  
+
+                            <p:panel header="#{item.imageId}" style="text-align:center">  
+                                <h:panelGrid columns="1" style="width:100%">  
+                                    <p:graphicImage value="/images/hotel/#{item.imageLink}"/>   
+
+                                    <h:outputText value="#{item.id}" />  
+
+                                    <p:commandLink update=":form:carDetail" oncomplete="carDialog.show()" title="View Detail">  
+                                        <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
+                                        <f:setPropertyActionListener value="#{item}"   
+                                                                     target="#{listImage.selected}" />  
+                                    </p:commandLink>  
+                                </h:panelGrid>  
+                            </p:panel>  
+
+                        </p:dataGrid>  
+
+                        <p:dialog header="Car Detail" widgetVar="carDialog" modal="true">  
+                            <p:outputPanel id="carDetail" style="text-align:center;" layout="block">  
+
+                                <p:graphicImage style="width: 400px; height: 350px;" value="/images/hotel/#{listImage.selected.imageLink}"/>  
+
+                                <h:panelGrid  columns="2" cellpadding="5">  
+                                    <h:outputLabel for="modelNo" value="Model No: " />  
+                                    <h:outputText id="modelNo" value="#{listImage.selected.id}" />  
+
+                                    <h:outputLabel for="year" value="Year: " />  
+                                    <h:outputText id="year" value="#{listImage.selected.imageId}" />  
+
+                                </h:panelGrid>  
+                            </p:outputPanel>  
+                        </p:dialog>  
+
+                    </h:form>
+
+                </div>
+            </ui:define>
+
+
+
+        </ui:composition>
+
+    </body>
+</html>

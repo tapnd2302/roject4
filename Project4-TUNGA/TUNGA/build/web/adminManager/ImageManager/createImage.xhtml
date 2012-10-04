@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                    <p:panelMenu>
+<!--                        <p:submenu label="Type Image Manager">
+                            <p:menuitem value="Type Image List" outcome="listTypeImager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Type Image" outcome="createTypeImage.jsf" ajax="false"/>
+                        </p:submenu>-->
+                        <p:submenu label="Image Manager">
+                            <p:menuitem value="Image List" outcome="listImage.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Image" outcome="createImage.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </div>
+                <div id="us_right">
+                    <h:form class="create">
+                        <p:growl showDetail="false" sticky="false" life="5000" id="messages"/>
+                        <table>
+                            <tr>
+                                <td><p:outputLabel for="typeImg">Type Image:(*) </p:outputLabel></td>
+                                <td><p:inputText id="typeImg" value="#{createImage.typeName}" readonly="true"></p:inputText>
+<!--                                    <p:selectOneMenu id="typeImg" value="#{createImage.selectItem}" style="width: 190px;">
+                                        <f:selectItems value="#{createImage.listType}" var="item" itemLabel="#{item.typeName}" itemValue="#{item.typeImageId}" />
+                                    </p:selectOneMenu>-->
+                                </td>
+                                <td><p:message for="typeImg" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="idIMG">ID Of Item:(*) </p:outputLabel></td>
+                                <td><p:inputText id="idIMG" value="#{createImage.id}" readonly="true"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="imgDes">Image Description:(*) </p:outputLabel></td>
+                                <td><p:inputText id="imgDes" value="#{createImage.descriptions}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p:fileUpload style="min-width:400px" id="HRImage" fileUploadListener="#{createImage.saveimage}"
+                                                                  sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
+                                                                  multiple="true" 
+                                                                  allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton value="Create New" action="#{createImage.insertData()}" ajax="false" update="@form"/></td>
+                                <td><p:commandButton value="Reset Field" action="#{createImage.resetField()}" update="@form"/></td>
+                            </tr>
+                        </table>
+
+                    </h:form>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

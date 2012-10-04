@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                    <p:panelMenu>
+                        <p:submenu label="Role Manager">
+                            <p:menuitem value="Role List" outcome="rolemanager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New Role" outcome="createRole.jsf" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="User Manager">
+                            <p:menuitem value="User List" outcome="userManager.jsf" ajax="false"/>
+                            <p:menuitem value="Create New User" outcome="createUser.jsf" ajax="false"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                </div>
+                <div id="us_right">
+                    <h:form class="create">
+                        <table>
+                            <tr>
+                                <td><p:outputLabel for="roleName">Role Name:(*) </p:outputLabel></td>
+                                <td><p:inputText id="roleName" value="#{createRole.roleName}" required="true" requiredMessage="Required Input Role Name" ></p:inputText></td>
+                                <td><p:message for="roleName" /></td>
+                            </tr>
+                            <tr>
+                                <td><p:outputLabel for="roleDes">Role Description:(*) </p:outputLabel></td>
+                                <td><p:inputText id="roleDes" value="#{createRole.roleDescription}"></p:inputText></td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton value="Create New" action="#{createRole.insertData()}" ajax="false" update="@form"/></td>
+                                <td><p:commandButton value="Reset Field" action="#{createRole.resetField()}" update="@form"/></td>
+                            </tr>
+                        </table>
+
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+
+</html>

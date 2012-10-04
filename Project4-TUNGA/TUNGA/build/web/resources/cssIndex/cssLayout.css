@@ -1,0 +1,72 @@
+body {
+    background: url('./../../images/indexMasterPage/3-percent-U-BG.jpg') no-repeat top center #000;
+    font-family: "AvenirLTStd55Roman", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    min-width: 1001px;
+}
+div.main-wrapper 
+{
+    min-height: 600px;
+    height: 100%;
+    min-width: 1001px;
+    width: 1349px;
+    margin: auto;
+    padding: auto;
+}
+div.main 
+{
+    display:block;
+    width: 1345px;
+    min-height: 650px;
+    margin: auto;    
+    padding: auto;
+}
+#top {
+    float:left;
+    width:1345px;
+    height:80px;
+}
+
+#content{
+    float:left;
+    background: none repeat scroll 0 0 #000000;
+    clear: both;
+    min-height: 540px;
+    top: 83px;
+    width: 1345px;
+    z-index: 20;
+    font: normal 13px/17px AvenirLTStd35Light, Arial, Helvetica, sans-serif;
+    padding: 0 0 20px;
+}
+
+
+#bottom {
+    width:1345px;
+    height:80px;
+    font-size: 13px;
+    
+}
+#left {
+
+}
+
+#right {
+
+}
+
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+
