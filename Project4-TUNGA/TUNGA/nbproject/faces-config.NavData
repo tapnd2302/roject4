@@ -4,28 +4,42 @@
     <Scope Scope="Project">
         <Node id="images/adminManager/UserManager/rolemanager.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="index.jsp" x="378" y="37" zoom="true"/>
+        <Node id="adminManager/ImageManager/listTypeImager.xhtml" x="1650" y="300" zoom="true"/>
         <Node id="restaurants.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="adminManager/UserManager/userManager.xhtml" x="18" y="108" zoom="true"/>
+        <Node id="adminManager/HotelManager/listRoom.xhtml" x="150" y="750" zoom="true"/>
         <Node id="adminManager/default.xhtml" x="121" y="580" zoom="true"/>
+        <Node id="adminManager/FoodManager/listFood.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="adminManager/ImageManager/listImage.xhtml" x="650" y="750" zoom="true"/>
         <Node id="images/adminManager/UserManager/userManager.xhtml" x="150" y="300" zoom="true"/>
         <Node id="images/adminManager/login.xhtml" x="400" y="450" zoom="true"/>
         <Node id="images/adminManager/default.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="adminManager/login.jsp" x="400" y="900" zoom="true"/>
         <Node id="adminManager/index.jsp" x="145" y="416" zoom="true"/>
         <Node id="images/adminManager/index.jsp" x="150" y="150" zoom="true"/>
+        <Node id="adminManager/FoodManager/createFood.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="adminManager/ImageManager/createTypeImage.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="adminManager/ImageManager/createImage.xhtml" x="400" y="750" zoom="true"/>
         <Node id="images/adminManager/UserManager/createRole.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="adminManager/HotelManager/listTable.xhtml" x="400" y="300" zoom="true"/>
         <Node id="images/adminManager/HotelManager/imagesManager.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="adminManager/HotelManager/imagesManager.xhtml" x="447" y="331" zoom="true"/>
+        <Node id="adminManager/FoodManager/createTypeFood.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="saltyFood.xhtml" x="150" y="1050" zoom="true"/>
         <Node id="adminManager/login.xhtml" x="83" y="71" zoom="true"/>
-        <Node id="adminManager/HotelManager/ListHotel.xhtml" x="52" y="230" zoom="true"/>
+        <Node id="adminManager/HotelManager/ListHotel.xhtml" x="-17" y="211" zoom="true"/>
+        <Node id="adminManager/HotelManager/createTable.xhtml" x="900" y="600" zoom="true"/>
         <Node id="images/adminManager/HotelManager/ListHotel.xhtml" x="400" y="600" zoom="true"/>
         <Node id="adminManager/UserManager/rolemanager.xhtml" x="646" y="277" zoom="true"/>
+        <Node id="adminManager/FoodManager/listTypeFood.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="check_rooms.xhtml" x="141" y="498" zoom="true"/>
         <Node id="images/adminManager/HotelManager/createHotel.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="adminManager/UserManager/editUser.xhtml" x="150" y="900" zoom="true"/>
         <Node id="Foods.xhtml" x="650" y="300" zoom="true"/>
         <Node id="contact.xhtml" x="650" y="450" zoom="true"/>
         <Node id="default.xhtml" x="136" y="16" zoom="true"/>
         <Node id="adminManager/UserManager/createUser.xhtml" x="331" y="190" zoom="true"/>
-        <Node id="adminManager/HotelManager/createHotel.xhtml" x="52" y="328" zoom="false"/>
+        <Node id="adminManager/HotelManager/createRoom.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="adminManager/HotelManager/createHotel.xhtml" x="305" y="375" zoom="false"/>
         <Node id="promotion.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="adminManager/UserManager/createRole.xhtml" x="650" y="150" zoom="true"/>
         <Node id="images/adminManager/UserManager/createUser.xhtml" x="150" y="450" zoom="true"/>

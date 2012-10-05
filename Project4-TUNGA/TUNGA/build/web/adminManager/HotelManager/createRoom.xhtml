@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Hotel Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu style="width: 220px;">
+                            <p:submenu label="Hotel Manager">
+                                <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Room Manager">
+                                <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Table Manager">
+                                <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                <div id="us_right" align="center">
+                    <h:form id="form">
+                        <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
+                        <br/>
+                        <p:panel id="pnText" style="width: 820px">
+                            <table style="width: 600px">
+                                <tr>
+                                    <td><h:outputLabel  for="chooseHrid" value="Choose Hotel: " /></td>
+                                    <td><p:selectOneMenu id="chooseHrid" value="#{createRoom.selectedHrid}" effect="fade" style="width: 250px">  
+                                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                                            <f:selectItems value="#{createRoom.listHr}" var="hotel" itemLabel="#{hotel.hrname}" itemValue="#{hotel.hrid}"/>  
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel for="chooseTypeid" value="Choose Type: " /></td>
+                                    <td><p:selectOneMenu id="chooseTypeid" value="#{createRoom.selectedTypeRoomid}" effect="fade" style="width: 250px">  
+                                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                                            <f:selectItems value="#{createRoom.listTypeRoom}" var="typeroom" itemLabel="#{typeroom.typeRoomName}" itemValue="#{typeroom.typeRoomId}"/>  
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel for="txtdesRoom" value="Description for Room: " /></td>
+                                    <td><p:inputText  style="width: 242px" id="txtdesRoom" value="#{createRoom.desRoom}" /></td>
+                                </tr>
+                                <tr>
+                                    <tr><td colspan="2">Image:<br/></td></tr>
+                                    <td colspan="2"><p:fileUpload fileUploadListener="#{createRoom.saveimage}"
+                                                      sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
+                                                      multiple="true" 
+                                                      allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                        <br/>
+                        <p:panel id="pnBtn" style="width: 820px">
+                            <table id="table" style="width: 250px">
+                                <tr>
+                                    <td><p:commandButton value=" Create Room " action="#{createRoom.btnsuccess()}" update="messages"/></td>
+                                    <td><p:commandButton value=" Reset Field " ajax="false" update="@form"/></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                    </h:form>
+
+
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

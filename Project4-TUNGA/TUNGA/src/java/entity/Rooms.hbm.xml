@@ -6,25 +6,20 @@
     <class name="entity.Rooms" table="ROOMS" schema="dbo" catalog="PROJECT4">
         <id name="roomId" type="int">
             <column name="RoomID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="typerooms" class="entity.Typerooms" fetch="select">
+        <property name="typerooms" type="java.lang.Integer">
             <column name="TypeRoomID" />
-        </many-to-one>
+        </property>
         <property name="hrid" type="java.lang.Integer">
             <column name="HRID" />
         </property>
         <property name="roomStatus" type="java.lang.Boolean">
             <column name="RoomStatus" />
         </property>
-        <property name="roomDescription" type="serializable">
+        <property name="roomDescription" type="java.lang.String">
             <column name="RoomDescription" />
         </property>
-        <set name="roombookings" inverse="true">
-            <key>
-                <column name="RoomID" />
-            </key>
-            <one-to-many class="entity.Roombooking" />
-        </set>
+        
     </class>
 </hibernate-mapping>

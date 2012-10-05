@@ -8,9 +8,11 @@ package managerBean;
 
 import entity.HotelRestaurant;
 import entity.Images;
+import entity.Typeimages;
 import exception.ObjectException;
 import helper.HotelHelper;
 import helper.ObjectHelper;
+import helper.TypeImageHelper;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +37,6 @@ public class createHotel {
     private String _phone;
     private String _email;
     private String _info;
-    private boolean btnss;
 
     int idHotel;
     private  List<String> listname;
@@ -69,13 +70,7 @@ public class createHotel {
     
     
 
-    public boolean isBtnss() {
-        return btnss;
-    }
-
-    public void setBtnss(boolean btnss) {
-        this.btnss = btnss;
-    }
+    
       
     
     public String getAddress() {
@@ -119,7 +114,7 @@ public class createHotel {
     }
 
     public createHotel() {
-        btnss = false;
+
         listImg = new ArrayList<Images>();
         listname = new ArrayList<String>();
     }
@@ -144,13 +139,12 @@ public class createHotel {
 
     /***************** Button Create Hotel ****************/
     public void btnsuccess(){
-        btnss = false;
         newHotel();
-        
+        TypeImageHelper<Typeimages> tHelper = new TypeImageHelper<Typeimages>();
         if (!listname.isEmpty()) {
             for (String str : listname) {
                 Images img = new Images();
-//                img.setTypeImage();
+                img.setTypeimages(tHelper.showTypeIMGCondition("2").get(0));
                 img.setId(idHotel);
                 img.setImageLink(str);
                 listImg.add(img);
@@ -159,7 +153,6 @@ public class createHotel {
             try {
                 
                 OHPImages.addList(listImg);
-                btnss = true;
             } catch (ObjectException ex) {
                 Logger.getLogger(createHotel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -195,7 +188,7 @@ public class createHotel {
         return "success";
     }
     
-    public void resetField(){
+    public String resetField(){
         if (!listname.isEmpty()) {
             for (String str : listname) {
                 File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
@@ -209,7 +202,7 @@ public class createHotel {
         _info = null;
         _name = null;
         _phone = null;
-        btnss = false;
+        return "createHotel.jsf?faces-redirect=true";
     }
     
 

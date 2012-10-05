@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Hotel Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu style="width: 220px;">
+                            <p:submenu label="Hotel Manager">
+                                <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Room Manager">
+                                <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Table Manager">
+                                <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                <div id="us_right">
+                    <h:form id="form">
+                        <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
+                        <br/>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                            <h:outputLabel  for="txtNameTR" value="Type Room's Name: " />  
+                            <p:inputText id="txtNameTR" value="#{createTypeRoom.nameTR}" />
+
+                            <h:outputLabel  for="txtPriceTR" value="Price: " />  
+                            <p:inputText id="txtPriceTR" value="#{createTypeRoom.priceTR}" />
+                            
+                            <h:outputLabel  for="txtDesTR" value="Description: " />  
+                            <p:inputText id="txtDesTR" value="#{createTypeRoom.desTR}" />
+
+                            <p:commandButton value=" Create" action="#{createTypeRoom.btnsuccess()}" update="messages"/>
+
+                            <p:commandButton value=" Reset Field " ajax="false" update="@form"/>
+
+
+                        </h:panelGrid>
+
+                    </h:form>
+
+
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

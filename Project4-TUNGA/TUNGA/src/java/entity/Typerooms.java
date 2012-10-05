@@ -13,9 +13,9 @@ public class Typerooms  implements java.io.Serializable {
 
 
      private int typeRoomId;
-     private Serializable typeRoomName;
+     private String typeRoomName;
      private Double typeRoomPrice;
-     private Serializable typeRoomDescription;
+     private String typeRoomDescription;
      private Set<Rooms> roomses = new HashSet<Rooms>(0);
 
     public Typerooms() {
@@ -25,7 +25,7 @@ public class Typerooms  implements java.io.Serializable {
     public Typerooms(int typeRoomId) {
         this.typeRoomId = typeRoomId;
     }
-    public Typerooms(int typeRoomId, Serializable typeRoomName, Double typeRoomPrice, Serializable typeRoomDescription, Set<Rooms> roomses) {
+    public Typerooms(int typeRoomId, String typeRoomName, Double typeRoomPrice, String typeRoomDescription, Set<Rooms> roomses) {
        this.typeRoomId = typeRoomId;
        this.typeRoomName = typeRoomName;
        this.typeRoomPrice = typeRoomPrice;
@@ -40,11 +40,11 @@ public class Typerooms  implements java.io.Serializable {
     public void setTypeRoomId(int typeRoomId) {
         this.typeRoomId = typeRoomId;
     }
-    public Serializable getTypeRoomName() {
+    public String getTypeRoomName() {
         return this.typeRoomName;
     }
     
-    public void setTypeRoomName(Serializable typeRoomName) {
+    public void setTypeRoomName(String typeRoomName) {
         this.typeRoomName = typeRoomName;
     }
     public Double getTypeRoomPrice() {
@@ -54,11 +54,11 @@ public class Typerooms  implements java.io.Serializable {
     public void setTypeRoomPrice(Double typeRoomPrice) {
         this.typeRoomPrice = typeRoomPrice;
     }
-    public Serializable getTypeRoomDescription() {
+    public String getTypeRoomDescription() {
         return this.typeRoomDescription;
     }
     
-    public void setTypeRoomDescription(Serializable typeRoomDescription) {
+    public void setTypeRoomDescription(String typeRoomDescription) {
         this.typeRoomDescription = typeRoomDescription;
     }
     public Set<Rooms> getRoomses() {

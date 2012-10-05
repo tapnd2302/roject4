@@ -64,7 +64,7 @@ public class ObjectHelper<T> {
         }
     }
 
-    public Object get(String id) {
+    public Object get(int id) {
         Transaction ts = this.session.beginTransaction();
         Object obj = (Object) this.session.get(Object.class, id);
         ts.commit();

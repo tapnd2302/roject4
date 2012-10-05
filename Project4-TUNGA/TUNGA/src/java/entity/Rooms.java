@@ -13,12 +13,11 @@ public class Rooms  implements java.io.Serializable {
 
 
      private int roomId;
-     private Typerooms typerooms;
+     private Integer typerooms;
      private Integer hrid;
      private Boolean roomStatus;
-     private Serializable roomDescription;
-     private Set<Roombooking> roombookings = new HashSet<Roombooking>(0);
-
+     private String roomDescription;
+     
     public Rooms() {
     }
 
@@ -26,13 +25,12 @@ public class Rooms  implements java.io.Serializable {
     public Rooms(int roomId) {
         this.roomId = roomId;
     }
-    public Rooms(int roomId, Typerooms typerooms, Integer hrid, Boolean roomStatus, Serializable roomDescription, Set<Roombooking> roombookings) {
+    public Rooms(int roomId, Integer typerooms, Integer hrid, Boolean roomStatus, String roomDescription) {
        this.roomId = roomId;
        this.typerooms = typerooms;
        this.hrid = hrid;
        this.roomStatus = roomStatus;
        this.roomDescription = roomDescription;
-       this.roombookings = roombookings;
     }
    
     public int getRoomId() {
@@ -42,11 +40,11 @@ public class Rooms  implements java.io.Serializable {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
-    public Typerooms getTyperooms() {
+    public Integer getTyperooms() {
         return this.typerooms;
     }
     
-    public void setTyperooms(Typerooms typerooms) {
+    public void setTyperooms(Integer typerooms) {
         this.typerooms = typerooms;
     }
     public Integer getHrid() {
@@ -63,23 +61,14 @@ public class Rooms  implements java.io.Serializable {
     public void setRoomStatus(Boolean roomStatus) {
         this.roomStatus = roomStatus;
     }
-    public Serializable getRoomDescription() {
+    public String getRoomDescription() {
         return this.roomDescription;
     }
     
-    public void setRoomDescription(Serializable roomDescription) {
+    public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
     }
-    public Set<Roombooking> getRoombookings() {
-        return this.roombookings;
-    }
     
-    public void setRoombookings(Set<Roombooking> roombookings) {
-        this.roombookings = roombookings;
-    }
-
-
-
 
 }
 
