@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Hotel Manager</title>
+        <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/AdminMasterPage.xhtml">
+            <ui:define name="content">
+                <div id="us_left">
+                    <h:form>
+                        <p:panelMenu style="width: 220px;">
+                            <p:submenu label="Hotel Manager">
+                                <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Room Manager">
+                                <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Table Manager">
+                                <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
+                </div>
+                <div id="us_right">
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="false"/>  
+
+                        <p:dataTable id="dataTable" var="room" value="#{listRoom.listRoom}"  
+                                     paginator="true" rows="10"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="roomTable" filteredValue="#{listRoom.filteredCars}"
+                                     editable="true">  
+
+
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="roomTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{room.roomId}" filterBy="#{room.roomId}" headerText="Id"> 
+                                <h:outputText value="#{room.roomId}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{room.typerooms}" filterBy="#{room.typerooms}" headerText="TypeRoom">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{room.typerooms}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{room.typerooms}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column sortBy="#{room.hrid}" headerText="Hotel">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{room.hrid}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{room.hrid}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column sortBy="#{room.roomStatus}" headerText="Status">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{room.roomStatus}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{room.roomStatus}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column sortBy="#{room.roomDescription}" headerText="Description">  
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{room.roomDescription}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:inputText value="#{room.roomDescription}"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            
+<!--                            <p:column headerText="Options" style="width:100px">  
+                                <p:commandLink action="#{hotelManager.showHotel()}" oncomplete="dlgEdit.show();" update="@form">Edit
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandLink>
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                                 oncomplete="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                </p:commandButton>
+                            </p:column>-->
+                        </p:dataTable>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

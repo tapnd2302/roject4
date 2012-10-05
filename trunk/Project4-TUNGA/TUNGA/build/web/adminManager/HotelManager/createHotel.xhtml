@@ -22,6 +22,15 @@
                                 <p:menuitem value="Hotel List" outcome="ListHotel.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Hotel" outcome="createHotel.jsf" ajax="false"/>
                             </p:submenu>
+                            <p:submenu label="Room Manager">
+                                <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                            </p:submenu>
+                            <p:submenu label="Table Manager">
+                                <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                            </p:submenu>
                         </p:panelMenu>
                     </h:form>
                 </div>
@@ -30,31 +39,31 @@
                 <div id="us_right" align="center">
                     <h:form id="form">
                         <br/>
-                        <p:panel id="pnText" style="width: 620px">
+                        <p:panel id="pnText" style="width: 820px">
                             <table style="width: 600px">
                                 <tr>
                                     <td><p:outputLabel for="HRName">Hotel's Name:</p:outputLabel></td>
-                                    <td><p:inputText id="HRName" value="#{createHotel.name}" required="true" requiredMessage="Please Input Hotel's Name"></p:inputText></td>
+                                    <td><p:inputText style="width: 250px" id="HRName" value="#{createHotel.name}" required="true" requiredMessage="Please Input Hotel's Name"></p:inputText></td>
 
                                 </tr>
                                 <tr>
                                     <td><p:outputLabel for="HRAddress">Address:</p:outputLabel></td>
-                                    <td><p:inputText id="HRAddress" value="#{createHotel.address}" required="true" requiredMessage="Please Input Address"></p:inputText></td>
+                                    <td><p:inputText style="width: 250px" id="HRAddress" value="#{createHotel.address}" required="true" requiredMessage="Please Input Address"></p:inputText></td>
 
                                 </tr>
                                 <tr>
                                     <td><p:outputLabel for="HRPhone">Phone Number:</p:outputLabel></td>
-                                    <td><p:inputText id="HRPhone" value="#{createHotel.phone}" required="true" requiredMessage="Please Input Phone Number"></p:inputText></td>
+                                    <td><p:inputText style="width: 250px" id="HRPhone" value="#{createHotel.phone}" required="true" requiredMessage="Please Input Phone Number"></p:inputText></td>
 
                                 </tr>
                                 <tr>
                                     <td><p:outputLabel for="HREmail">Email:</p:outputLabel></td>
-                                    <td><p:inputText id="HREmail" value="#{createHotel.email}" required="true" requiredMessage="Please Input Email"></p:inputText></td>
+                                    <td><p:inputText style="width: 250px" id="HREmail" value="#{createHotel.email}" required="true" requiredMessage="Please Input Email"></p:inputText></td>
 
                                 </tr>
                                 <tr>
                                     <td><p:outputLabel for="HRInfo">Information:</p:outputLabel></td>
-                                    <td><p:inputText id="HRInfo" value="#{createHotel.info}" ></p:inputText></td>
+                                    <td><p:inputText style="width: 250px" id="HRInfo" value="#{createHotel.info}" ></p:inputText></td>
                                 </tr>
                                 <tr><td colspan="2">Image:<br/></td></tr>
                                 <tr>
@@ -67,16 +76,14 @@
                         </p:panel>
                         <br />
                         <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
-                        <p:panel id="pnBtn" style="width: 620px">
-                            <table id="table" style="width: 550px">
+                        <p:panel id="pnBtn" style="width: 820px">
+                            <table id="table" style="width: 350px">
                                 <tr>
                                     <td>
-                                        <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}"
-                                                         oncomplete="#{createHotel.btnss != true ? 'dlgAddDes.hide()' : 'dlgAddDes.show()'}" 
-                                                         update="messages"/>
+                                        <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}" update="messages, @form"/>
                                     </td>
                                     <td>
-                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}" update="@form"/>
+                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}"/>
                                     </td>
                                 </tr>
                             </table>

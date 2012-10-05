@@ -25,4 +25,18 @@ public class HotelHelper<T> extends ObjectHelper<T> {
         tr.commit();
         return result;
     }
+    public List<T> showTypeRoom(){
+        org.hibernate.Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("From Typerooms");
+        List<T> result = q.list();
+        tr.commit();
+        return result;
+    }
+    public List<T> showRooms(){
+        org.hibernate.Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("From Rooms");
+        List<T> result = q.list();
+        tr.commit();
+        return result;
+    }
 }
