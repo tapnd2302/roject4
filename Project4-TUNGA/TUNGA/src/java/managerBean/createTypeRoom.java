@@ -14,10 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author LOAN JURI
- */
+
 @ManagedBean
 @RequestScoped
 public class createTypeRoom {
@@ -49,14 +46,12 @@ public class createTypeRoom {
     public void setPriceTR(double priceTR) {
         this.priceTR = priceTR;
     }
-    /**
-     * Creates a new instance of createTypeRoom
-     */
+   
     public createTypeRoom() {
         
     }
     
-    public String btnsuccess(){
+    public void btnsuccess(){
         Typerooms tr = new Typerooms();
         tr.setTypeRoomName(nameTR);
         tr.setTypeRoomPrice(priceTR);
@@ -70,6 +65,14 @@ public class createTypeRoom {
         }
         FacesMessage msg = new FacesMessage("Success!"); 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        return "createTypeRoom.jsf?faces-redirect=true";
+        nameTR = null;
+        desTR = null;
+        priceTR = 0;
+    }
+    
+    public void resetField(){
+        nameTR = null;
+        desTR = null;
+        priceTR = 0;
     }
 }

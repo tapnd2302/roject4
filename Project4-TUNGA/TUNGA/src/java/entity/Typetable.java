@@ -13,8 +13,8 @@ public class Typetable  implements java.io.Serializable {
 
 
      private int typeTableId;
-     private Serializable typeTableName;
-     private Serializable typeTableDescription;
+     private String typeTableName;
+     private String typeTableDescription;
      private Double tablePrice;
      private Set<RestaurantTables> restaurantTableses = new HashSet<RestaurantTables>(0);
 
@@ -25,7 +25,7 @@ public class Typetable  implements java.io.Serializable {
     public Typetable(int typeTableId) {
         this.typeTableId = typeTableId;
     }
-    public Typetable(int typeTableId, Serializable typeTableName, Serializable typeTableDescription, Double tablePrice, Set<RestaurantTables> restaurantTableses) {
+    public Typetable(int typeTableId, String typeTableName, String typeTableDescription, Double tablePrice, Set<RestaurantTables> restaurantTableses) {
        this.typeTableId = typeTableId;
        this.typeTableName = typeTableName;
        this.typeTableDescription = typeTableDescription;
@@ -40,18 +40,18 @@ public class Typetable  implements java.io.Serializable {
     public void setTypeTableId(int typeTableId) {
         this.typeTableId = typeTableId;
     }
-    public Serializable getTypeTableName() {
+    public String getTypeTableName() {
         return this.typeTableName;
     }
     
-    public void setTypeTableName(Serializable typeTableName) {
+    public void setTypeTableName(String typeTableName) {
         this.typeTableName = typeTableName;
     }
-    public Serializable getTypeTableDescription() {
+    public String getTypeTableDescription() {
         return this.typeTableDescription;
     }
     
-    public void setTypeTableDescription(Serializable typeTableDescription) {
+    public void setTypeTableDescription(String typeTableDescription) {
         this.typeTableDescription = typeTableDescription;
     }
     public Double getTablePrice() {

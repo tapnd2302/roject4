@@ -180,7 +180,7 @@ public class hotelManager implements Serializable{
 
     public void btnDelete(){
         HotelHelper<Images> holhelper = new HotelHelper<Images>();
-        listImage = holhelper.showImage(hr.getHrid());
+        listImage = holhelper.showImage(2, hr.getHrid());
         for (Images img : listImage) {
                 File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ img.getImageLink());
                 f.delete();
@@ -217,7 +217,7 @@ public class hotelManager implements Serializable{
         _info = hr.getHrinfo();
         _id = hr.getHrid();
         HotelHelper<Images> helper = new HotelHelper<Images>();
-        listImage = helper.showImage(_id);
+        listImage = helper.showImage(2, _id);
     }
     
     private String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -233,7 +233,7 @@ public class hotelManager implements Serializable{
             Logger.getLogger(hotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         HotelHelper<Images> helper = new HotelHelper<Images>();
-        listImage = helper.showImage(_id);
+        listImage = helper.showImage(2, _id);
     }
     
     public void showDesImg(){

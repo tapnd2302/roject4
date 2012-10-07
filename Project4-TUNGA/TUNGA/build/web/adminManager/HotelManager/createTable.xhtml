@@ -23,19 +23,52 @@
                             <p:submenu label="Room Manager">
                                 <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
-                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Room" outcome="createTypeRoom.jsf" ajax="false"/>
                             </p:submenu>
                             <p:submenu label="Table Manager">
                                 <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Table" outcome="createTypeTable.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
                 </div>
-                <div id="us_right">
-                    
-                    
-                    
+                <div id="us_right" align="center">
+                    <h:form id="form">
+                        <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
+                        <br/>
+                        <p:panel id="pnText" style="width: 820px">
+                            <table style="width: 600px">
+                                <tr>
+                                    <td><h:outputLabel  for="chooseHrid" value="Choose Hotel: " /></td>
+                                    <td><p:selectOneMenu id="chooseHrid" value="#{createTable.selectedHrid}" effect="fade" style="width: 250px">  
+                                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                                            <f:selectItems value="#{createTable.listHr}" var="hotel" itemLabel="#{hotel.hrname}" itemValue="#{hotel.hrid}"/>  
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel for="chooseTypeid" value="Choose Type: " /></td>
+                                    <td><p:selectOneMenu id="chooseTypeid" value="#{createTable.selectedTypeTableid}" effect="fade" style="width: 250px">  
+                                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                                            <f:selectItems value="#{createTable.listTypeTable}" var="typetable" itemLabel="#{typetable.typeTableName}" itemValue="#{typetable.typeTableId}"/>  
+                                        </p:selectOneMenu></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel for="txtdesTable" value="Description for Table: " /></td>
+                                    <td><p:inputText  style="width: 242px" id="txtdesRoom" value="#{createTable.desTable}" /></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                        <br/>
+                        <p:panel id="pnBtn" style="width: 820px">
+                            <table id="table" style="width: 250px">
+                                <tr>
+                                    <td><p:commandButton value=" Create Table " action="#{createTable.btnsuccess()}" update="messages, @form"/></td>
+                                    <td><p:commandButton value=" Reset Field " action="#{createTable.resetField()}" update="@form"/></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>
