@@ -23,11 +23,12 @@
                             <p:submenu label="Room Manager">
                                 <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
-                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Room" outcome="createTypeRoom.jsf" ajax="false"/>
                             </p:submenu>
                             <p:submenu label="Table Manager">
                                 <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Table" outcome="createTypeTable.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
@@ -55,60 +56,120 @@
                                 <h:outputText value="#{room.roomId}" />  
                             </p:column>  
 
-                            <p:column sortBy="#{room.typerooms}" filterBy="#{room.typerooms}" headerText="TypeRoom">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{room.typerooms}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{room.typerooms}"/>
-                                    </f:facet>
-                                </p:cellEditor>
+                            <p:column sortBy="#{room.nameTypeRoom}" filterBy="#{room.nameTypeRoom}" headerText="TypeRoom">
+                                <h:outputText value="#{room.typerooms}" rendered="false"/>
+                                <h:outputText value="#{room.nameTypeRoom}"/>
                             </p:column>  
 
-                            <p:column sortBy="#{room.hrid}" headerText="Hotel">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{room.hrid}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{room.hrid}"/>
-                                    </f:facet>
-                                </p:cellEditor>
+                            <p:column sortBy="#{room.nameHotel}" filterBy="#{room.nameHotel}" headerText="Hotel">  
+                                <h:outputText value="#{room.hrid}" rendered="false"/>
+                                <h:outputText value="#{room.nameHotel}"/> 
                             </p:column>
+
                             <p:column sortBy="#{room.roomStatus}" headerText="Status">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{room.roomStatus}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{room.roomStatus}"/>
-                                    </f:facet>
-                                </p:cellEditor>
+                                <h:outputText value="#{(room.roomStatus eq true) ? 'No Hire':'Has Hired'}" />  
                             </p:column>
+
                             <p:column sortBy="#{room.roomDescription}" headerText="Description">  
-                                <p:cellEditor>
-                                    <f:facet name="output">
-                                        <h:outputText value="#{room.roomDescription}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:inputText value="#{room.roomDescription}"/>
-                                    </f:facet>
-                                </p:cellEditor>
+                                <h:outputText value="#{room.roomDescription}" />  
                             </p:column>
-                            
-<!--                            <p:column headerText="Options" style="width:100px">  
-                                <p:commandLink action="#{hotelManager.showHotel()}" oncomplete="dlgEdit.show();" update="@form">Edit
-                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:commandLink action="#{listRoom.showRoom()}" oncomplete="dlgEdit.show();" update="@form">Edit
+                                    <f:setPropertyActionListener value="#{room}" target="#{listRoom.selRoom}"/>
                                 </p:commandLink>
                             </p:column>
                             <p:column headerText="Delete" >
                                 <p:commandButton icon="ui-icon-close" value="Delete"
-                                                 oncomplete="confirmation.show()">
-                                    <f:setPropertyActionListener value="#{hotel}" target="#{hotelManager.hr}"/>
+                                                 oncomplete="cfDelete.show()">
+                                    <f:setPropertyActionListener value="#{room}" target="#{listRoom.selRoom}"/>
                                 </p:commandButton>
-                            </p:column>-->
+                            </p:column>
                         </p:dataTable>
+                        
+                        <p:confirmDialog id="cfDlgDelRoom" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="cfDelete">  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="cfDelete.hide()"  
+                                             action="#{listRoom.btnDelRoom()}">
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="cfDelete.hide()" type="button" />   
+                        </p:confirmDialog>
+                        
+                        <p:dialog id="dialogEdit" header="Edit Room" widgetVar="dlgEdit" modal="true" height="400" width="500" showEffect="clip" hideEffect="clip">
+                            <h:panelGrid columns="2" cellpadding="5">
+
+                                <h:outputLabel  for="chooseHrid" value="Choose Hotel: " />
+                                <p:selectOneMenu id="chooseHrid" value="#{listRoom.hotelid}" style="width: 250px">  
+                                    <f:selectItems value="#{listRoom.listHr}" var="dlgRoom" itemLabel="#{dlgRoom.hrname}" itemValue="#{dlgRoom.hrid}"/>  
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="chooseTypeid" value="Choose Type: " />
+                                <p:selectOneMenu id="chooseTypeid" value="#{listRoom.typeRoomid}" style="width: 250px">  
+                                    <f:selectItems value="#{listRoom.listTypeRoom}" var="dlgTyperoom" itemLabel="#{dlgTyperoom.typeRoomName}" itemValue="#{dlgTyperoom.typeRoomId}"/>  
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="statusRoom" value="Status: " />
+                                <p:selectOneRadio id="statusRoom" value="#{listRoom.statusRoom}">
+                                    <f:selectItem itemLabel="No Hire" itemValue="true" />  
+                                    <f:selectItem itemLabel="Has Hired" itemValue="false" />  
+                                </p:selectOneRadio>
+
+                                <h:outputLabel for="txtdesRoom" value="Description for Room: " />
+                                <p:inputText  style="width: 242px" id="txtdesRoom" value="#{listRoom.desRoom}" />
+
+                            </h:panelGrid>
+
+                            <p:scrollPanel style="width: 420px; height: 260px" mode="native">
+                                <p:dataGrid id="dataImage" var="dataImg" value="#{listRoom.listImage}"> 
+
+                                    <p:column>
+                                        <p:panel>
+                                            <p:lightBox>
+                                                <h:outputLink value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}">
+                                                    <p:graphicImage id="img" width="220px" height="170px" value="#{commonBean.url}/images/hotel/#{dataImg.imageLink}"/>
+                                                    <p:tooltip for="img" value="#{dataImg.descriptions}" showEffect="clip" hideEffect="slide" />
+                                                </h:outputLink>
+                                            </p:lightBox>
+                                        </p:panel>
+                                    </p:column>
+                                    <p:column>
+                                        <h:panelGrid columns="2" cellpadding="7">
+                                            <p:commandLink oncomplete="editDesImg.show();" action="#{listRoom.showDesImg()}" update=":form:dlgEditDesImg">Edit Description
+                                                <f:setPropertyActionListener value="#{dataImg}" target="#{listRoom.selectedImg}"/>
+                                            </p:commandLink>
+
+                                            <p:commandLink oncomplete="cfDelImg.show();">Delete Image
+                                                <f:setPropertyActionListener value="#{dataImg}" target="#{listRoom.selectedImg}"/>
+                                            </p:commandLink>
+                                        </h:panelGrid>
+                                    </p:column>
+                                </p:dataGrid>
+                            </p:scrollPanel>
+                            <f:facet name="footer">
+                                <p:commandButton value="Update" update=":form:messages, :form:dataTable"
+                                                 actionListener="#{listRoom.btnUpdate}"
+                                                 oncomplete="dlgEdit.hide();"/>
+                                <p:commandButton value="Cancel" onclick="dlgEdit.hide();" action="#{listRoom.btnCancel()}" update=":form:messages"/>
+                            </f:facet>
+                        </p:dialog>
+
+                        <p:dialog id="dlgEditDesImg" header="Edit Description for Image" widgetVar="editDesImg" modal="true" height="200" width="350" showEffect="clip" hideEffect="clip">
+                            <h:outputLabel for="txtdesImg" value="Description:" />  
+                            <p:inputTextarea rows="6" cols="33" value="#{listRoom.desImg}" id="txtdesImg" label="Description" />
+                            <f:facet name="footer">
+                                <p:commandButton value="Update" update=":form:messages,dataImage"
+                                                 actionListener="#{listRoom.editDesImg()}" onclick="editDesImg.hide();"/>
+                                <p:commandButton value="Cancel" onclick="editDesImg.hide();"/>
+                            </f:facet>
+                        </p:dialog>
+
+                        <p:confirmDialog id="cfDlgDelImg" message="Are you sure delete this Image?"
+                                         header="Delete Image" severity="alert" widgetVar="cfDelImg">  
+                            <p:commandButton id="btncfDelImg" value="Yes Sure" update="messages, dataImage"   
+                                             actionListener="#{listRoom.delImg()}" oncomplete="cfDelImg.hide();">
+                            </p:commandButton>
+                            <p:commandButton id="btnclDelImg" value="Not Yet" onclick="cfDelImg.hide();" type="button" />   
+                        </p:confirmDialog>
                     </h:form>
                 </div>
             </ui:define>

@@ -23,19 +23,110 @@
                             <p:submenu label="Room Manager">
                                 <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
-                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Room" outcome="createTypeRoom.jsf" ajax="false"/>
                             </p:submenu>
                             <p:submenu label="Table Manager">
                                 <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Table" outcome="createTypeTable.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
                 </div>
                 <div id="us_right">
-                    
-                    
-                    
+                    <h:form id="form" style="height: 500px">
+                        <p:growl id="messages" showDetail="false"/>  
+
+                        <p:dataTable id="dataTable" var="resTable" value="#{listTable.listRT}"  
+                                     paginator="true" rows="10"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     widgetVar="searchTable" filteredValue="#{listTable.filteredCars}"
+                                     editable="true">  
+
+
+                            <f:facet name="header">  
+                                <p:outputPanel>  
+                                    <h:outputText value="Search all fields:"/>  
+                                    <p:inputText id="globalFilter" onkeyup="searchTable.filter()" style="width:250px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
+
+                            <p:column sortBy="#{resTable.resTableId}" filterBy="#{resTable.resTableId}" headerText="Id"> 
+                                <h:outputText value="#{resTable.resTableId}" />  
+                            </p:column>  
+
+                            <p:column sortBy="#{resTable.nameTypeRoom}" filterBy="#{resTable.nameTypeRoom}" headerText="TypeTable">
+                                <h:outputText value="#{resTable.typetable}" rendered="false" />
+                                <h:outputText value="#{resTable.nameTypeRoom}" />
+                            </p:column>  
+
+                            <p:column sortBy="#{resTable.nameHotel}" filterBy="#{resTable.nameHotel}" headerText="Hotel">  
+                                <h:outputText value="#{resTable.hrid}" rendered="false" />
+                                <h:outputText value="#{resTable.nameHotel}" />
+                            </p:column>
+
+                            <p:column sortBy="#{resTable.statusTable}" headerText="Status">  
+                                <h:outputText value="#{(resTable.statusTable eq true) ? 'No Hire':'Has Hired'}" />  
+                            </p:column>
+
+                            <p:column sortBy="#{resTable.tableDescription}" headerText="Description">  
+                                <h:outputText value="#{resTable.tableDescription}" />  
+                            </p:column>
+
+                            <p:column headerText="Options" style="width:100px">  
+                                <p:commandLink action="#{listTable.showTable()}" oncomplete="dlgEdit.show();" update="@form">Edit
+                                    <f:setPropertyActionListener value="#{resTable}" target="#{listTable.selRT}"/>
+                                </p:commandLink>
+                            </p:column>
+                            <p:column headerText="Delete" >
+                                <p:commandButton icon="ui-icon-close" value="Delete"
+                                                 oncomplete="cfDelete.show()">
+                                    <f:setPropertyActionListener value="#{resTable}" target="#{listTable.selRT}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        
+                        <p:confirmDialog id="cfDlgDelRoom" message="Are you sure delete this Fields?"  
+                                         header="Delete process" severity="alert" widgetVar="cfDelete">  
+                            <p:commandButton id="confirm" value="Yes Sure" update="messages, :form:dataTable" oncomplete="cfDelete.hide()"  
+                                             action="#{listTable.btnDelTable()}">
+                            </p:commandButton>
+                            <p:commandButton id="decline" value="Not Yet" onclick="cfDelete.hide()" type="button" />   
+                        </p:confirmDialog>
+                        
+                        <p:dialog id="dialogEdit" header="Edit Table" widgetVar="dlgEdit" modal="true" height="400" width="500" showEffect="clip" hideEffect="clip">
+                            <h:panelGrid columns="2" cellpadding="5">
+
+                                <h:outputLabel  for="chooseHrid" value="Choose Hotel: " />
+                                <p:selectOneMenu id="chooseHrid" value="#{listTable.hotelid}" style="width: 250px">  
+                                    <f:selectItems value="#{listTable.listHr}" var="dlgTable" itemLabel="#{dlgTable.hrname}" itemValue="#{dlgTable.hrid}"/>  
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="chooseTypeid" value="Choose Type: " />
+                                <p:selectOneMenu id="chooseTypeid" value="#{listTable.typeTableid}" style="width: 250px">  
+                                    <f:selectItems value="#{listTable.listTypeTable}" var="dlgTypeTable" itemLabel="#{dlgTypeTable.typeTableName}" itemValue="#{dlgTypeTable.typeTableId}"/>  
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="statusTable" value="Status: " />
+                                <p:selectOneRadio id="statusTable" value="#{listTable.statusTable}">
+                                    <f:selectItem itemLabel="No Hire" itemValue="true" />  
+                                    <f:selectItem itemLabel="Has Hired" itemValue="false" />  
+                                </p:selectOneRadio>
+
+                                <h:outputLabel for="txtdesTable" value="Description for Table: " />
+                                <p:inputText  style="width: 242px" id="txtdesTable" value="#{listTable.desTable}" />
+
+                            </h:panelGrid>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Update" update=":form:messages, :form:dataTable"
+                                                 actionListener="#{listTable.btnUpdate}"
+                                                 oncomplete="dlgEdit.hide();"/>
+                                <p:commandButton value="Cancel" onclick="dlgEdit.hide();" action="#{listTable.btnCancel()}" update=":form:messages"/>
+                            </f:facet>
+                        </p:dialog>
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>

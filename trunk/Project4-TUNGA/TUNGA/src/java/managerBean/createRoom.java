@@ -19,16 +19,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 
-/**
- *
- * @author LOAN JURI
- */
+
 @ManagedBean
 @ViewScoped
 public class createRoom {
@@ -115,7 +110,7 @@ public class createRoom {
     }
     
    
-    public String btnsuccess(){
+    public void btnsuccess(){
         newRoom();
         TypeImageHelper<Typeimages> tHelper = new TypeImageHelper<Typeimages>();
         if (!listname.isEmpty()) {
@@ -138,12 +133,24 @@ public class createRoom {
         }
         FacesMessage msg = new FacesMessage("Success!"); 
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        return "createRoom.jsf?faces-redirect=true";
+        
+        selectedHrid = 0;
+        selectedTypeRoomid = 0;
+        desRoom = null;
     }
     
-    public String resetField(){
-        return "createRoom.jsf?faces-redirect=true";
-        
+    public void resetField(){
+        if (!listname.isEmpty()) {
+            for (String str : listname) {
+                File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
+                f.delete();
+            }
+            listname.clear();
+            listImg.clear();
+        }
+        selectedHrid = 0;
+        selectedTypeRoomid = 0;
+        desRoom = null;
     }
    
     

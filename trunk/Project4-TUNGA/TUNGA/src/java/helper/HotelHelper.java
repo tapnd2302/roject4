@@ -17,9 +17,10 @@ public class HotelHelper<T> extends ObjectHelper<T> {
         tr.commit();
         return result;
     }
-    public List<T> showImage(int id){
+    public List<T> showImage(int typeImg, int id){
         org.hibernate.Transaction tr = session.beginTransaction();
-        Query q = session.createQuery("From Images where TypeImage = 2 and ID = :id");
+        Query q = session.createQuery("From Images where TypeImage = :typeImg and ID = :id");
+        q.setParameter("typeImg", typeImg);
         q.setParameter("id", id);
         List<T> result = q.list();
         tr.commit();
@@ -35,6 +36,22 @@ public class HotelHelper<T> extends ObjectHelper<T> {
     public List<T> showRooms(){
         org.hibernate.Transaction tr = session.beginTransaction();
         Query q = session.createQuery("From Rooms");
+        List<T> result = q.list();
+        tr.commit();
+        return result;
+    }
+    
+    public List<T> showTypeTable(){
+        org.hibernate.Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("From Typetable");
+        List<T> result = q.list();
+        tr.commit();
+        return result;
+    }
+    
+    public List<T> showTable(){
+        org.hibernate.Transaction tr = session.beginTransaction();
+        Query q = session.createQuery("From RestaurantTables");
         List<T> result = q.list();
         tr.commit();
         return result;

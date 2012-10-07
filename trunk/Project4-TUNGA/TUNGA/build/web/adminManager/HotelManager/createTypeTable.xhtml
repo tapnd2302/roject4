@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <head>
         <title>Hotel Manager</title>
         <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
@@ -38,46 +37,31 @@
                         <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
                         <br/>
                         <p:panel id="pnText" style="width: 820px">
-                            <table style="width: 600px">
+                            <table style="width: 500px">
                                 <tr>
-                                    <td><h:outputLabel  for="chooseHrid" value="Choose Hotel: " /></td>
-                                    <td><p:selectOneMenu id="chooseHrid" value="#{createRoom.selectedHrid}" effect="fade" style="width: 250px">  
-                                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                                            <f:selectItems value="#{createRoom.listHr}" var="hotel" itemLabel="#{hotel.hrname}" itemValue="#{hotel.hrid}"/>  
-                                        </p:selectOneMenu></td>
+                                    <td><h:outputLabel  for="txtNameTB" value="Type Table: " /></td>
+                                    <td><p:inputText id="txtNameTB" style="width: 242px" value="#{createTypeTable.nameTB}" /></td>
                                 </tr>
                                 <tr>
-                                    <td><h:outputLabel for="chooseTypeid" value="Choose Type: " /></td>
-                                    <td><p:selectOneMenu id="chooseTypeid" value="#{createRoom.selectedTypeRoomid}" effect="fade" style="width: 250px">  
-                                            <f:selectItem itemLabel="Select One" itemValue="" />  
-                                            <f:selectItems value="#{createRoom.listTypeRoom}" var="typeroom" itemLabel="#{typeroom.typeRoomName}" itemValue="#{typeroom.typeRoomId}"/>  
-                                        </p:selectOneMenu></td>
+                                    <td><h:outputLabel  for="txtPriceTB" value="Price: " /></td>
+                                    <td><p:inputText id="txtPriceTB" style="width: 242px" value="#{createTypeTable.priceTB}" /></td>
                                 </tr>
                                 <tr>
-                                    <td><h:outputLabel for="txtdesRoom" value="Description for Room: " /></td>
-                                    <td><p:inputText  style="width: 242px" id="txtdesRoom" value="#{createRoom.desRoom}" /></td>
-                                </tr>
-                                <tr>
-                                    <tr><td colspan="2">Image:<br/></td></tr>
-                                    <td colspan="2"><p:fileUpload fileUploadListener="#{createRoom.saveimage}"
-                                                      sizeLimit="1000000" update="messages" mode="advanced" label="Choose Images" 
-                                                      multiple="true" 
-                                                      allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/" /></td>
+                                    <td><h:outputLabel  for="txtDesTB" value="Description: " /></td>
+                                    <td><p:inputText id="txtDesTB" style="width: 242px" value="#{createTypeTable.desTB}" /></td>
                                 </tr>
                             </table>
                         </p:panel>
                         <br/>
                         <p:panel id="pnBtn" style="width: 820px">
-                            <table id="table" style="width: 250px">
+                            <table id="table" style="width: 280px">
                                 <tr>
-                                    <td><p:commandButton value=" Create Room " action="#{createRoom.btnsuccess()}" update="messages, @form"/></td>
-                                    <td><p:commandButton value=" Reset Field " action="#{createRoom.resetField()}" update="@form"/></td>
+                                    <td><p:commandButton value=" Create New Type " action="#{createTypeTable.btnsuccess()}" update="messages, @form"/></td>
+                                    <td><p:commandButton value=" Reset Field " action="#{createTypeTable.resetField()}" update="@form"/></td>
                                 </tr>
                             </table>
                         </p:panel>
                     </h:form>
-
-
                 </div>
             </ui:define>
         </ui:composition>

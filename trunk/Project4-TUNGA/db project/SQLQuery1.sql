@@ -100,9 +100,11 @@ CREATE TABLE TYPETABLE
 	TablePrice float
 )
 GO
+
 CREATE TABLE RESTAURANT_TABLES
 (
 	ResTableID int identity primary key,
+	HRID int,
 	TypeTableID int,
 	StatusTable bit default 0,
 	TableDescription nvarchar(max)

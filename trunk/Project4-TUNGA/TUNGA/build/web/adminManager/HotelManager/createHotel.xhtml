@@ -25,11 +25,12 @@
                             <p:submenu label="Room Manager">
                                 <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
-                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Room" outcome="createTypeRoom.jsf" ajax="false"/>
                             </p:submenu>
                             <p:submenu label="Table Manager">
                                 <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Table" outcome="createTypeTable.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
@@ -83,7 +84,7 @@
                                         <p:commandButton value=" Create New Hotel " action="#{createHotel.btnsuccess()}" update="messages, @form"/>
                                     </td>
                                     <td>
-                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}"/>
+                                        <p:commandButton value=" Reset Field " action="#{createHotel.resetField()}" update="@form"/>
                                     </td>
                                 </tr>
                             </table>

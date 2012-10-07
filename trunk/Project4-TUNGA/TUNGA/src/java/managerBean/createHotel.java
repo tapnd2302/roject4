@@ -188,7 +188,7 @@ public class createHotel {
         return "success";
     }
     
-    public String resetField(){
+    public void resetField(){
         if (!listname.isEmpty()) {
             for (String str : listname) {
                 File f = new File(destination +File.separator+ "images" +File.separator+ "hotel" +File.separator+ str);
@@ -202,7 +202,6 @@ public class createHotel {
         _info = null;
         _name = null;
         _phone = null;
-        return "createHotel.jsf?faces-redirect=true";
     }
     
 

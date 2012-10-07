@@ -6,12 +6,12 @@
     <class name="entity.Typetable" table="TYPETABLE" schema="dbo" catalog="PROJECT4">
         <id name="typeTableId" type="int">
             <column name="TypeTableID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <property name="typeTableName" type="serializable">
+        <property name="typeTableName" type="java.lang.String">
             <column name="TypeTableName" />
         </property>
-        <property name="typeTableDescription" type="serializable">
+        <property name="typeTableDescription" type="java.lang.String">
             <column name="TypeTableDescription" />
         </property>
         <property name="tablePrice" type="java.lang.Double">

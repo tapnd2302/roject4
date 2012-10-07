@@ -2,6 +2,7 @@ package entity;
 // Generated Sep 27, 2012 7:29:24 AM by Hibernate Tools 3.2.1.GA
 
 
+import helper.RoomsHelper;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +14,29 @@ public class RestaurantTables  implements java.io.Serializable {
 
 
      private int resTableId;
-     private Typetable typetable;
+     private Integer typetable;
      private Boolean statusTable;
-     private Serializable tableDescription;
+     private String tableDescription;
+     private Integer hrid;
      private Set<Tablebooking> tablebookings = new HashSet<Tablebooking>(0);
+     private String nameTypeTable;
+     private String nameHotel;
+
+    public String getNameHotel() {
+        return nameHotel;
+    }
+
+    public void setNameHotel(String nameHotel) {
+        this.nameHotel = nameHotel;
+    }
+
+    public String getNameTypeRoom() {
+        return nameTypeTable;
+    }
+
+    public void setNameTypeRoom(String nameTypeTable) {
+        this.nameTypeTable = nameTypeTable;
+    }
 
     public RestaurantTables() {
     }
@@ -25,11 +45,12 @@ public class RestaurantTables  implements java.io.Serializable {
     public RestaurantTables(int resTableId) {
         this.resTableId = resTableId;
     }
-    public RestaurantTables(int resTableId, Typetable typetable, Boolean statusTable, Serializable tableDescription, Set<Tablebooking> tablebookings) {
+    public RestaurantTables(int resTableId, Integer typetable, Boolean statusTable, String tableDescription, Integer hrid, Set<Tablebooking> tablebookings) {
        this.resTableId = resTableId;
        this.typetable = typetable;
        this.statusTable = statusTable;
        this.tableDescription = tableDescription;
+       this.hrid = hrid;
        this.tablebookings = tablebookings;
     }
    
@@ -40,12 +61,14 @@ public class RestaurantTables  implements java.io.Serializable {
     public void setResTableId(int resTableId) {
         this.resTableId = resTableId;
     }
-    public Typetable getTypetable() {
+    public Integer getTypetable() {
         return this.typetable;
     }
     
-    public void setTypetable(Typetable typetable) {
+    public void setTypetable(Integer typetable) {
         this.typetable = typetable;
+        RoomsHelper<Typetable> Tt = new RoomsHelper<Typetable>();
+        nameTypeTable = Tt.showTypeTable(typetable).getTypeTableName();
     }
     public Boolean getStatusTable() {
         return this.statusTable;
@@ -54,13 +77,24 @@ public class RestaurantTables  implements java.io.Serializable {
     public void setStatusTable(Boolean statusTable) {
         this.statusTable = statusTable;
     }
-    public Serializable getTableDescription() {
+    public String getTableDescription() {
         return this.tableDescription;
     }
     
-    public void setTableDescription(Serializable tableDescription) {
+    public void setTableDescription(String tableDescription) {
         this.tableDescription = tableDescription;
     }
+    
+    public Integer getHrid() {
+        return hrid;
+    }
+
+    public void setHrid(Integer hrid) {
+        this.hrid = hrid;
+        RoomsHelper<HotelRestaurant> Hr = new RoomsHelper<HotelRestaurant>();
+        nameHotel = Hr.showNameHotel(hrid).getHrname();
+    }
+    
     public Set<Tablebooking> getTablebookings() {
         return this.tablebookings;
     }
@@ -68,7 +102,7 @@ public class RestaurantTables  implements java.io.Serializable {
     public void setTablebookings(Set<Tablebooking> tablebookings) {
         this.tablebookings = tablebookings;
     }
-
+    
 
 
 

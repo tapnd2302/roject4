@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <head>
         <title>Hotel Manager</title>
         <link href="/resources/cssAdmin/userManager.css" rel="stylesheet" type="text/css" />
@@ -23,40 +22,46 @@
                             <p:submenu label="Room Manager">
                                 <p:menuitem value="Room List" outcome="listRoom.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Room" outcome="createRoom.jsf" ajax="false"/>
-                                <p:menuitem value="Create TypeRoom" outcome="createTypeRoom.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Room" outcome="createTypeRoom.jsf" ajax="false"/>
                             </p:submenu>
                             <p:submenu label="Table Manager">
                                 <p:menuitem value="Table List" outcome="listTable.jsf" ajax="false"/>
                                 <p:menuitem value="Create New Table" outcome="createTable.jsf" ajax="false"/>
+                                <p:menuitem value="Create Type Table" outcome="createTypeTable.jsf" ajax="false"/>
                             </p:submenu>
                         </p:panelMenu>
                     </h:form>
                 </div>
-                <div id="us_right">
+                <div id="us_right" align="center">
                     <h:form id="form">
                         <p:growl showDetail="false" sticky="false" life="5000" id="messages"></p:growl>
                         <br/>
-                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-
-                            <h:outputLabel  for="txtNameTR" value="Type Room's Name: " />  
-                            <p:inputText id="txtNameTR" value="#{createTypeRoom.nameTR}" />
-
-                            <h:outputLabel  for="txtPriceTR" value="Price: " />  
-                            <p:inputText id="txtPriceTR" value="#{createTypeRoom.priceTR}" />
-                            
-                            <h:outputLabel  for="txtDesTR" value="Description: " />  
-                            <p:inputText id="txtDesTR" value="#{createTypeRoom.desTR}" />
-
-                            <p:commandButton value=" Create" action="#{createTypeRoom.btnsuccess()}" update="messages"/>
-
-                            <p:commandButton value=" Reset Field " ajax="false" update="@form"/>
-
-
-                        </h:panelGrid>
-
+                        <p:panel id="pnText" style="width: 820px">
+                            <table style="width: 600px">
+                                <tr>
+                                    <td><h:outputLabel  for="txtNameTR" value="Type Room's Name: " /></td>
+                                    <td><p:inputText id="txtNameTR" style="width: 242px" value="#{createTypeRoom.nameTR}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel  for="txtPriceTR" value="Price: " /></td>
+                                    <td><p:inputText id="txtPriceTR" style="width: 242px" value="#{createTypeRoom.priceTR}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><h:outputLabel  for="txtDesTR" value="Description: " /></td>
+                                    <td><p:inputText id="txtDesTR" style="width: 242px" value="#{createTypeRoom.desTR}" /></td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                        <br/>
+                        <p:panel id="pnBtn" style="width: 820px">
+                            <table id="table" style="width: 300px">
+                                <tr>
+                                    <td><p:commandButton value=" Create New Type " action="#{createTypeRoom.btnsuccess()}" update="messages, @form"/></td>
+                                    <td><p:commandButton value=" Reset Field " action="#{createTypeRoom.resetField()}" update="@form"/></td>
+                                </tr>
+                            </table>
+                        </p:panel>
                     </h:form>
-
-
                 </div>
             </ui:define>
         </ui:composition>
